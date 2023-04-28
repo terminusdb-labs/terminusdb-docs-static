@@ -34,7 +34,7 @@ export async function getStaticProps(context) {
     };
     const application = await axios.post('https://cloud-dev.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/CodeDocumentation', {
         query: `query {
-            Application(filter: {language: {eq: Javascript} } ) {
+            Application(filter: {language: {eq: Python} } ) {
                 name,
                 modules {
                    name,

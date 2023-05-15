@@ -29,7 +29,7 @@ export default function Doc( { entry } ) {
 
 export async function getStaticPaths() {
     const docs = await client.getDocument({"@type": "Page", as_list: true})
-    const paths = docs.map(x => "/" + x["slug"])
+    const paths = docs.filter(x => typeof x['slug'] !== 'undefined' && typeof x['body'] !== 'undefined').map(x => "/" + x["slug"])
     return { paths: paths, fallback: false }
 }
 

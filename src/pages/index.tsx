@@ -6,12 +6,15 @@ import axios from 'axios';
 function renderMenu(menu) {
     const menuItems = menu.Level1.map(level1 => {
         const level2Items = level1.Level2.map(level2 => {
+            if (typeof level2 === 'undefined') {
+              return ''
+            }
             const level3Items = level2.Level3.map(level3 => {
-                return <li><a href={level3.Menu3Page.slug}>{level3.Menu1Label}</a></li>
+                return <li key={level3.Menu3Page.slug}><a href={level3.Menu3Page.slug}>{level3.Menu1Label}</a></li>
             })
-            return <li><a href={level2.Menu2Page.slug}>{level2.Menu2Label}</a><ul>{ level3Items }</ul></li>
+            return <li key={level2.Menu2Page.slug}><a href={level2.Menu2Page.slug}>{level2.Menu2Label}</a><ul>{ level3Items }</ul></li>
         })
-        return <li><a href={level1.Menu1Page.slug}>{level1.Menu1Label}</a><ul>{ level2Items }</ul></li>
+        return <li key={level1.Menu1Page.slug}><a href={level1.Menu1Page.slug}>{level1.Menu1Label}</a><ul>{ level2Items }</ul></li>
     })
     return menuItems
 }

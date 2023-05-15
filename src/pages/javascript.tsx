@@ -13,10 +13,10 @@ export default function JavaScript( { application } ) {
     const modules = application.modules
     const layout = modules.map(mod => {
         const classes = mod.classes.map(class_ => {
-            const functions = class_.memberFunctions.map(func => <div><h4>{func.name}</h4><p>{func.summary}</p></div>)
-            return (<div><h3>{class_.name}</h3>{functions}</div>)
+            const functions = class_.memberFunctions.map(func => <div key={func.name}><h4>{func.name}</h4><p>{func.summary}</p></div>)
+            return (<div key={class_.name}><h3>{class_.name}</h3>{functions}</div>)
         })
-        return (<div><h2>{ mod.name }</h2>{ classes }</div>)
+        return (<div key={mod.name}><h2>{ mod.name }</h2>{ classes }</div>)
     })
     return (
         <main>

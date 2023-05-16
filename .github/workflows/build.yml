@@ -14,3 +14,4 @@ jobs:
       - run: npm run build
         env:
           TERMINUSDB_API_TOKEN: ${{ secrets.TERMINUSDB_API_TOKEN }}
+      - run: python3 convert_to_dirs.py

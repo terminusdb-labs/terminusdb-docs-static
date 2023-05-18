@@ -10,6 +10,7 @@ const client = new TerminusClient.WOQLClient('https://cloud-dev.terminusdb.com/T
                                               token: process.env.TERMINUSDB_API_TOKEN})
 
 export default function JavaScript( { application } ) {
+    console.log(application)
     const modules = application.modules
     const layout = modules.map(mod => {
         const classes = mod.classes.map(class_ => {
@@ -41,13 +42,19 @@ export async function getStaticProps(context) {
                       name,
                       memberFunctions {
                           name,
-                          summary
+                          summary,
+                           parameters {
+                           default
+                           summary
+                           name
+                           type
+                         }
                       }
                    }
                 }
             }
        }`
     }, config)
-    console.log(application.data)
+    
     return { props: { application: application.data.data.Application[0] } }
 }

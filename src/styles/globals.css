@@ -34,19 +34,19 @@ body {
 
 @layer base {
   h1 {
-    @apply mb-4 mt-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-5xl dark:text-white;
+    @apply mb-8 mt-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900  dark:text-white;
   }
   h2 {
-    @apply mb-4 mt-4 text-4xl font-extrabold dark:text-white;
+    @apply mb-8 mt-4 text-3xl font-extrabold dark:text-white;
   }
   h3 {
-    @apply mb-4 mt-4 text-3xl font-bold dark:text-white;
+    @apply mb-8 mt-4 text-2xl font-bold dark:text-white;
   }
   p {
-    @apply mb-4 text-lg text-gray-500 md:text-xl dark:text-gray-400;
+    @apply mb-8 text-lg text-gray-500 md:text-xl dark:text-gray-400;
   }
-  li { 
-    @apply dark:text-gray-400;
+  ol li { 
+    @apply text-lg text-gray-500 md:text-xl dark:text-gray-400;
   }
   ol { 
     @apply max-w-md space-y-1 text-gray-500 list-decimal list-inside dark:text-gray-400 mb-4;

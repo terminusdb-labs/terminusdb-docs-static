@@ -34,7 +34,7 @@ export default function Home(params: { menu: any[], entry: any[] }) {
       <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
         <a href="https://terminusdb.com/" className="flex items-center pl-2.5 mb-5">
           <img src="https://4053281810-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FVZc9T1wJdVvodyIFrJuV%2Flogo%2F5UCCcn4lbzsXbvjpObGc%2FTerminusDB-Logo.svg?alt=media&amp;token=b0b8f1f0-d830-46de-a805-69bdda20bbe0" 
-            className="h-12" 
+            className="h-10 mb-0 mt-0" 
             width="100%" height="auto" decoding="async"
             alt="TerminusDB Logo" />
         </a>

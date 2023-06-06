@@ -3,15 +3,18 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 import 'flowbite';
+import { checkIfMenuOpen, getActiveSlugClassName } from "./utils"
 
 const menuClassName = "flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
 
 /** level 3 */
-function renderLevel3Menu(menuLevel3: any[]) {
+function renderLevel3Menu(menuLevel3: any[], entry: any[]) {
+  
   const level3Items = menuLevel3.map((level3, index) => {
+    let activeClassName = getActiveSlugClassName(level3, entry, 3)
     return <li key={`level3_${index}`}>
       <a href={level3.Menu3Page.slug} 
-        className={`${menuClassName} pl-32`}>
+        className={`${menuClassName} pl-32 ${activeClassName}`}>
         {level3.Menu3Label}
       </a>
     </li>
@@ -26,17 +29,19 @@ function renderLevel2Menu(menuLevel2: any[], entry: any[]) {
       return ''
     }
 
+    let activeClassName = getActiveSlugClassName(level2, entry, 2)
+
     if(Array.isArray(level2.Level3) && !level2.Level3.length) {
       /** menu with no level 3 */
       return <li key={`level2_${index}`}>
         <a href={level2.Menu2Page.slug} 
-          className={`${menuClassName} pl-20`}>
+          className={`${menuClassName} pl-20 ${activeClassName}`}>
             {level2.Menu2Label}
         </a>
       </li>
     }
 
-    let className  =  getSideBarStatus(level2, entry, 3)
+    let className  =  checkIfMenuOpen(level2, entry, 3)
 
     /** menu with level 3 */
     return <li key={`level2_${index}`}>
@@ -55,7 +60,7 @@ function renderLevel2Menu(menuLevel2: any[], entry: any[]) {
           </svg>
       </button>
       
-      <ul id={level2.Menu2Label} className={`${className} py-2 space-y-2`}>{ renderLevel3Menu(level2.Level3) }</ul>
+      <ul id={level2.Menu2Label} className={`${className} py-2 space-y-2`}>{ renderLevel3Menu(level2.Level3, entry) }</ul>
     </li>
   })
   return level2Items
@@ -64,11 +69,14 @@ function renderLevel2Menu(menuLevel2: any[], entry: any[]) {
 /** level 1 */
 function renderLevel1Menu(menuLevel1: any[], entry: any[]) {
   const menuItems = menuLevel1.map((level1, index) => {
+
+    let activeClassName = getActiveSlugClassName(level1, entry, 1)
+
     if(Array.isArray(level1.Level2) && !level1.Level2.length) {
       /** menu with no level 2 */
       return <li key={level1.Menu1Page.slug}>
         <a href={level1.Menu1Page.slug} 
-          className={`${menuClassName} pl-11`}>
+          className={`${menuClassName} pl-11 ${activeClassName}`}>
           <span className="ml-3">{level1.Menu1Label}</span>
         </a>
       </li>
@@ -76,7 +84,7 @@ function renderLevel1Menu(menuLevel1: any[], entry: any[]) {
     //console.log("level1", level1)
     //let className  =  getHiddenClassName(level1, entry, 2)
     //let className  = "hidden"
-    let className  =  getSideBarStatus(level1, entry, 2)
+    let className  =  checkIfMenuOpen(level1, entry, 2)
 
     /** menu with level 2 */
     return <li key={`level1_${index}`}>
@@ -102,37 +110,13 @@ function renderLevel1Menu(menuLevel1: any[], entry: any[]) {
 }
 
 
-function getSideBarStatus (menuItem: { Level1: any[]; }, entry: { document: { slug: any; }; }, index: any[]) {
-  
-  let className = "hidden"
-  if(Array.isArray(menuItem[`Level${index}`])) {
-    menuItem[`Level${index}`].map( level => {
-      console.log("menuItem level", level)
-      // match Found
-      if(level[`Menu${index}Page`].slug === entry.document.slug) {
-        className=""
-      }
-      // loop further to next menu levels 
-      let nextLevelClassNames = getSideBarStatus(level, entry, index+1)
-      if(nextLevelClassNames !== "hidden")
-        className=nextLevelClassNames
-        console.log("nextLevelClassNames", nextLevelClassNames)
-    })
-  }
-  
-  return className
-}
-
-
 /** level 0 */
 export default function renderMainMenu(menu: any[], entry: any[]) {
 
-  //console.log("curr entr", entry)
-  
   const mainMenuItems = menu.map((menuItem, index) => {
 
-    //let className  =  getHiddenClassName(menuItem, entry, 1)
-    let className  =  getSideBarStatus(menuItem, entry, 1)
+    let className  =  checkIfMenuOpen(menuItem, entry, 1)
+    
 
     return <li key={index}>
       <button type="button" 

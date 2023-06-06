@@ -41,3 +41,12 @@ export function getActiveSlugClassName (menuItem: { Level1: any[]; }, entry: { d
   }
   return className
 }
+
+/**
+ * 
+ * @param menu menu Array with Order
+ * @returns ordered array menu
+ */
+export function menuItemsByOrder (menu: any[]) {
+  return menu.sort(function(a: { Order: number; }, b: { Order: number; }){return a.Order-b.Order})
+}

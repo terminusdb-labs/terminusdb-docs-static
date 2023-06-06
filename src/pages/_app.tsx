@@ -60,7 +60,7 @@ function handleThemeSwitch () {
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     Prism.highlightAll();
-    handleThemeSwitch();
+    //handleThemeSwitch();
   }, []);
   return <Component {...pageProps} />
 }

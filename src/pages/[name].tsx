@@ -62,28 +62,31 @@ export async function getStaticProps({ params }) {
 
 	const req = await axios.post('https://cloud-dev.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/terminusCMS_docs', {
 			query: `query {
-				Menu {
-					MenuTitle
-					Level1 {
-						Menu1Label,
-						Menu1Page {
-							slug
-						},
-						Level2 {
-							Menu2Label,
-							Menu2Page{
-								slug
-							},
-							Level3 {
-								Menu3Label,
-								Menu3Page {
-									slug
-								}
-							}
-						}
-					}
-				}
-			}`
+        Menu {
+          MenuTitle
+          Level1 {
+            Menu1Label,
+            Order,
+            Menu1Page {
+              slug
+            },
+            Level2 {
+              Menu2Label,
+              Order,
+              Menu2Page{
+                slug
+              },
+              Level3 {
+                Menu3Label,
+                Order,
+                Menu3Page {
+                  slug
+                }
+              }
+            }
+          }
+        }
+      }`
 	}, config)
 	const menu = req.data.data.Menu
 

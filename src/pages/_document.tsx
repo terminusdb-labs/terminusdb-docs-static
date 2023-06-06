@@ -54,7 +54,6 @@ export default function Document() {
         <Script onLoad={loadTheme}/>
       </Head>
       <body className='h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800'>
-        <ThemeSwitcher/>
         <Main />
         <NextScript/>
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></Script>
@@ -64,3 +63,5 @@ export default function Document() {
     </Html>
   )
 }
+
+//<ThemeSwitcher/>

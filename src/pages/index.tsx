@@ -58,16 +58,19 @@ export async function getStaticProps({ params }) {
           MenuTitle
           Level1 {
             Menu1Label,
+            Order,
             Menu1Page {
               slug
             },
             Level2 {
               Menu2Label,
+              Order,
               Menu2Page{
                 slug
               },
               Level3 {
                 Menu3Label,
+                Order,
                 Menu3Page {
                   slug
                 }

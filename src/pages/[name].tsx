@@ -5,12 +5,10 @@ const converter = new showdown.Converter({metadata: true, tables: true})
 const createDOMPurify = require('dompurify');
 const { JSDOM } = require('jsdom');
 const window = new JSDOM('').window;
-const DOMPurify = createDOMPurify(window); 
+const DOMPurify = createDOMPurify(window);  
 import axios from 'axios';
 import { BodyContent } from "./_body"
-import renderMainMenu  from "./_menu"
-import { getLogo } from "./utils"
-
+import { SideBar } from "./_sidebar"
 
 // Connect and configure the TerminusClient
 const client = new TerminusClient.WOQLClient('https://cloud-dev.terminusdb.com/TerminatorsX',
@@ -22,7 +20,7 @@ const client = new TerminusClient.WOQLClient('https://cloud-dev.terminusdb.com/T
 	}
 )
 
-export default function Doc( props ) {
+export default function Doc( props: JSX.IntrinsicAttributes & { menu: any[]; entry: any[]; } ) {
 	return <div className='h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800'>
     <button data-drawer-target="sidebar-multi-level-sidebar" 
       data-drawer-toggle="sidebar-multi-level-sidebar" 
@@ -34,18 +32,7 @@ export default function Doc( props ) {
           <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
       </svg>
     </button>
-		<aside id="sidebar-multi-level-sidebar" 
-      className="fixed top-0 left-0 z-40 w-96 h-screen transition-transform -translate-x-full sm:translate-x-0" 
-      aria-label="Sidebar">
-      <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-        {getLogo()}
-        <div className="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700"/>
-        <ul className="space-y-2 font-medium tdb__li">
-					
-          { renderMainMenu(props.menu, props.entry) }
-        </ul>
-      </div>
-    </aside>
+		<SideBar {...props}/>
 		<BodyContent entry={props.entry}/>
 	</div>
 }
@@ -68,21 +55,22 @@ export async function getStaticProps({ params }) {
 
 	const req = await axios.post('https://cloud-dev.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/terminusCMS_docs', {
 			query: `query {
-        Menu {
-          MenuTitle
-          Level1 {
+        Menu(orderBy: {menu_order:ASC}) {
+          MenuTitle,
+          menu_order,
+          Level1(orderBy: {Order:ASC})  {
             Menu1Label,
             Order,
             Menu1Page {
               slug
             },
-            Level2 {
+            Level2(orderBy: {Order:ASC}) {
               Menu2Label,
               Order,
               Menu2Page{
                 slug
               },
-              Level3 {
+              Level3(orderBy: {Order:ASC}) {
                 Menu3Label,
                 Order,
                 Menu3Page {

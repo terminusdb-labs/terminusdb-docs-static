@@ -8,6 +8,13 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "browser": {
+    "tls": false,
+    "net": false,
+    "fs": false,
+    "child_process": false,
+    "perf_hooks": false
+  },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.9",
     "@terminusdb/terminusdb-client": "^10.0.28",
@@ -22,6 +29,7 @@
     "flowbite": "^1.6.5",
     "highlight.js": "^11.8.0",
     "jsdom": "^21.1.1",
+    "net": "^1.0.2",
     "next": "13.3.0",
     "postcss": "8.4.22",
     "prismjs": "^1.29.0",

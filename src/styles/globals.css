@@ -44,9 +44,16 @@ code {
 }
 
 /** list for menus should appear without bullet points */
-.tdb__li {
+ul.tdb__li{
   list-style: none;
   margin: 0;
+}
+
+/** on this page list */
+ul.tdb__on__this__page {
+  list-style: none;
+  margin-left: 0.8rem;
+  font-size: 1.0rem;
 }
 
 h2.tdb__subtitle {

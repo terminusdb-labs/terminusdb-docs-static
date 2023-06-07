@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 import 'flowbite';
-import { checkIfMenuOpen, getActiveSlugClassName, menuItemsByOrder } from "./utils"
+import { checkIfMenuOpen, getActiveSlugClassName, menuItemsByOrder, mainMenuItemsByOrder } from "./utils"
 
 const menuClassName = "flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
 
@@ -79,11 +79,6 @@ function renderLevel1Menu(menuLevel1: any[], entry: any[]) {
 
     let activeClassName = getActiveSlugClassName(level1, entry, 1)
 
-    if(level1.Menu1Label === "GraphQL Query") {
-      console.log("do osmthime");
-      console.log("stop");
-    }
-
     if(Array.isArray(level1.Level2) && !level1.Level2.length) {
       /** menu with no level 2 */
       return <li key={level1.Menu1Page.slug}>
@@ -125,6 +120,8 @@ function renderLevel1Menu(menuLevel1: any[], entry: any[]) {
 
 /** level 0 */
 export default function renderMainMenu(menu: any[], entry: any[]) {
+
+  //let orderedMainMenu = mainMenuItemsByOrder(menu)
 
   const mainMenuItems = menu.map((menuItem, index) => {
 

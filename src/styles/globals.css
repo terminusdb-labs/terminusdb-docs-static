@@ -26,8 +26,8 @@ body {
 
 /** class name to highlight clicked menu*/
 .activeMenu {
-  color: #3450DC !important;
-  background-color: #e5e6ea;
+  color: rgba(134,89,250,1.00);
+  background-color: rgba(159, 133, 224, 0.1);
 }
 
 code {

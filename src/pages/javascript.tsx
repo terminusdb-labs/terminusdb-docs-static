@@ -1,7 +1,7 @@
 
 const TerminusClient = require("@terminusdb/terminusdb-client");
 import axios from 'axios';
-import { SideBar } from "./_sidebar"
+import { SideBar } from "../components/_sidebar"
 
 // Connect and configure the TerminusClient
 const client = new TerminusClient.WOQLClient(

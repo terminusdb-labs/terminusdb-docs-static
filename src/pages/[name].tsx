@@ -7,8 +7,8 @@ const { JSDOM } = require('jsdom');
 const window = new JSDOM('').window;
 const DOMPurify = createDOMPurify(window);  
 import axios from 'axios';
-import { BodyContent } from "./_body"
-import { SideBar } from "./_sidebar"
+import { BodyContent } from "../components/_body"
+import { SideBar } from "../components/_sidebar"
 
 // Connect and configure the TerminusClient
 const client = new TerminusClient.WOQLClient('https://cloud-dev.terminusdb.com/TerminatorsX',

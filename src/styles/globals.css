@@ -1,7 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css?family=Lexend Deca");
+/*@import url("https://fonts.cdnfonts.com/css/lexend-deca");*/
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');
 @import url("https://fonts.cdnfonts.com/css/barlow-semi-condensed");
 
 
@@ -22,6 +23,7 @@
 body {
   /*font-family: 'Lexend Deca';
   font-weight: 400;*/
+  
 }
 
 /** class name to highlight clicked menu*/
@@ -47,6 +49,12 @@ code {
   margin: 0;
 }
 
+h2.tdb__subtitle {
+  color : #595959;
+  font-style: italic;
+  font-weight: 500;
+}
+
 a {
   color : #8659fa; 
 }
@@ -60,13 +68,13 @@ a:hover {
     @apply mb-8 mt-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900  dark:text-white;
   }
   h2 {
-    @apply mb-8 mt-4 text-3xl font-extrabold dark:text-white;
+    @apply mb-8 mt-4 text-3xl font-extrabold dark:text-white font-semibold;
   }
   h3 {
-    @apply mb-8 mt-4 text-2xl font-bold dark:text-white;
+    @apply mb-8 mt-4 text-2xl font-bold dark:text-white font-semibold;
   }
   h4 { 
-    @apply mb-8 mt-4 text-xl font-bold dark:text-white;
+    @apply mb-8 mt-4 text-xl font-bold dark:text-white font-semibold;
   }
   p {
     @apply mb-8 text-lg text-gray-500 md:text-xl dark:text-gray-400;
@@ -78,7 +86,7 @@ a:hover {
     @apply space-y-1 text-gray-500 list-decimal list-inside dark:text-gray-400 mb-4;
   }
   ul {
-    @apply space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400 mt-8 mb-8 text-lg
+    @apply space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400 mt-8 mb-8 text-lg md:text-xl;
   }
   img { 
     @apply max-w-full h-auto rounded-lg  mb-12 mt-12;

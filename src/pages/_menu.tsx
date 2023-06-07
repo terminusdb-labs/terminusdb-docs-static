@@ -49,21 +49,22 @@ function renderLevel2Menu(menuLevel2: any[], entry: any[]) {
 
     /** menu with level 3 */
     return <li key={`level2_${index}`}>
-      <button type="button" 
-        className={`${menuClassName} pl-20 font-barlow font-normal`}
-        aria-controls={level2.Menu2Label}
-        data-collapse-toggle={level2.Menu2Label}>
-        <span className="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>
-          {level2.Menu2Label}
-        </span>
-        <svg sidebar-toggle-item className="w-6 h-6" 
-          fill="currentColor" 
-          viewBox="0 0 20 20" 
-          xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-          </svg>
-      </button>
-      
+      <a href={level2.Menu2Page.slug}>
+        <button type="button" 
+          className={`${menuClassName} pl-20 font-barlow font-normal`}
+          aria-controls={level2.Menu2Label}
+          data-collapse-toggle={level2.Menu2Label}>
+          <span className="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>
+            {level2.Menu2Label}
+          </span>
+          <svg sidebar-toggle-item className="w-6 h-6" 
+            fill="currentColor" 
+            viewBox="0 0 20 20" 
+            xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+            </svg>
+        </button>
+      </a>
       <ul id={level2.Menu2Label} className={`${className} py-2 space-y-2 tdb__li`}>{ renderLevel3Menu(level2.Level3, entry) }</ul>
     </li>
   })
@@ -91,24 +92,26 @@ function renderLevel1Menu(menuLevel1: any[], entry: any[]) {
     //console.log("level1", level1)
     
     let className  =  checkIfMenuOpen(level1, entry, 2)
+    
 
     /** menu with level 2 */
     return <li key={`level1_${index}`}>
-      <button type="button" 
-      className={`${menuClassName} pl-11 font-barlow font-normal`}
-      aria-controls={level1.Menu1Label}
-      data-collapse-toggle={level1.Menu1Label}>
-        <span className="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>
-          {level1.Menu1Label}
-        </span>
-        <svg sidebar-toggle-item className="w-6 h-6" 
-          fill="currentColor" 
-          viewBox="0 0 20 20" 
-          xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-          </svg>
-      </button>
-      
+      <a href={level1.Menu1Page.slug} >
+        <button type="button" 
+          className={`${menuClassName} pl-11 font-barlow font-normal`}
+          aria-controls={level1.Menu1Label}
+          data-collapse-toggle={level1.Menu1Label}>
+          <span className="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>
+            {level1.Menu1Label}
+          </span>
+          <svg sidebar-toggle-item className="w-6 h-6" 
+            fill="currentColor" 
+            viewBox="0 0 20 20" 
+            xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+            </svg>
+        </button>
+      </a>
       <ul id={level1.Menu1Label} className={`${className} py-2 space-y-2 tdb__li`}>{ renderLevel2Menu(level1.Level2, entry) }</ul>
     </li>
   })

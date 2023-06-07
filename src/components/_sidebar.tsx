@@ -1,5 +1,5 @@
 import renderMainMenu  from "./_menu"
-import { getLogo } from "./utils"
+import { getLogo } from "../utils"
 
 export const SideBar = (props: { menu: any[]; entry: any[] }) => {
   return <aside id="sidebar-multi-level-sidebar" 

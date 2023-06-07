@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 import 'flowbite';
-import { checkIfMenuOpen, getActiveSlugClassName, menuItemsByOrder, mainMenuItemsByOrder } from "./utils"
+import { checkIfMenuOpen, getActiveSlugClassName, menuItemsByOrder, mainMenuItemsByOrder } from "../utils"
 
 const menuClassName = "flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
 

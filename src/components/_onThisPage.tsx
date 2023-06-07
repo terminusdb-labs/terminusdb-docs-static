@@ -1,5 +1,5 @@
 const { JSDOM } = require('jsdom');
-import { formatAnchorIds } from "./utils"
+import { formatAnchorIds } from "../utils"
 
 function getLinks(anchorLabel: any[]) {
   let links: JSX.Element[] = []

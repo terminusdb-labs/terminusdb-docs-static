@@ -1,6 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css?family=Lexend Deca");
+@import url("https://fonts.cdnfonts.com/css/barlow-semi-condensed");
+
 
 :root {
   /*--foreground-rgb: 0, 0, 0;
@@ -17,19 +20,39 @@
 }
 
 body {
-  /*color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));*/
+  /*font-family: 'Lexend Deca';
+  font-weight: 400;*/
 }
 
 /** class name to highlight clicked menu*/
 .activeMenu {
   color: #3450DC !important;
   background-color: #e5e6ea;
+}
+
+code {
+  font-family: Consolas,"courier new";
+  color: rgba(59,69,78,1.00);
+  background-color: #f1f1f1;
+  padding: 6px;
+  line-height: 24px;
+  font-weight: 600;
+  font-size: 18px;
+  border-radius: 4px;
+}
+
+/** list for menus should appear without bullet points */
+.tdb__li {
+  list-style: none;
+  margin: 0;
+}
+
+a {
+  color : #8659fa; 
+}
+
+a:hover {
+  color :#e87cd6; 
 }
 
 @layer base {
@@ -42,6 +65,9 @@ body {
   h3 {
     @apply mb-8 mt-4 text-2xl font-bold dark:text-white;
   }
+  h4 { 
+    @apply mb-8 mt-4 text-xl font-bold dark:text-white;
+  }
   p {
     @apply mb-8 text-lg text-gray-500 md:text-xl dark:text-gray-400;
   }
@@ -49,13 +75,31 @@ body {
     @apply text-lg text-gray-500 md:text-xl dark:text-gray-400;
   }
   ol { 
-    @apply max-w-md space-y-1 text-gray-500 list-decimal list-inside dark:text-gray-400 mb-4;
+    @apply space-y-1 text-gray-500 list-decimal list-inside dark:text-gray-400 mb-4;
+  }
+  ul {
+    @apply space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400 mt-8 mb-8 text-lg
   }
   img { 
     @apply max-w-full h-auto rounded-lg  mb-12 mt-12;
   }
   pre { 
     @apply max-w-full h-auto rounded-lg  mb-12 mt-12;
+  }
+  table { 
+    @apply mt-8 mb-8 w-full text-sm text-left text-gray-500 dark:text-gray-400 
+  }
+  thead { 
+    @apply text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400
+  }
+  tr { 
+    @apply  border-b dark:bg-gray-900 dark:border-gray-700
+  }
+  th { 
+    @apply rounded-lg px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white
+  }
+  td {
+    @apply md:text-xl
   }
 }
 

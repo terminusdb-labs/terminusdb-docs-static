@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /**
  * 
  * @param menuItem menu Item list 
@@ -49,4 +50,13 @@ export function getActiveSlugClassName (menuItem: { Level1: any[]; }, entry: { d
  */
 export function menuItemsByOrder (menu: any[]) {
   return menu.sort(function(a: { Order: number; }, b: { Order: number; }){return a.Order-b.Order})
+}
+
+export function getLogo() {
+  return <a href="https://terminusdb.com/" className="flex items-center pl-2.5 mb-5">
+    <img src="https://4053281810-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FVZc9T1wJdVvodyIFrJuV%2Flogo%2F5UCCcn4lbzsXbvjpObGc%2FTerminusDB-Logo.svg?alt=media&amp;token=b0b8f1f0-d830-46de-a805-69bdda20bbe0" 
+      className="mb-0 mt-0" 
+      width="250" height="250" decoding="async"
+      alt="TerminusDB Logo" />
+  </a>
 }

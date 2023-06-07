@@ -64,7 +64,7 @@ function renderLevel2Menu(menuLevel2: any[], entry: any[]) {
           </svg>
       </button>
       
-      <ul id={level2.Menu2Label} className={`${className} py-2 space-y-2`}>{ renderLevel3Menu(level2.Level3, entry) }</ul>
+      <ul id={level2.Menu2Label} className={`${className} py-2 space-y-2 tdb__li`}>{ renderLevel3Menu(level2.Level3, entry) }</ul>
     </li>
   })
   return level2Items
@@ -78,6 +78,11 @@ function renderLevel1Menu(menuLevel1: any[], entry: any[]) {
   const menuItems = orderedMenuLevel1.map((level1: { Level2?: any; Menu1Page?: any; Menu1Label?: any; Level1?: any[]; }, index: any) => {
 
     let activeClassName = getActiveSlugClassName(level1, entry, 1)
+
+    if(level1.Menu1Label === "GraphQL Query") {
+      console.log("do osmthime");
+      console.log("stop");
+    }
 
     if(Array.isArray(level1.Level2) && !level1.Level2.length) {
       /** menu with no level 2 */
@@ -109,7 +114,7 @@ function renderLevel1Menu(menuLevel1: any[], entry: any[]) {
           </svg>
       </button>
       
-      <ul id={level1.Menu1Label} className={`${className} py-2 space-y-2`}>{ renderLevel2Menu(level1.Level2, entry) }</ul>
+      <ul id={level1.Menu1Label} className={`${className} py-2 space-y-2 tdb__li`}>{ renderLevel2Menu(level1.Level2, entry) }</ul>
     </li>
   })
   return menuItems
@@ -140,7 +145,7 @@ export default function renderMainMenu(menu: any[], entry: any[]) {
               <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
             </svg>
       </button>
-      <ul id={menuItem.MenuTitle} className={`${className} py-2 space-y-2`}>
+      <ul id={menuItem.MenuTitle} className={`${className} py-2 space-y-2 tdb__li`}>
         { renderLevel1Menu(menuItem.Level1, entry) }
       </ul>
     </li>

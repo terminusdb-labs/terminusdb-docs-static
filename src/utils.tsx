@@ -10,6 +10,7 @@
  */
 export function checkIfMenuOpen(menuItem: { Level1: any[]; }, entry: { document: { slug: any; }; }, index: any[]) {
   let className = "hidden"
+  if(!entry) return className
   if(Array.isArray(menuItem[`Level${index}`])) {
     menuItem[`Level${index}`].map( level => {
       // match Found
@@ -35,6 +36,7 @@ export function checkIfMenuOpen(menuItem: { Level1: any[]; }, entry: { document:
  */
 export function getActiveSlugClassName (menuItem: { Level1: any[]; }, entry: { document: { slug: any; }; }, index: any[]) {
   let className=""
+  if(!entry) return className
   let menuPage = menuItem[`Menu${index}Page`]
   // this menu is active
   if(menuPage.slug === entry.document.slug) {

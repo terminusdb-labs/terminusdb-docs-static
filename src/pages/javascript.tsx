@@ -14,21 +14,23 @@ const client = new TerminusClient.WOQLClient(
 
 export default function JavaScript( props ) {
 
-    const modules = props.application.modules
-    const layout = modules.map(mod => {
-        const classes = mod.classes.map(class_ => {
-            const functions = class_.memberFunctions.map(func => <div key={func.name}><h4>{func.name}</h4><p>{func.summary}</p></div>)
-            return (<div key={class_.name}><h3>{class_.name}</h3>{functions}</div>)
-        })
-        return (<div key={mod.name}><h2>{ mod.name }</h2>{ classes }</div>)
-    })
-    return <>
-			<SideBar {...props}/>
-        <main>
-            <h1>{ props.application.name }</h1>
-            { layout }
-        </main>
-		</>
+	const modules = props.application.modules
+	const layout = modules.map(mod => {
+		const classes = mod.classes.map(class_ => {
+			const functions = class_.memberFunctions.map(func => <div key={func.name}><h4>{func.name}</h4><p>{func.summary}</p></div>)
+			return (<div key={class_.name}><h3>{class_.name}</h3>{functions}</div>)
+		})
+		return (<div key={mod.name}><h2>{ mod.name }</h2>{ classes }</div>)
+	})
+	return <>
+		<SideBar {...props}/>
+		<div className="flex p-4 sm:ml-96 p-4 sm:ml-96 h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+    	<div className="pl-20 rounded-lg font-normal">
+				<h1>{ props.application.name }</h1>
+				{ layout }
+			</div>
+		</div>
+	</>
 }
 
 

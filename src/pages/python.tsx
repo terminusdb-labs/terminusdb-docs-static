@@ -39,7 +39,7 @@ export async function getStaticProps(context) {
         headers: { Authorization: `Token ${process.env.TERMINUSDB_API_TOKEN}` }
     };
 
-    const req = await axios.post('https://cloud-dev.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/terminusCMS_docs', {
+    const req = await axios.post('https://cloud.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/terminusCMS_docs', {
 				query: `query {
 					Menu {
 						MenuTitle
@@ -69,7 +69,7 @@ export async function getStaticProps(context) {
 		}, config)
 		const menu = req.data.data.Menu
 
-    const application = await axios.post('https://cloud-dev.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/CodeDocumentation', {
+    const application = await axios.post('https://cloud.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/CodeDocumentation', {
         query: `query {
             Application(filter: {language: {eq: Python} } ) {
                 name,

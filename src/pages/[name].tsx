@@ -11,7 +11,7 @@ import { BodyContent } from "../components/_body"
 import { SideBar } from "../components/_sidebar"
 
 // Connect and configure the TerminusClient
-const client = new TerminusClient.WOQLClient('https://cloud-dev.terminusdb.com/TerminatorsX',
+const client = new TerminusClient.WOQLClient('https://cloud.terminusdb.com/TerminatorsX',
 	{
 		user:"robin@terminusdb.com",
 		organization:'TerminatorsX',
@@ -53,7 +53,7 @@ export async function getStaticProps({ params }) {
 		headers: { Authorization: `Token ${process.env.TERMINUSDB_API_TOKEN}` }
 	};
 
-	const req = await axios.post('https://cloud-dev.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/terminusCMS_docs', {
+	const req = await axios.post('https://cloud.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/terminusCMS_docs', {
 			query: `query {
         Menu(orderBy: {menu_order:ASC}) {
           MenuTitle,

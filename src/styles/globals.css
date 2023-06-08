@@ -1,8 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/*@import url("https://fonts.cdnfonts.com/css/lexend-deca");*/
-@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');
+/*@import url("https://fonts.cdnfonts.com/css/lexend-deca");
+//@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');*/
+@import url('https://fonts.cdnfonts.com/css/lexend-deca');
 @import url("https://fonts.cdnfonts.com/css/barlow-semi-condensed");
 
 
@@ -23,24 +24,12 @@
 body {
   /*font-family: 'Lexend Deca';
   font-weight: 400;*/
-  
 }
 
 /** class name to highlight clicked menu*/
 .activeMenu {
-  color: rgba(134,89,250,1.00);
+  color: rgba(134,89,250,1.00) !important;
   background-color: rgba(159, 133, 224, 0.1);
-}
-
-code {
-  font-family: Consolas,"courier new";
-  color: rgba(59,69,78,1.00);
-  background-color: #f1f1f1;
-  padding: 6px;
-  line-height: 24px;
-  font-weight: 600;
-  font-size: 18px;
-  border-radius: 4px;
 }
 
 /** list for menus should appear without bullet points */
@@ -53,7 +42,7 @@ ul.tdb__li{
 ul.tdb__on__this__page {
   list-style: none;
   margin-left: 0.8rem;
-  font-size: 1.0rem;
+  font-size: 1.1rem;
 }
 
 h2.tdb__subtitle {
@@ -81,28 +70,31 @@ a.tdb__on__this__page__links:hover {
 
 @layer base {
   h1 {
-    @apply mb-8 mt-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900  dark:text-white;
+    @apply mb-12 mt-12 text-4xl font-extrabold leading-none tracking-tight text-gray-900  dark:text-white;
+  }
+  aside { 
+    @apply top-28 !important;
   }
   h2 {
-    @apply mb-8 mt-4 text-3xl font-extrabold dark:text-white font-semibold;
+    @apply mb-12 mt-12 text-3xl font-extrabold dark:text-white font-semibold;
   }
   h3 {
-    @apply mb-8 mt-4 text-2xl font-bold dark:text-white font-semibold;
+    @apply mb-12 mt-12 text-2xl font-bold dark:text-white font-semibold;
   }
   h4 { 
-    @apply mb-8 mt-4 text-xl font-bold dark:text-white font-semibold;
+    @apply mb-12 mt-12 text-xl font-bold dark:text-white font-semibold;
   }
   p {
-    @apply mb-8 text-lg text-gray-500 md:text-xl dark:text-gray-400;
+    @apply mb-12 mt-12 text-lg md:text-xl dark:text-gray-50 font-normal;
   }
   ol li { 
-    @apply text-lg text-gray-500 md:text-xl dark:text-gray-400;
+    @apply text-lg md:text-xl dark:text-gray-50 font-normal;
   }
   ol { 
-    @apply space-y-1 text-gray-500 list-decimal list-inside dark:text-gray-400 mb-4;
+    @apply space-y-1 list-decimal list-inside dark:text-gray-50 font-normal mb-4;
   }
   ul {
-    @apply space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400 mt-8 mb-8 text-lg md:text-xl;
+    @apply space-y-1 list-disc list-inside dark:text-gray-50 font-normal mt-8 mb-8 text-lg md:text-xl;
   }
   img { 
     @apply max-w-full h-auto rounded-lg  mb-12 mt-12;
@@ -110,11 +102,14 @@ a.tdb__on__this__page__links:hover {
   pre { 
     @apply max-w-full h-auto rounded-lg  mb-12 mt-12;
   }
+  code { 
+    @apply bg-zinc-300 rounded-md text-black p-1 font-mono text-base;
+  }
   table { 
-    @apply mt-8 mb-8 w-full text-sm text-left text-gray-500 dark:text-gray-400 
+    @apply mt-8 mb-8 w-full text-sm text-left dark:text-gray-50 font-normal;
   }
   thead { 
-    @apply text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400
+    @apply text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-50 font-normal;
   }
   tr { 
     @apply  border-b dark:bg-gray-900 dark:border-gray-700

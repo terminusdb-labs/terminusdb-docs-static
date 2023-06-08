@@ -44,27 +44,28 @@ export default function Home(params: { menu: any[], entry: any[] }) {
 }
 
 export async function getStaticProps({ params }) {
+  
   const config = {
       headers: { Authorization: `Token ${process.env.TERMINUSDB_API_TOKEN}` }
   };
   const req = await axios.post('https://cloud.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/terminusCMS_docs', {
       query: `query {
-        Menu {
+        Menu(orderBy: {menu_order:ASC}) { 
           MenuTitle,
           menu_order,
-          Level1 {
+          Level1(orderBy: {Order:ASC})  {
             Menu1Label,
             Order,
             Menu1Page {
               slug
             },
-            Level2 {
+            Level2(orderBy: {Order:ASC})  {
               Menu2Label,
               Order,
               Menu2Page{
                 slug
               },
-              Level3 {
+              Level3(orderBy: {Order:ASC})  {
                 Menu3Label,
                 Order,
                 Menu3Page {

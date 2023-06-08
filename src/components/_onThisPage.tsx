@@ -12,6 +12,7 @@ function getLinks(anchorLabel: any[]) {
 function getNodeList(nodeList) {
   let list = []
   for (let i = 0; i < nodeList.length; i++) {
+    console.log("nodeList[i]", nodeList[i])
     list.push(nodeList[i].textContent)
   }
   return list
@@ -33,7 +34,7 @@ export const OnThisPageContent = ({ html }) => {
   
   return <div className="flex-none hidden w-64 pl-8 mr-8 xl:text-sm xl:block">
     <aside id="onThisPageSideBar" 
-      className="fixed top-0 right-0 z-40 w-96 h-screen transition-transform -translate-x-full sm:translate-x-0 overflow-y-auto" 
+      className="fixed top-22 right-0 z-40 w-96 h-screen transition-transform -translate-x-full sm:translate-x-0 overflow-y-auto" 
       aria-label="Sidebar">
       <div className="mb-8">
           <h4 className="pl-2.5 mb-2 text-md font-semibold tracking-wide text-gray-900 uppercase dark:text-white lg:text-sm">On this page</h4>

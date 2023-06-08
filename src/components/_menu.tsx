@@ -5,7 +5,8 @@ const inter = Inter({ subsets: ['latin'] })
 import 'flowbite';
 import { checkIfMenuOpen, getActiveSlugClassName, checkIfSubMenuOpen } from "../utils"
 
-const menuClassName = "flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+
+const menuClassName = "text-lg flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
 
 /** level 3 */
 function renderLevel3Menu(menuLevel3: any[], entry: any[]) {

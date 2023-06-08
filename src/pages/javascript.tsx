@@ -116,5 +116,5 @@ export async function getStaticProps(context) {
             }
        }`
     }, config)
-    return { props: { application: application.data.data.Application[0], menu } }
+    return { props: { application: application.data.data.Application.slice(-1)[0], menu } }
 }

@@ -84,7 +84,7 @@ function renderLevel1Menu(menuLevel1: any[], entry: any[]) {
       return <li key={level1.Menu1Page.slug}>
         <a href={level1.Menu1Page.slug} 
           className={`${menuClassName} pl-11 ${activeClassName} font-barlow font-normal`}>
-          <span className="ml-3">{level1.Menu1Label}</span>
+          <span>{level1.Menu1Label}</span>
         </a>
       </li>
     }

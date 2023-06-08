@@ -31,18 +31,20 @@ export const OnThisPageContent = ({ html }) => {
 
   if(!listArray.length) return <div className="flex-none hidden sticky w-64 pl-8 mr-8 xl:text-sm xl:block"/>
   
-  return <aside id="otherBar" 
-    className="fixed top-0 right-0 z-40 w-96 h-screen transition-transform -translate-x-full sm:translate-x-0 overflow-y-auto" 
-    aria-label="Sidebar">
-    <div className="mb-8">
-        <h4 className="pl-2.5 mb-2 text-md font-semibold tracking-wide text-gray-900 uppercase dark:text-white lg:text-sm">On this page</h4>
-        <nav id="TableOfContents">
-          <ul className="tdb__on__this__page">
-            {getLinks(listArray)}
-          </ul>
-        </nav>
-      </div>
-  </aside>
+  return <div className="flex-none hidden w-64 pl-8 mr-8 xl:text-sm xl:block">
+    <aside id="onThisPageSideBar" 
+      className="fixed top-0 right-0 z-40 w-96 h-screen transition-transform -translate-x-full sm:translate-x-0 overflow-y-auto" 
+      aria-label="Sidebar">
+      <div className="mb-8">
+          <h4 className="pl-2.5 mb-2 text-md font-semibold tracking-wide text-gray-900 uppercase dark:text-white lg:text-sm">On this page</h4>
+          <nav id="TableOfContents">
+            <ul className="tdb__on__this__page">
+              {getLinks(listArray)}
+            </ul>
+          </nav>
+        </div>
+    </aside>
+  </div> 
 }
 
 /**

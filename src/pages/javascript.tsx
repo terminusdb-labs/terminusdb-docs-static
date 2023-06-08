@@ -20,14 +20,40 @@ const client = new TerminusClient.WOQLClient(
 		organization:'TerminatorsX',
 		db: "CodeDocumentation",
 		token: process.env.TERMINUSDB_API_TOKEN
-})
+        })
+
+function renderTable(parameters) {
+    const rows = parameters.map(param => {
+        return <tr>
+            <td>{param.name}</td>
+            <td>{param.type}</td>
+            <td>{param.summary}</td>
+            </tr>
+    })
+    return <table>
+        <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        </tr>
+        {rows}
+    </table>
+}
 
 export default function JavaScript( props ) {
  
 	const modules = props.application.modules
 	const layout = modules.map(mod => {
 		const classes = mod.classes.map(class_ => {
-			const functions = class_.memberFunctions.map(func => <div key={func.name}><h4 id={func.name}>{func.name}</h4><p>{func.summary}</p></div>)
+		    const functions = class_.memberFunctions.map(func => {
+                        let args = null
+                        let shortArgs = null
+                        if (typeof func.parameters !== 'undefined') {
+                            args = renderTable(func.parameters)
+                            shortArgs = func.parameters.map(x => x.name).join(",")
+                        }
+                        return <div key={func.name}><h4 id={func.name}>{func.name}({shortArgs})</h4>{args}<p>{func.summary}</p></div>
+                        })
 			return (<div key={class_.name}><h3 id={class_.name}>{class_.name}</h3>{functions}</div>)
 		})
 		return (<div key={mod.name}><h2 id={mod.name}>{ mod.name }</h2>{ classes }</div>)

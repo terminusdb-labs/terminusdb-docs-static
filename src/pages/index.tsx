@@ -15,7 +15,7 @@ import { BodyContent } from "../components/_body"
 import { SideBar } from "../components/_sidebar"
 
 // Connect and configure the TerminusClient
-const client = new TerminusClient.WOQLClient('https://cloud-dev.terminusdb.com/TerminatorsX',
+const client = new TerminusClient.WOQLClient('https://cloud.terminusdb.com/TerminatorsX',
 	{
 		user:"robin@terminusdb.com",
 		organization:'TerminatorsX',

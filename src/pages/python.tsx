@@ -27,7 +27,7 @@ export default function Python( props ) {
 		return  <>
 			<SideBar {...props}/>
 			<div className="flex p-4 sm:ml-96 p-4 sm:ml-96 h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-				<div className="pl-20 rounded-lg font-normal">
+				<div className="pl-20 rounded-lg font-normal container">
 					<h1>{ props.application.name }</h1>
 					{ layout }
 					<OnThisPageContent html={html}/>

@@ -39,7 +39,7 @@ export async function getMenu() {
 
 export function renderCodeTable(parameters) {
     const rows = parameters.map(param => {
-        return <tr>
+        return <tr key={"tr" + param.name}>
             <td class="border">{param.name}</td>
             <td class="border">{param.type}</td>
             <td class="border">{param.summary}</td>

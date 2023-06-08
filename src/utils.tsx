@@ -81,7 +81,10 @@ export function getLogo() {
  * @returns anchor ids 
  */
 export function formatAnchorIds(link: string) {
-  let id = link.replace(/:[^A-Z0-9]/ig, ""); //replace(/\s/g, '')
+  let id = link.replace(/[^A-Z0-9]/ig, ""); //replace(/\s/g, '')
+  //let id = link.replace(/\s/g, '') 
+  //let id = link
+  //let id = link.replace(/[\[\]']+/g,'')
   return id.toLowerCase()
 }
 

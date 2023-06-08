@@ -24,6 +24,7 @@ function getNodeList(nodeList) {
   for (let i = 0; i < nodeList.length; i++) {
     let nodeObject = {
       text: nodeList[i].textContent,
+      //text: nodeList[i].textContent.replace(/[\[\]']+/g,''),
       tagName: nodeList[i].tagName
     }
     list.push(nodeObject)

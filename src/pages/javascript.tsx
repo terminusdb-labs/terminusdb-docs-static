@@ -54,7 +54,7 @@ export default function JavaScript( props ) {
                             args = renderTable(func.parameters)
                             shortArgs = func.parameters.map(x => x.name).join(",")
                         }
-                        return <div key={func.name}><h4 id={func.name}>{func.name}({shortArgs})</h4>{args}<p>{func.summary}</p></div>
+                        return <div key={func.name}><h4 id={func.name}>{func.name}({shortArgs})</h4><div data-accordion="collapse">{args}<p>{func.summary}</p></div></div>
                         })
 			return (<div key={class_.name}><h3 id={class_.name}>{class_.name}</h3>{functions}</div>)
 		})
@@ -120,8 +120,9 @@ export async function getStaticProps(context) {
                    name,
                    classes {
                       name,
-                      memberFunctions {
+                      memberFunctions(orderBy: {name: ASC}) {
                           name,
+                          section,
                           summary,
                            parameters {
                            default

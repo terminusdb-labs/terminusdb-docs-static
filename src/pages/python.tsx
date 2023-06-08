@@ -25,8 +25,8 @@ export default function Python( props ) {
 		const html = renderToStaticMarkup(layout);
 
 		return  <>
-			<SideBar {...props}/>
-			<div className="flex p-4 sm:ml-96 p-4 sm:ml-96 h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+			<SideBar {...props}/> 
+			<div className="flex p-4 sm:ml-96 p-4 sm:ml-96 h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 fixed">
 				<div className="pl-20 rounded-lg font-normal container sm">
 					<h1>{ props.application.name }</h1>
 					{ layout }

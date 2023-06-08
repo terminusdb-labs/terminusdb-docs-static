@@ -1,10 +1,20 @@
 const { JSDOM } = require('jsdom');
 import { formatAnchorIds } from "../utils"
 
+function intendList (tagName: any) {
+  if(tagName === "H2") return ""
+  else if(tagName === "H3") return "ml-4 mr-4"
+  else if(tagName = "H4") return "ml-8  mr-4"
+} 
+
 function getLinks(anchorLabel: any[]) {
   let links: JSX.Element[] = []
   anchorLabel.map(link => {
-    links.push(<li><a href={`#${formatAnchorIds(link)}`} className="tdb__on__this__page__links">{link}</a></li>)
+    links.push(<li className={intendList(link.tagName)}>
+      <a href={`#${formatAnchorIds(link.text)}`} className="tdb__on__this__page__links">
+        {link.text}
+      </a>
+    </li>)
   })
   return links
 }
@@ -12,8 +22,11 @@ function getLinks(anchorLabel: any[]) {
 function getNodeList(nodeList) {
   let list = []
   for (let i = 0; i < nodeList.length; i++) {
-    console.log("nodeList[i]", nodeList[i])
-    list.push(nodeList[i].textContent)
+    let nodeObject = {
+      text: nodeList[i].textContent,
+      tagName: nodeList[i].tagName
+    }
+    list.push(nodeObject)
   }
   return list
 }

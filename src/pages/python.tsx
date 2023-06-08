@@ -3,7 +3,7 @@ import axios from 'axios';
 import { SideBar } from "../components/_sidebar"
 import { OnThisPageContent } from "../components/_onThisPage"
 import { renderToStaticMarkup } from 'react-dom/server';
-import { renderCodeTable } from "../utils"
+import { getMenu, renderCodeTable } from "../utils"
 const createDOMPurify = require('dompurify');
 const { JSDOM } = require('jsdom');
 const window = new JSDOM('').window;
@@ -54,35 +54,7 @@ export async function getStaticProps(context) {
         headers: { Authorization: `Token ${process.env.TERMINUSDB_API_TOKEN}` }
     };
 
-    const req = await axios.post('https://cloud.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/terminusCMS_docs', {
-				query: `query {
-					Menu {
-						MenuTitle
-						Level1 {
-							Menu1Label,
-							Order,
-							Menu1Page {
-								slug
-							},
-							Level2 {
-								Menu2Label,
-								Order,
-								Menu2Page{
-									slug
-								},
-								Level3 {
-									Menu3Label,
-									Order,
-									Menu3Page {
-										slug
-									}
-								}
-							}
-						}
-					}
-				}`
-		}, config)
-		const menu = req.data.data.Menu
+    const menu = await getMenu()
 
     const application = await axios.post('https://cloud.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/CodeDocumentation', {
         query: `query {

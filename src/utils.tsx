@@ -1,5 +1,41 @@
 /* eslint-disable @next/next/no-img-element */
+import axios from 'axios';
 
+export async function getMenu() {
+  const config = {
+      headers: { Authorization: `Token ${process.env.TERMINUSDB_API_TOKEN}` }
+  };
+  const req = await axios.post('https://cloud.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/terminusCMS_docs', {
+      query: `query {
+        Menu(orderBy: {menu_order:ASC}) { 
+          MenuTitle,
+          menu_order,
+          Level1(orderBy: {Order:ASC})  {
+            Menu1Label,
+            Order,
+            Menu1Page {
+              slug
+            },
+            Level2(orderBy: {Order:ASC})  {
+              Menu2Label,
+              Order,
+              Menu2Page{
+                slug
+              },
+              Level3(orderBy: {Order:ASC})  {
+                Menu3Label,
+                Order,
+                Menu3Page {
+                  slug
+                }
+              }
+            }
+          }
+        }
+      }`
+  }, config)
+  return req.data.data.Menu
+}
 
 export function renderCodeTable(parameters) {
     const rows = parameters.map(param => {

@@ -13,6 +13,7 @@ import axios from 'axios';
 import 'flowbite';
 import { BodyContent } from "../components/_body"
 import { SideBar } from "../components/_sidebar"
+import { getMenu } from "../utils"
 
 // Connect and configure the TerminusClient
 const client = new TerminusClient.WOQLClient('https://cloud.terminusdb.com/TerminatorsX',
@@ -44,50 +45,15 @@ export default function Home(params: { menu: any[], entry: any[] }) {
 }
 
 export async function getStaticProps({ params }) {
-  
-  const config = {
-      headers: { Authorization: `Token ${process.env.TERMINUSDB_API_TOKEN}` }
-  };
-  const req = await axios.post('https://cloud.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/terminusCMS_docs', {
-      query: `query {
-        Menu(orderBy: {menu_order:ASC}) { 
-          MenuTitle,
-          menu_order,
-          Level1(orderBy: {Order:ASC})  {
-            Menu1Label,
-            Order,
-            Menu1Page {
-              slug
-            },
-            Level2(orderBy: {Order:ASC})  {
-              Menu2Label,
-              Order,
-              Menu2Page{
-                slug
-              },
-              Level3(orderBy: {Order:ASC})  {
-                Menu3Label,
-                Order,
-                Menu3Page {
-                  slug
-                }
-              }
-            }
-          }
-        }
-      }`
-  }, config)
-  const menu = req.data.data.Menu
-
-  const query = {
-    "@type": "Page",
-    "slug": "get-started"
+   const menu = await getMenu()
+   const query = {
+      "@type": "Page",
+      "slug": "get-started"
   }
   const docs = await client.getDocument({ "@type": "Page", as_list: true, query: query })
   const docResult = docs[0]
   const html = converter.makeHtml(docResult['body']['value'])
   const cleanedHtml = DOMPurify.sanitize(html)
   const entry = {html: cleanedHtml, document: docResult }
-
-  return { props: { menu: menu, entry: entry } } 
+  return { props: { menu: menu, entry: entry } }
 }

@@ -64,7 +64,5 @@ export async function getStaticProps(context) {
 				}`
 		}, config)
     const menu = req.data.data.Menu
-    const html = fs.readFileSync('./redoc-static.html',
-                                 { encoding: 'utf8', flag: 'r' });
-    return { props: { html: html, menu } }
+    return { props: { html: {}, menu } }
 }

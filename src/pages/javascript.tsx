@@ -15,7 +15,7 @@ const DOMPurify = createDOMPurify(window);
 
 // Connect and configure the TerminusClient
 const client = new TerminusClient.WOQLClient(
-	'https://cloud-dev.terminusdb.com/TerminatorsX', {
+	'https://cloud.terminusdb.com/TerminatorsX', {
 		user:"robin@terminusdb.com",
 		organization:'TerminatorsX',
 		db: "CodeDocumentation",
@@ -54,7 +54,7 @@ export async function getStaticProps(context) {
     };
 
 	
-		const req = await axios.post('https://cloud-dev.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/terminusCMS_docs', {
+		const req = await axios.post('https://cloud.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/terminusCMS_docs', {
 				query: `query {
 					Menu {
 						MenuTitle

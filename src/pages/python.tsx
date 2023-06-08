@@ -1,4 +1,3 @@
-const TerminusClient = require("@terminusdb/terminusdb-client");
 import axios from 'axios';
 import { SideBar } from "../components/_sidebar"
 import { OnThisPageContent } from "../components/_onThisPage"
@@ -8,13 +7,6 @@ const createDOMPurify = require('dompurify');
 const { JSDOM } = require('jsdom');
 const window = new JSDOM('').window;
 const DOMPurify = createDOMPurify(window); 
-
-// Connect and configure the TerminusClient
-const client = new TerminusClient.WOQLClient('https://cloud-dev.terminusdb.com/TerminatorsX',
-                                             {user:"robin@terminusdb.com",
-                                              organization:'TerminatorsX',
-                                              db: "CodeDocumentation",
-                                              token: process.env.TERMINUSDB_API_TOKEN})
 
 export default function Python( props ) {
 	const modules = props.application.modules

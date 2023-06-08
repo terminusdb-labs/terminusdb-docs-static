@@ -30,7 +30,7 @@ function renderTable(parameters) {
             <td>{param.summary}</td>
             </tr>
     })
-    return <table>
+    return <><h5>Parameters</h5><table>
         <thead><tr>
         <th>Name</th>
         <th>Type</th>
@@ -39,7 +39,7 @@ function renderTable(parameters) {
         <tbody>
         {rows}
         </tbody>
-    </table>
+    </table></>
 }
 
 export default function JavaScript( props ) {
@@ -50,7 +50,7 @@ export default function JavaScript( props ) {
 		    const functions = class_.memberFunctions.map(func => {
                         let args = null
                         let shortArgs = null
-                        if (typeof func.parameters !== 'undefined') {
+                        if (typeof func.parameters !== 'undefined' && func.parameters.length > 0) {
                             args = renderTable(func.parameters)
                             shortArgs = func.parameters.map(x => x.name).join(",")
                         }

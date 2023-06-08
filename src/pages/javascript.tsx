@@ -31,12 +31,14 @@ function renderTable(parameters) {
             </tr>
     })
     return <table>
-        <tr>
+        <thead><tr>
         <th>Name</th>
         <th>Type</th>
-        <th>Description</th>
-        </tr>
+        <th>Description</th></tr>
+        </thead>
+        <tbody>
         {rows}
+        </tbody>
     </table>
 }
 

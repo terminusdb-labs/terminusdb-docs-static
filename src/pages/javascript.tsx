@@ -7,7 +7,7 @@ const showdown  = require('showdown')
 const converter = new showdown.Converter({metadata: true, tables: true})
 const createDOMPurify = require('dompurify');
 const { JSDOM } = require('jsdom');
-import { renderCodeTable } from "../utils"
+import { getMenu, renderCodeTable } from "../utils"
 const window = new JSDOM('').window;
 const DOMPurify = createDOMPurify(window); 
 

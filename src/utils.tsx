@@ -27,6 +27,27 @@ export function checkIfMenuOpen(menuItem: { Level1: any[]; }, entry: { document:
   return className
 }
 
+export function checkIfSubMenuOpen (menuItem, entry, index) {
+  //let className  = level2.Menu2Page.slug === entry.document.slug ? "" : "hidden"
+  let className = "hidden"
+  if(!entry) return className
+  if(menuItem[`Menu${index}Page`].slug === entry.document.slug) {
+    className = ""
+  }
+  let nextIndex = index + 1
+  if(Array.isArray(menuItem[`Level${nextIndex}`])) {
+    menuItem[`Level${nextIndex}`].map( level => {
+      let nextLevelClassNames = checkIfSubMenuOpen(level, entry, nextIndex)
+      if(nextLevelClassNames !== "hidden") {
+        className=nextLevelClassNames
+        return className
+      }
+    })
+  }
+
+  return className
+}
+
 /**
  * 
  * @param  menuItem menu Item list 
@@ -60,6 +81,7 @@ export function getLogo() {
  * @returns anchor ids 
  */
 export function formatAnchorIds(link: string) {
-  let id = link.replace(/\s/g, '')
+  let id = link.replace(/[^A-Z0-9]/ig, ""); //replace(/\s/g, '')
   return id.toLowerCase()
 }
+

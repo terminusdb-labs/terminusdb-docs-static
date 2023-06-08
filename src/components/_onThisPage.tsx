@@ -4,7 +4,7 @@ import { formatAnchorIds } from "../utils"
 function getLinks(anchorLabel: any[]) {
   let links: JSX.Element[] = []
   anchorLabel.map(link => {
-    links.push(<li><a href={`#${formatAnchorIds(link)}`} className="">{link}</a></li>)
+    links.push(<li><a href={`#${formatAnchorIds(link)}`} className="tdb__on__this__page__links">{link}</a></li>)
   })
   return links
 }
@@ -20,29 +20,22 @@ function getNodeList(nodeList) {
 //return <div className="flex-none hidden w-64 pl-8 mr-8 xl:text-sm xl:block">
 export const OnThisPageContent = ({ html }) => {
 
-  let anchorLabel = []
 
   const dom = new JSDOM(`<!DOCTYPE html>${html}`);
   const document = dom.window.document;
 
-  let nodeList = document.querySelectorAll("h2, h3, h4")
+  let nodeList = document.querySelectorAll("h2, h3")
+
   let listArray = getNodeList(nodeList) 
   
-  /*let h2NodeList = document.querySelectorAll("h2"); 
-  let h3NodeList = document.querySelectorAll("h3"); 
-  let h4NodeList = document.querySelectorAll("h4"); 
-
-  /*let h2ListArray = getNodeList(h2NodeList) 
-  let h3ListArray = getNodeList(h3NodeList) 
-  let h4ListArray = getNodeList(h4NodeList) */
 
   if(!listArray.length) return <div className="flex-none hidden sticky w-64 pl-8 mr-8 xl:text-sm xl:block"/>
   
   return <aside id="otherBar" 
-  className="fixed top-0 right-0 z-40 w-96 h-screen transition-transform -translate-x-full sm:translate-x-0" 
-  aria-label="Sidebar">
+    className="fixed top-0 right-0 z-40 w-96 h-screen transition-transform -translate-x-full sm:translate-x-0 overflow-y-auto" 
+    aria-label="Sidebar">
     <div className="mb-8">
-        <h4 className="pl-2.5 mb-2 text-sm font-semibold tracking-wide text-gray-900 uppercase dark:text-white lg:text-xs">On this page</h4>
+        <h4 className="pl-2.5 mb-2 text-md font-semibold tracking-wide text-gray-900 uppercase dark:text-white lg:text-sm">On this page</h4>
         <nav id="TableOfContents">
           <ul className="tdb__on__this__page">
             {getLinks(listArray)}

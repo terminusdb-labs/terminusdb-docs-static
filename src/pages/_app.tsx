@@ -7,7 +7,9 @@ import type { Metadata } from 'next';
 import type { AppProps } from 'next/app'
 import Prism from "prismjs";
 import "prismjs/themes/prism-tomorrow.css";
-
+import 'prismjs/components/prism-json';
+import 'prismjs/components/prism-powershell';
+import 'prismjs/components/prism-graphql';
 
 
 /** function to handle theme switcher  */

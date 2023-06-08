@@ -1,6 +1,8 @@
 const TerminusClient = require("@terminusdb/terminusdb-client");
 import axios from 'axios';
 import { SideBar } from "../components/_sidebar"
+import { OnThisPageContent } from "../components/_onThisPage"
+import { renderToStaticMarkup } from 'react-dom/server';
 
 // Connect and configure the TerminusClient
 const client = new TerminusClient.WOQLClient('https://cloud-dev.terminusdb.com/TerminatorsX',
@@ -20,6 +22,7 @@ export default function Python( props ) {
         })
         return (<div key={mod.name}><h2>{ mod.name }</h2>{ classes }</div>)
     })
+		const html = renderToStaticMarkup(layout);
 
 		return  <>
 			<SideBar {...props}/>
@@ -27,6 +30,7 @@ export default function Python( props ) {
 				<div className="pl-20 rounded-lg font-normal">
 					<h1>{ props.application.name }</h1>
 					{ layout }
+					<OnThisPageContent html={html}/>
 				</div>
 			</div>
 		</>

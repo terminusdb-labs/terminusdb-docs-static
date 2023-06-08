@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 import 'flowbite';
-import { checkIfMenuOpen, getActiveSlugClassName } from "../utils"
+import { checkIfMenuOpen, getActiveSlugClassName, checkIfSubMenuOpen } from "../utils"
 
 const menuClassName = "flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
 
@@ -42,16 +42,19 @@ function renderLevel2Menu(menuLevel2: any[], entry: any[]) {
       </li>
     }
 
-    let className  =  checkIfMenuOpen(level2, entry, 3)
+
+    //let className  =  checkIfMenuOpen(level2, entry, 3)
+    //let className  = level2.Menu2Page.slug === entry.document.slug ? "" : "hidden"
+    let className  = checkIfSubMenuOpen(level2, entry, 2)
 
     /** menu with level 3 */
     return <li key={`level2_${index}`}>
       <a href={level2.Menu2Page.slug}>
         <button type="button" 
-          className={`${menuClassName} pl-20 font-barlow font-normal`}
+          className={`${menuClassName} pl-20 font-barlow font-normal ${activeClassName}`}
           aria-controls={level2.Menu2Label}
           data-collapse-toggle={level2.Menu2Label}>
-          <span className="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>
+          <span className="flex-1 text-left whitespace-nowrap" sidebar-toggle-item>
             {level2.Menu2Label}
           </span>
           <svg sidebar-toggle-item className="w-6 h-6" 
@@ -85,19 +88,20 @@ function renderLevel1Menu(menuLevel1: any[], entry: any[]) {
         </a>
       </li>
     }
-    //console.log("level1", level1)
     
-    let className  =  checkIfMenuOpen(level1, entry, 2)
+    //let className  =  checkIfMenuOpen(level1, entry, 2)
+
+    let className  = checkIfSubMenuOpen(level1, entry, 1)
     
 
     /** menu with level 2 */
     return <li key={`level1_${index}`}>
       <a href={level1.Menu1Page.slug} >
         <button type="button" 
-          className={`${menuClassName} pl-11 font-barlow font-normal`}
+          className={`${menuClassName} pl-11 font-barlow font-normal ${activeClassName}`}
           aria-controls={level1.Menu1Label}
           data-collapse-toggle={level1.Menu1Label}>
-          <span className="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>
+          <span className="flex-1  text-left whitespace-nowrap" sidebar-toggle-item>
             {level1.Menu1Label}
           </span>
           <svg sidebar-toggle-item className="w-6 h-6" 
@@ -120,6 +124,7 @@ function renderLevel1Menu(menuLevel1: any[], entry: any[]) {
 /** level 0 */
 export default function renderMainMenu(menu: any[], entry: any[]) {
 
+
   const mainMenuItems = menu.map((menuItem, index) => {
 
     let className  =  checkIfMenuOpen(menuItem, entry, 1)
@@ -129,7 +134,7 @@ export default function renderMainMenu(menu: any[], entry: any[]) {
         className={`${menuClassName} font-barlow font-normal`}
         aria-controls={menuItem.MenuTitle}
         data-collapse-toggle={menuItem.MenuTitle}>
-          <span className="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>
+          <span className="flex-1 text-left whitespace-nowrap" sidebar-toggle-item>
             {menuItem.MenuTitle}
           </span>
           <svg sidebar-toggle-item className="w-6 h-6" 

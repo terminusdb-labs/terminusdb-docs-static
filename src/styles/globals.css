@@ -70,6 +70,15 @@ a:hover {
   color :#e87cd6; 
 }
 
+a.tdb__on__this__page__links {
+  color: #8899a8;
+}
+
+a.tdb__on__this__page__links:hover {
+  color: #8659fa;
+}
+
+
 @layer base {
   h1 {
     @apply mb-8 mt-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900  dark:text-white;

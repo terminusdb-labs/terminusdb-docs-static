@@ -2,6 +2,16 @@
 const TerminusClient = require("@terminusdb/terminusdb-client");
 import axios from 'axios';
 import { SideBar } from "../components/_sidebar"
+import { OnThisPageContent } from "../components/_onThisPage"
+import { renderToStaticMarkup } from 'react-dom/server';
+const showdown  = require('showdown')
+const converter = new showdown.Converter({metadata: true, tables: true})
+const createDOMPurify = require('dompurify');
+const { JSDOM } = require('jsdom');
+const window = new JSDOM('').window;
+const DOMPurify = createDOMPurify(window); 
+
+
 
 // Connect and configure the TerminusClient
 const client = new TerminusClient.WOQLClient(
@@ -18,16 +28,20 @@ export default function JavaScript( props ) {
 	const layout = modules.map(mod => {
 		const classes = mod.classes.map(class_ => {
 			const functions = class_.memberFunctions.map(func => <div key={func.name}><h4>{func.name}</h4><p>{func.summary}</p></div>)
-			return (<div key={class_.name}><h3>{class_.name}</h3>{functions}</div>)
+			return (<div key={class_.name}><h3 id={class_.name}>{class_.name}</h3>{functions}</div>)
 		})
-		return (<div key={mod.name}><h2>{ mod.name }</h2>{ classes }</div>)
+		return (<div key={mod.name}><h2 id={mod.name}>{ mod.name }</h2>{ classes }</div>)
 	})
+	const html = renderToStaticMarkup(layout);
+	const cleanedHtml = DOMPurify.sanitize(html);
+
 	return <>
 		<SideBar {...props}/>
 		<div className="flex p-4 sm:ml-96 p-4 sm:ml-96 h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
     	<div className="pl-20 rounded-lg font-normal">
 				<h1>{ props.application.name }</h1>
 				{ layout }
+				<OnThisPageContent html={cleanedHtml}/>
 			</div>
 		</div>
 	</>

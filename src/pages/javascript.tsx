@@ -8,6 +8,7 @@ const showdown  = require('showdown')
 const converter = new showdown.Converter({metadata: true, tables: true})
 const createDOMPurify = require('dompurify');
 const { JSDOM } = require('jsdom');
+import { renderCodeTable } from "../utils"
 const window = new JSDOM('').window;
 const DOMPurify = createDOMPurify(window); 
 
@@ -22,28 +23,7 @@ const client = new TerminusClient.WOQLClient(
 		token: process.env.TERMINUSDB_API_TOKEN
         })
 
-function renderTable(parameters) {
-    const rows = parameters.map(param => {
-        return <tr>
-            <td>{param.name}</td>
-            <td>{param.type}</td>
-            <td>{param.summary}</td>
-            </tr>
-    })
-    return <><h5>Parameters</h5><table>
-        <thead><tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th></tr>
-        </thead>
-        <tbody>
-        {rows}
-        </tbody>
-    </table></>
-}
-
 export default function JavaScript( props ) {
- 
 	const modules = props.application.modules
 	const layout = modules.map(mod => {
 		const classes = mod.classes.map(class_ => {
@@ -51,7 +31,7 @@ export default function JavaScript( props ) {
                         let args = null
                         let shortArgs = null
                         if (typeof func.parameters !== 'undefined' && func.parameters.length > 0) {
-                            args = renderTable(func.parameters)
+                            args = renderCodeTable(func.parameters)
                             shortArgs = func.parameters.map(x => x.name).join(",")
                         }
                         return <div key={func.name}><h4 id={func.name}>{func.name}({shortArgs})</h4><div data-accordion="collapse">{args}<p>{func.summary}</p></div></div>
@@ -128,7 +108,7 @@ export async function getStaticProps(context) {
                            default
                            summary
                            name
-                           type 
+                           type
                          }
                       }
                    }
@@ -136,6 +116,5 @@ export async function getStaticProps(context) {
             }
        }`
     }, config)
-    
     return { props: { application: application.data.data.Application[0], menu } }
 }

@@ -1,4 +1,26 @@
 /* eslint-disable @next/next/no-img-element */
+
+
+export function renderCodeTable(parameters) {
+    const rows = parameters.map(param => {
+        return <tr>
+            <td>{param.name}</td>
+            <td>{param.type}</td>
+            <td>{param.summary}</td>
+            </tr>
+    })
+    return <><h5>Parameters</h5><table>
+        <thead><tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th></tr>
+        </thead>
+        <tbody>
+        {rows}
+        </tbody>
+    </table></>
+}
+
 /**
  * 
  * @param menuItem menu Item list 

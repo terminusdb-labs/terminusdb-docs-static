@@ -125,5 +125,8 @@ a.tdb__on__this__page__links:hover {
   td {
     @apply md:text-xl
   }
+  blockquote {
+    @apply p-2 my-2 border-l-4 border-blue-300 bg-blue-50 dark:border-gray-500 dark:bg-gray-800 rounded-sm 
+  }
 }
 

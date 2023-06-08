@@ -24,7 +24,7 @@ export const OnThisPageContent = ({ html }) => {
   const dom = new JSDOM(`<!DOCTYPE html>${html}`);
   const document = dom.window.document;
 
-  let nodeList = document.querySelectorAll("h2, h3")
+  let nodeList = document.querySelectorAll("h2, h3, h4")
 
   let listArray = getNodeList(nodeList) 
   

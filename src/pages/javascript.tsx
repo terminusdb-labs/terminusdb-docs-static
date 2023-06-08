@@ -23,11 +23,11 @@ const client = new TerminusClient.WOQLClient(
 })
 
 export default function JavaScript( props ) {
-
+ 
 	const modules = props.application.modules
 	const layout = modules.map(mod => {
 		const classes = mod.classes.map(class_ => {
-			const functions = class_.memberFunctions.map(func => <div key={func.name}><h4>{func.name}</h4><p>{func.summary}</p></div>)
+			const functions = class_.memberFunctions.map(func => <div key={func.name}><h4 id={func.name}>{func.name}</h4><p>{func.summary}</p></div>)
 			return (<div key={class_.name}><h3 id={class_.name}>{class_.name}</h3>{functions}</div>)
 		})
 		return (<div key={mod.name}><h2 id={mod.name}>{ mod.name }</h2>{ classes }</div>)
@@ -84,7 +84,7 @@ export async function getStaticProps(context) {
 		}, config)
 		const menu = req.data.data.Menu
 
-    const application = await axios.post('https://cloud-dev.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/CodeDocumentation', {
+    const application = await axios.post('https://cloud.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/CodeDocumentation', {
         query: `query {
             Application(filter: {language: {eq: Javascript} } ) {
                 name,

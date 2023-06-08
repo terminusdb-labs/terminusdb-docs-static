@@ -12,15 +12,15 @@ const client = new TerminusClient.WOQLClient('https://cloud-dev.terminusdb.com/T
                                               token: process.env.TERMINUSDB_API_TOKEN})
 
 export default function Python( props ) {
-    const modules = props.application.modules
+    const modules = props.application.modules 
     const layout = modules.map(mod => {
         const classes = mod.classes.map(class_ => {
             const functions = class_.memberFunctions.map(func =>
-                <div key={func.name}><h4>{func.name}</h4><p>{func.summary}</p></div>
+                <div key={func.name}><h4 id={func.name}>{func.name}</h4><p>{func.summary}</p></div>
             )
-            return (<div key={class_.name}><h3>{class_.name}</h3>{functions}</div>)
+            return (<div key={class_.name}><h3 id={class_.name}>{class_.name}</h3>{functions}</div>)
         })
-        return (<div key={mod.name}><h2>{ mod.name }</h2>{ classes }</div>)
+        return (<div key={mod.name}><h2 id={mod.name}>{ mod.name }</h2>{ classes }</div>)
     })
 		const html = renderToStaticMarkup(layout);
 

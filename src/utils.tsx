@@ -40,16 +40,16 @@ export async function getMenu() {
 export function renderCodeTable(parameters) {
     const rows = parameters.map(param => {
         return <tr>
-            <td>{param.name}</td>
-            <td>{param.type}</td>
-            <td>{param.summary}</td>
+            <td class="border">{param.name}</td>
+            <td class="border">{param.type}</td>
+            <td class="border">{param.summary}</td>
             </tr>
     })
     return <><h5>Parameters</h5><table>
         <thead><tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th></tr>
+        <th class="border">Name</th>
+        <th class="border">Type</th>
+        <th class="border">Description</th></tr>
         </thead>
         <tbody>
         {rows}

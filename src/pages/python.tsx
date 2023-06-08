@@ -17,7 +17,7 @@ export default function Python( props ) {
                         let shortArgs = null
                         if (typeof func.parameters !== 'undefined' && func.parameters.length > 0) {
                             args = renderCodeTable(func.parameters)
-                            shortArgs = func.parameters.map(x => x.name).join(",")
+                            shortArgs = func.parameters.map(x => x.name).join(", ")
                         }
                         return <div key={func.name}><h4 id={func.name}>{func.name}({shortArgs})</h4><div data-accordion="collapse">{args}<p>{func.summary}</p></div></div>
                         })

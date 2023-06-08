@@ -47,7 +47,7 @@ export async function getStaticProps({ params }) {
   const config = {
       headers: { Authorization: `Token ${process.env.TERMINUSDB_API_TOKEN}` }
   };
-  const req = await axios.post('https://cloud-dev.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/terminusCMS_docs', {
+  const req = await axios.post('https://cloud.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/terminusCMS_docs', {
       query: `query {
         Menu {
           MenuTitle,

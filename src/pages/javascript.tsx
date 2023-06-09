@@ -23,7 +23,7 @@ export default function JavaScript( props ) {
                             args = renderCodeTable(func.parameters)
                             shortArgs = func.parameters.map(x => x.name).join(", ")
                         }
-                        return <div key={func.name}><h4 id={func.name}>{func.name}({shortArgs})</h4><div data-accordion="collapse">{args}<p>{func.summary}</p></div></div>
+                        return <div key={func.name}><h4 id={func.name}>{func.name}({shortArgs})</h4><p>{func.summary}</p><div data-accordion="collapse">{args}</div></div>
                         })
 			return (<div key={class_.name}><h3 id={class_.name}>{class_.name}</h3>{functions}</div>)
 		})

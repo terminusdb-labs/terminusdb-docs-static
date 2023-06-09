@@ -67,6 +67,10 @@ a.tdb__on__this__page__links:hover {
   color: #8659fa;
 }
 
+li.tdb__on__this__page__links:active {
+  color: red;
+}
+
 
 @layer base {
   h1 {
@@ -83,6 +87,9 @@ a.tdb__on__this__page__links:hover {
   }
   h4 { 
     @apply mb-12 mt-12 text-xl font-bold dark:text-white font-semibold;
+  }
+  h5 { 
+    @apply mb-12 mt-12  font-bold dark:text-white font-semibold;
   }
   p {
     @apply mb-12 mt-12 text-lg md:text-xl dark:text-gray-50 font-normal;

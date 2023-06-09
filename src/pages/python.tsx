@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SideBar } from "../components/_sidebar"
+import { CollapseSidebar } from "../components/_collapseSidebar"
 import { OnThisPageContent } from "../components/_onThisPage"
 import { renderToStaticMarkup } from 'react-dom/server';
 import { getMenu, renderCodeTable } from "../utils"
@@ -29,7 +29,7 @@ export default function Python( props ) {
 	const cleanedHtml = DOMPurify.sanitize(html);
 
 	return <>
-		<SideBar {...props}/>
+		<CollapseSidebar {...props}/>
 		{/*<div className="flex p-4 sm:ml-96 p-4 sm:ml-96 h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 fixed">*/}
     <div className="flex p-4 sm:ml-96 p-4 sm:ml-96 h-screen px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
    	

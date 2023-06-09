@@ -1,6 +1,4 @@
 import renderMainMenu  from "./_menu"
-import { getLogo } from "../utils"
-import { Search } from "../components/_search" 
 
 export const SideBar = (props: { menu: any[]; entry: any[] }) => {
   return <aside id="sidebar-multi-level-sidebar" 

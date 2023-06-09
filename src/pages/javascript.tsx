@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import { SideBar } from "../components/_sidebar"
+import { CollapseSidebar } from "../components/_collapseSidebar"
 import { OnThisPageContent } from "../components/_onThisPage"
 import { renderToStaticMarkup } from 'react-dom/server';
 const showdown  = require('showdown')
@@ -31,9 +31,10 @@ export default function JavaScript( props ) {
 	})
 	const html = renderToStaticMarkup(layout);
 	const cleanedHtml = DOMPurify.sanitize(html);
+	
 
-	return <>
-		<SideBar {...props}/>
+	return <div className='bg-gray-50 dark:bg-gray-800'> 
+		<CollapseSidebar {...props}/>
 		{/*<div className="flex p-4 sm:ml-96 p-4 sm:ml-96 h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 fixed">*/}
     <div className="flex p-4 sm:ml-96 p-4 sm:ml-96 h-screen px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
 			<div className="pl-20 rounded-lg font-normal max-w-4xl">
@@ -42,7 +43,7 @@ export default function JavaScript( props ) {
 				<OnThisPageContent html={cleanedHtml}/>
 			</div>
 		</div>
-	</>
+	</div>
 }
 
 

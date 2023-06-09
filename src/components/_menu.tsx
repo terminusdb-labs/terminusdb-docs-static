@@ -8,13 +8,20 @@ import { checkIfMenuOpen, getActiveSlugClassName, checkIfSubMenuOpen } from "../
 
 const menuClassName = "text-lg flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
 
+function getSlug(slug: string) {
+    if (slug[0] === '/') {
+        return slug
+    }
+    return '/' + slug
+}
+
 /** level 3 */
 function renderLevel3Menu(menuLevel3: any[], entry: any[]) {
 
   const level3Items = menuLevel3.map((level3, index) => {
     let activeClassName = getActiveSlugClassName(level3, entry, 3)
     return <li key={`level3_${index}`}>
-      <a href={level3.Menu3Page.slug} 
+        <a href={getSlug(level3.Menu3Page.slug)}
         className={`${menuClassName} pl-32 ${activeClassName} font-barlow font-normal`}>
         {level3.Menu3Label}
       </a>
@@ -36,7 +43,7 @@ function renderLevel2Menu(menuLevel2: any[], entry: any[]) {
     if(Array.isArray(level2.Level3) && !level2.Level3.length) {
       /** menu with no level 3 */
       return <li key={`level2_${index}`}>
-        <a href={level2.Menu2Page.slug} 
+            <a href={getSlug(level2.Menu2Page.slug)}
           className={`${menuClassName} pl-20 ${activeClassName} font-barlow font-normal`}>
             {level2.Menu2Label}
         </a>
@@ -50,17 +57,17 @@ function renderLevel2Menu(menuLevel2: any[], entry: any[]) {
 
     /** menu with level 3 */
     return <li key={`level2_${index}`}>
-      <a href={level2.Menu2Page.slug}>
-        <button type="button" 
+        <a href={getSlug(level2.Menu2Page.slug)}>
+        <button type="button"
           className={`${menuClassName} pl-20 font-barlow font-normal ${activeClassName}`}
           aria-controls={level2.Menu2Label}
           data-collapse-toggle={level2.Menu2Label}>
           <span className="flex-1 text-left whitespace-nowrap" sidebar-toggle-item>
             {level2.Menu2Label}
           </span>
-          <svg sidebar-toggle-item className="w-6 h-6" 
-            fill="currentColor" 
-            viewBox="0 0 20 20" 
+          <svg sidebar-toggle-item className="w-6 h-6"
+            fill="currentColor"
+            viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
             </svg>
@@ -83,31 +90,31 @@ function renderLevel1Menu(menuLevel1: any[], entry: any[]) {
     if(Array.isArray(level1.Level2) && !level1.Level2.length) {
       /** menu with no level 2 */
       return <li key={level1.Menu1Page.slug}>
-        <a href={level1.Menu1Page.slug} 
+          <a href={getSlug(level1.Menu1Page.slug)}
           className={`${menuClassName} pl-11 ${activeClassName} font-barlow font-normal`}>
           <span>{level1.Menu1Label}</span>
         </a>
       </li>
     }
-    
+
     //let className  =  checkIfMenuOpen(level1, entry, 2)
 
     let className  = checkIfSubMenuOpen(level1, entry, 1)
-    
+
 
     /** menu with level 2 */
     return <li key={`level1_${index}`}>
-      <a href={level1.Menu1Page.slug} >
-        <button type="button" 
+        <a href={getSlug(level1.Menu1Page.slug)} >
+        <button type="button"
           className={`${menuClassName} pl-11 font-barlow font-normal ${activeClassName}`}
           aria-controls={level1.Menu1Label}
           data-collapse-toggle={level1.Menu1Label}>
           <span className="flex-1  text-left whitespace-nowrap" sidebar-toggle-item>
             {level1.Menu1Label}
           </span>
-          <svg sidebar-toggle-item className="w-6 h-6" 
-            fill="currentColor" 
-            viewBox="0 0 20 20" 
+          <svg sidebar-toggle-item className="w-6 h-6"
+            fill="currentColor"
+            viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
             </svg>
@@ -131,16 +138,16 @@ export default function renderMainMenu(menu: any[], entry: any[]) {
     let className  =  checkIfMenuOpen(menuItem, entry, 1)
 
     return <li key={index}>
-      <button type="button" 
+      <button type="button"
         className={`${menuClassName} font-barlow font-normal`}
         aria-controls={menuItem.MenuTitle}
         data-collapse-toggle={menuItem.MenuTitle}>
           <span className="flex-1 text-left whitespace-nowrap" sidebar-toggle-item>
             {menuItem.MenuTitle}
           </span>
-          <svg sidebar-toggle-item className="w-6 h-6" 
-            fill="currentColor" 
-            viewBox="0 0 20 20" 
+          <svg sidebar-toggle-item className="w-6 h-6"
+            fill="currentColor"
+            viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
             </svg>

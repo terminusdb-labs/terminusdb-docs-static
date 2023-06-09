@@ -70,7 +70,7 @@ a.tdb__on__this__page__links:hover {
 
 @layer base {
   h1 {
-    @apply mb-12 mt-12 text-4xl font-extrabold leading-none tracking-tight text-gray-900  dark:text-white;
+    @apply mb-12  text-4xl font-extrabold leading-none tracking-tight text-gray-900  dark:text-white;
   }
   aside { 
     @apply top-28 !important;

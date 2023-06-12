@@ -7,12 +7,18 @@ function intendList (tagName: any) {
   else if(tagName = "H4") return "ml-8  mr-4"
 } 
 
+function getLinkTitle(linkName) {
+  let str = linkName.split("(")
+  return str[0]
+}
+
 function getLinks(anchorLabel: any[]) {
   let links: JSX.Element[] = []
   anchorLabel.map(link => {
     links.push(<li className={intendList(link.tagName)}>
       <a href={`#${formatAnchorIds(link.text)}`} className="tdb__on__this__page__links">
-        {link.text}
+        {/*link.text*/}
+        {getLinkTitle(link.text)}
       </a>
     </li>)
   })

@@ -12,7 +12,6 @@ import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-powershell';
 import 'prismjs/components/prism-graphql';
 import 'prismjs/components/prism-python';
-import $ from "jquery";
 
 
 /** function to handle theme switcher  */
@@ -64,51 +63,25 @@ function handleThemeSwitch () {
 
 /** function to handle scroll  */
 function handleScroll () {
-  // Cache selectors
-  var lastId,
-  topMenu = $("#TableOfContents"),
-  topMenuHeight = topMenu.outerHeight()+15,
-  // All list items
-  menuItems = topMenu.find("a"),
-  // Anchors corresponding to menu items
-  scrollItems = menuItems.map(function(){
-    var item = $($(this).attr("href"));
-    if (item.length) { return item; }
-  });
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            const id = entry.target.getAttribute('id');
+            if (entry.intersectionRatio > 0) {
+                const element = document.querySelector(`a[class="tdb__on__this__page__links"][href="#${id}"]`)
+                document.querySelectorAll(`a[class="tdb__on__this__page__links"]`).forEach(x => x.parentElement.classList.remove('active'));
+                element.parentElement.classList.add('active');
+            }
+        });
+    });
 
-  // Bind click handler to menu items
-  // so we can get a fancy scroll animation
-  menuItems.click(function(e){
-  var href = $(this).attr("href"),
-    offsetTop = href === "#" ? 0 : $(href).offset().top-topMenuHeight+1;
-  $('html, body').stop().animate({ 
-    scrollTop: offsetTop
-  }, 300);
-  e.preventDefault();
-  });
+    const options =  {
+        threshold: 1
+    }
 
-  // Bind to scroll
-  $(window).scroll(function(){
-  // Get container scroll position
-  var fromTop = $(this).scrollTop()+topMenuHeight;
-
-  // Get id of current scroll item
-  var cur = scrollItems.map(function(){
-  if ($(this).offset().top < fromTop)
-    return this;
-  });
-  // Get the id of the current element
-  cur = cur[cur.length-1];
-  var id = cur && cur.length ? cur[0].id : "";
-
-  if (lastId !== id) {
-    lastId = id;
-    // Set/remove active class
-    menuItems
-      .parent().removeClass("active")
-      .end().filter("[href='#"+id+"']").parent().addClass("active");
-  }                   
-  });
+    // Track all sections that have an `id` applied
+    document.querySelectorAll('h4[id]').forEach((section) => {
+        observer.observe(section);
+    });
 }
 
 export default function App({ Component, pageProps }: AppProps) {

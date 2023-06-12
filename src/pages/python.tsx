@@ -35,7 +35,7 @@ export default function Python( props ) {
 	const html = renderToStaticMarkup(layout);
 	const cleanedHtml = DOMPurify.sanitize(html);
 
-    return <Layout menu={props.menu} 
+    return <Layout menu={props.menu}  
 		displayElement={layout} 
         html={cleanedHtml}
         entry={props.entry}

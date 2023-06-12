@@ -65,7 +65,7 @@ export const Layout = (props) => {
     <div className="w-full px-4 mx-auto max-w-8xl">
       <div className="lg:flex">
         <SideBarComponent {...props}/>
-        <div className="fixed inset-0 z-10 hidden bg-gray-900/50 dark:bg-gray-900/60" id="sidebarBackdrop"/>
+       { <div className="fixed inset-0 z-10 hidden bg-gray-900/50 dark:bg-gray-900/60" id="sidebarBackdrop"/>}
         <MainContent {...props}/>
       </div>
     </div>

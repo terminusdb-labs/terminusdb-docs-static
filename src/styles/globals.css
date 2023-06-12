@@ -13,12 +13,17 @@
   --background-end-rgb: 255, 255, 255;*/
 }
 
+
 @media (prefers-color-scheme: dark) {
   :root {
     /*--foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;*/
   }
+}
+
+html {
+  scroll-padding-top: 600px !important;
 }
 
 body {
@@ -76,7 +81,7 @@ a.tdb__menu__links {
 }
 
 li.tdb__on__this__page__links:active {
-  color: red;
+  color: red; 
 }
 
 
@@ -147,9 +152,21 @@ li.tdb__on__this__page__links:active {
   #TableOfContents > ul > li > a {
     @apply block pl-2.5 text-base border-l border-white duration-200 hover:text-gray-900 transition-none dark:hover:text-white hover:border-gray-300 after:content-['#'] after:text-purple-700 dark:after:text-purple-500 dark:border-gray-900 dark:hover:border-gray-700 after:ml-2 after:opacity-0 hover:after:opacity-100 after:transition-opacity after:duration-100;
   }
+
+  #TableOfContents > ul > li > a:active {
+    background-color: yellow;
+    border-radius:30px;
+    transition: 0.3s;
+  }
   
   #TableOfContents > ul > li > ul > li > a {
     @apply pl-6 border-l border-white duration-200 hover:text-gray-900 transition-none dark:hover:text-white hover:border-gray-300 after:content-['#'] after:text-purple-700 dark:after:text-purple-500 dark:border-gray-900 dark:hover:border-gray-700 after:ml-2 after:opacity-0 hover:after:opacity-100 after:transition-opacity after:duration-100;
+  }
+
+  #TableOfContents > ul > li > ul > li > a:active {
+    background-color: yellow;
+    border-radius:30px;
+    transition: 0.3s;
   }
   
   #TableOfContents > ul > li > ul {
@@ -163,8 +180,11 @@ li.tdb__on__this__page__links:active {
   #TableOfContents > ul > li > ul > li:last-of-type {
     @apply pb-0;
   }
+ 
   
 }
+
+
 
 
 

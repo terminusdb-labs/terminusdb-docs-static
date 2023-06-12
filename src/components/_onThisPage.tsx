@@ -3,14 +3,14 @@ import { formatAnchorIds } from "../utils"
 
 function intendList (tagName: any) {
   if(tagName === "H2") return ""
-  else if(tagName === "H3") return "ml-4 mr-4"
+  else if(tagName === "H3") return "ml-4 mr-4 "
   else if(tagName = "H4") return "ml-8  mr-4"
 } 
 
 function getLinks(anchorLabel: any[]) {
   let links: JSX.Element[] = []
   anchorLabel.map(link => {
-    links.push(<li className={intendList(link.tagName) }>
+    links.push(<li className={intendList(link.tagName)}>
       <a href={`#${formatAnchorIds(link.text)}`} className="tdb__on__this__page__links">
         {link.text}
       </a>
@@ -18,6 +18,11 @@ function getLinks(anchorLabel: any[]) {
   })
   return links
 }
+
+
+
+
+
 
 function getNodeList(nodeList) {
   let list = []

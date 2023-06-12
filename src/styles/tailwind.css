@@ -877,7 +877,7 @@ input:checked + .toggle-bg {
   --tw-pan-x:  ;
   --tw-pan-y:  ;
   --tw-pinch-zoom:  ;
-  --tw-scroll-snap-strictness: proximity;
+  /*--tw-scroll-snap-strictness: proximity;*/
   --tw-ordinal:  ;
   --tw-slashed-zero:  ;
   --tw-numeric-figure:  ;
@@ -924,7 +924,7 @@ input:checked + .toggle-bg {
   --tw-pan-x:  ;
   --tw-pan-y:  ;
   --tw-pinch-zoom:  ;
-  --tw-scroll-snap-strictness: proximity;
+  /*--tw-scroll-snap-strictness: proximity;*/
   --tw-ordinal:  ;
   --tw-slashed-zero:  ;
   --tw-numeric-figure:  ;

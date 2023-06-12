@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 //import "../styles/tailwind.css"
 import "../styles/globals.css"
+//import "../styles/test.css"
 //import "../styles/prism-one-dark.css"
 import type { Metadata } from 'next';
 import type { AppProps } from 'next/app'
@@ -60,11 +61,69 @@ function handleThemeSwitch () {
   });
 }
 
+function handleScroll() {
+
+  const headings = document.querySelectorAll("h2, h3, h4");
+  //const navLi = document.querySelectorAll("nav#TableOfContents ul li");
+  const navLi = document.getElementById("TableOfContents");
+
+  console.log("headings", headings)
+
+  let aList = navLi.getElementsByTagName("a");
+  //console.log("aList", aList)
+
+  function splitRef(ref) {
+    let str = ref.split("#")
+    return str[1]
+  }
+
+  window.onscroll = () => {
+    var current = "";
+  
+    headings.forEach((heading) => {
+      const headingTop = heading.offsetTop;
+      //console.log("offsetTop",heading.offsetTop)
+      //console.log("pageYOffset",pageYOffset)
+      if (pageYOffset >= headingTop ) {
+        console.log("heading",heading)
+        console.log("head", heading.id)
+        current = heading.getAttribute("id"); 
+        for(var i =0; i<aList.length; i++ ) {
+          aList[i].classList.remove("active");
+          //console.log("al", aList[i].href)
+          if(splitRef(aList[i].href) === current) {
+            aList[i].classList.add("active");
+          }
+        }
+      }
+    });
+
+    console.log("current",current)
+
+    /*aList.forEach((al) => {
+      console.log("al", al.href)
+    })*/
+
+    
+    
+    /*navLi.forEach((li) => {
+      var a = li.getElementsByTagName("a");
+      console.log("a", a.href)  
+      li.classList.remove("active");
+      if (li.classList.contains(current)) {
+        li.classList.add("active");
+      }
+    });*/
+  };
+  
+}
+
 
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     Prism.highlightAll();
     handleThemeSwitch();
+    handleScroll();
   }, []);
 
   return <Component {...pageProps} />

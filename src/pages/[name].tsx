@@ -21,8 +21,33 @@ const client = new TerminusClient.WOQLClient('https://cloud.terminusdb.com/Termi
 )
 
 
+const BlankPage = () => {
+  return <>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#plans">Plans</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <section id="home">
+      <h1>Home</h1>
+    </section>
+    <section id="pricing">
+      <h1>Pricing</h1>
+    </section>
+    <section id="plans">
+      <h1>Plans</h1>
+    </section>
+    <section id="contact">
+      <h1>Contact</h1>
+    </section>
+  </>
+}
+ 
 
 export default function Doc( props: JSX.IntrinsicAttributes & { menu: any[]; entry: any[]; } ) {
+
+  //return <BlankPage/>
  
   let html = getHtml(props.entry)
   let displayElement = <div dangerouslySetInnerHTML={{__html: html}}/> 

@@ -27,7 +27,8 @@ export default function JavaScript( props ) {
                                 examples = renderExamples(func.examples, "javascript", func.name)
                             }
                             return <div key={func.name}>
-                                <h4 id={formatAnchorIds(formatShortHandAnchorIds(func.name, null))}>
+                                <h4  className="divider"
+                                    id={formatAnchorIds(formatShortHandAnchorIds(func.name, null))}>
                                 {func.name}({shortArgs})
                               </h4>
                                 <div data-accordion="collapse"><p>{func.summary}</p>{args}{examples}</div></div>
@@ -45,7 +46,7 @@ export default function JavaScript( props ) {
 	const html = renderToStaticMarkup(layout);
 	const cleanedHtml = DOMPurify.sanitize(html);
 	
-  return <Layout menu={props.menu} 
+  return <Layout menu={props.menu}  
 		displayElement={layout} 
 		html={cleanedHtml}
 		entry={props.entry}

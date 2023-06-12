@@ -84,7 +84,10 @@ li.tdb__on__this__page__links:active {
   color: red; 
 }
 
-
+h4.divider { 
+  padding-top: 1rem;
+  border-top: 1px solid rgb(228, 224, 224);
+}
 
 @layer base {
   h1 {
@@ -94,37 +97,37 @@ li.tdb__on__this__page__links:active {
     @apply top-28 !important;
   }
   h2 {
-    @apply mb-4 mt-12 text-3xl font-extrabold dark:text-white font-semibold relative ;
+    @apply mb-3 text-3xl font-extrabold dark:text-white font-semibold relative ;
   }
   h3 {
-    @apply mb-4 mt-12 text-2xl font-bold dark:text-white font-semibold relative;
+    @apply mb-3 text-2xl font-bold dark:text-white font-semibold relative;
   }
   h4 { 
-    @apply mb-4 mt-12 text-xl font-bold dark:text-white font-semibold relative;
+    @apply mb-3 text-xl font-bold dark:text-white font-semibold relative;
   }
   h5 { 
     @apply font-bold dark:text-white font-semibold;
   }
   p {
-    @apply mb-12 mt-4 text-lg md:text-lg dark:text-gray-50 font-normal;
+    @apply mb-8 text-lg md:text-lg dark:text-gray-50 font-normal lg:leading-9 md:leading-9;
   }
   ol li { 
     @apply text-lg md:text-lg dark:text-gray-50 font-normal;
   }
   ol { 
-    @apply space-y-1 list-decimal list-inside dark:text-gray-50 font-normal mb-4;
+    @apply space-y-1 list-decimal list-inside dark:text-gray-50 font-normal mb-8;
   }
   li + ul {
-    @apply ml-8
+    @apply ml-8 
   }
   ul {
     @apply space-y-1 list-disc list-inside dark:text-gray-50 font-normal mt-8 mb-8 text-lg md:text-lg;
   }
   img { 
-    @apply max-w-full h-auto rounded-lg  mb-12 mt-12;
+    @apply max-w-full h-auto rounded-lg  mb-8 mt-12;
   }
   pre { 
-    @apply max-w-full h-auto rounded-lg  mb-12 mt-12;
+    @apply max-w-full h-auto rounded-lg  mb-8 !important;
   }
   code { 
     @apply bg-zinc-300 rounded-md text-black p-1 font-mono text-base;
@@ -142,10 +145,10 @@ li.tdb__on__this__page__links:active {
     @apply rounded-lg px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white break-all;
   }
   td {
-    @apply md:text-lg break-all;
+    @apply md:text-lg p-3 break-all;
   }
   blockquote {
-    @apply p-2 my-2 border-l-4 border-blue-300 bg-blue-50 dark:border-gray-500 dark:bg-gray-800 rounded-sm 
+    @apply p-10 italic border-l-4 border-blue-300 bg-blue-50 dark:border-gray-500 dark:bg-gray-800 rounded-sm 
   }
   #TableOfContents > ul {
     @apply overflow-x-hidden text-base text-gray-500 dark:text-gray-400;

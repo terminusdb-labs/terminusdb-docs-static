@@ -8,7 +8,7 @@ const window = new JSDOM('').window;
 const DOMPurify = createDOMPurify(window);  
 import axios from 'axios';
 import { Layout } from "../components/_layout"
-import { getHtml, getSubTitle } from "../utils"
+import { getHtml, getMenu, getSubTitle } from "../utils"
 
 // Connect and configure the TerminusClient
 const client = new TerminusClient.WOQLClient('https://cloud.terminusdb.com/TerminatorsX',
@@ -75,38 +75,7 @@ export async function getStaticProps({ params }) {
 	const config = {
 		headers: { Authorization: `Token ${process.env.TERMINUSDB_API_TOKEN}` }
 	};
-
-	const req = await axios.post('https://cloud.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/terminusCMS_docs', {
-			query: `query {
-        Menu(orderBy: {menu_order:ASC}) {
-          MenuTitle,
-          menu_order,
-          Level1(orderBy: {Order:ASC})  {
-            Menu1Label,
-            Order,
-            Menu1Page {
-              slug
-            },
-            Level2(orderBy: {Order:ASC}) {
-              Menu2Label,
-              Order,
-              Menu2Page{
-                slug
-              },
-              Level3(orderBy: {Order:ASC}) {
-                Menu3Label,
-                Order,
-                Menu3Page {
-                  slug
-                }
-              }
-            }
-          }
-        }
-      }`
-	}, config)
-	const menu = req.data.data.Menu
-
+        const menu = await getMenu()
 
 	const query = {
 			"@type": "Page",

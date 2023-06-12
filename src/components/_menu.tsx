@@ -21,13 +21,8 @@ function renderLevel3Menu(menuLevel3: any[], entry: any[]) {
   const level3Items = menuLevel3.map((level3, index) => {
     let activeClassName = getActiveSlugClassName(level3, entry, 3)
     return <li key={`level3_${index}`}>
-<<<<<<< HEAD
-      <a href={level3.Menu3Page.slug} 
-        className={`${menuClassName} pl-16 ${activeClassName} font-barlow font-normal`}>
-=======
         <a href={getSlug(level3.Menu3Page.slug)}
         className={`${menuClassName} pl-32 ${activeClassName} font-barlow font-normal`}>
->>>>>>> e891aa9d724e646c18c45cecc58c5925ba44fe02
         {level3.Menu3Label}
       </a>
     </li>
@@ -48,13 +43,8 @@ function renderLevel2Menu(menuLevel2: any[], entry: any[]) {
     if(Array.isArray(level2.Level3) && !level2.Level3.length) {
       /** menu with no level 3 */
       return <li key={`level2_${index}`}>
-<<<<<<< HEAD
-        <a href={level2.Menu2Page.slug} 
-          className={`${menuClassName} pl-12 ${activeClassName} font-barlow font-normal`}>
-=======
             <a href={getSlug(level2.Menu2Page.slug)}
           className={`${menuClassName} pl-20 ${activeClassName} font-barlow font-normal`}>
->>>>>>> e891aa9d724e646c18c45cecc58c5925ba44fe02
             {level2.Menu2Label}
         </a>
       </li>
@@ -67,7 +57,6 @@ function renderLevel2Menu(menuLevel2: any[], entry: any[]) {
 
     /** menu with level 3 */
     return <li key={`level2_${index}`}>
-<<<<<<< HEAD
       <button type="button" 
         className={`${menuClassName} pl-12 font-barlow font-normal ${activeClassName}`}
         aria-controls={level2.Menu2Label}
@@ -84,24 +73,6 @@ function renderLevel2Menu(menuLevel2: any[], entry: any[]) {
           <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
         </svg>
       </button>
-=======
-        <a href={getSlug(level2.Menu2Page.slug)}>
-        <button type="button"
-          className={`${menuClassName} pl-20 font-barlow font-normal ${activeClassName}`}
-          aria-controls={level2.Menu2Label}
-          data-collapse-toggle={level2.Menu2Label}>
-          <span className="flex-1 text-left whitespace-nowrap" sidebar-toggle-item>
-            {level2.Menu2Label}
-          </span>
-          <svg sidebar-toggle-item className="w-6 h-6"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-            </svg>
-        </button>
-      </a>
->>>>>>> e891aa9d724e646c18c45cecc58c5925ba44fe02
       <ul id={level2.Menu2Label} className={`${className} py-2 space-y-2 tdb__li`}>{ renderLevel3Menu(level2.Level3, entry) }</ul>
     </li>
   })
@@ -119,13 +90,8 @@ function renderLevel1Menu(menuLevel1: any[], entry: any[]) {
     if(Array.isArray(level1.Level2) && !level1.Level2.length) {
       /** menu with no level 2 */
       return <li key={level1.Menu1Page.slug}>
-<<<<<<< HEAD
-        <a href={level1.Menu1Page.slug} 
-          className={`${menuClassName} pl-8 ${activeClassName} font-barlow font-normal`}>
-=======
           <a href={getSlug(level1.Menu1Page.slug)}
           className={`${menuClassName} pl-11 ${activeClassName} font-barlow font-normal`}>
->>>>>>> e891aa9d724e646c18c45cecc58c5925ba44fe02
           <span>{level1.Menu1Label}</span>
         </a>
       </li>
@@ -138,21 +104,7 @@ function renderLevel1Menu(menuLevel1: any[], entry: any[]) {
 
     /** menu with level 2 */
     return <li key={`level1_${index}`}>
-<<<<<<< HEAD
-      <button type="button" 
-        className={`${menuClassName} pl-8 font-barlow font-normal ${activeClassName}`}
-        aria-controls={level1.Menu1Label}
-        data-collapse-toggle={level1.Menu1Label}>
-          <a href={level1.Menu1Page.slug} className="tdb__menu__links">
-            <span className="flex-1  text-left whitespace-nowrap" sidebar-toggle-item>
-              {level1.Menu1Label}
-            </span>
-          </a>
-          <svg sidebar-toggle-item className="w-6 h-6" 
-            fill="currentColor" 
-            viewBox="0 0 20 20" 
-=======
-        <a href={getSlug(level1.Menu1Page.slug)} >
+        <a href={getSlug(level1.Menu1Page.slug)} />
         <button type="button"
           className={`${menuClassName} pl-11 font-barlow font-normal ${activeClassName}`}
           aria-controls={level1.Menu1Label}
@@ -163,7 +115,6 @@ function renderLevel1Menu(menuLevel1: any[], entry: any[]) {
           <svg sidebar-toggle-item className="w-6 h-6"
             fill="currentColor"
             viewBox="0 0 20 20"
->>>>>>> e891aa9d724e646c18c45cecc58c5925ba44fe02
             xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
           </svg>

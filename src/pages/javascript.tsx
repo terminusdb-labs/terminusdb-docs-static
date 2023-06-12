@@ -28,7 +28,7 @@ export default function JavaScript( props ) {
                             }
                             return <div key={func.name}>
                                 <h4  className="divider"
-                                    id={formatAnchorIds(formatShortHandAnchorIds(func.name, null))}>
+                                    id={formatAnchorIds(formatShortHandAnchorIds(func.name, shortArgs))}>
                                 {func.name}({shortArgs})
                               </h4>
                                 <div data-accordion="collapse"><p>{func.summary}</p>{args}{examples}</div></div>

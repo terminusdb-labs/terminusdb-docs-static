@@ -1,12 +1,11 @@
 import axios from 'axios';
-import { CollapseSidebar } from "../components/_collapseSidebar"
-import { OnThisPageContent } from "../components/_onThisPage"
 import { renderToStaticMarkup } from 'react-dom/server';
-import { getMenu, renderCodeTable } from "../utils"
+import { getMenu, renderCodeTable, formatAnchorIds, formatShortHandAnchorIds } from "../utils"
 const createDOMPurify = require('dompurify');
 const { JSDOM } = require('jsdom');
 const window = new JSDOM('').window;
 const DOMPurify = createDOMPurify(window); 
+import { Layout } from "../components/_layout"
 
 export default function Python( props ) {
 	const modules = props.application.modules
@@ -19,27 +18,28 @@ export default function Python( props ) {
                             args = renderCodeTable(func.parameters)
                             shortArgs = func.parameters.map(x => x.name).join(", ")
                         }
-                        return <div key={func.name}><h4 id={func.name}>{func.name}({shortArgs})</h4><div data-accordion="collapse">{args}<p>{func.summary}</p></div></div>
+                        return <div key={func.name}>
+                            <h4 id={formatAnchorIds(formatShortHandAnchorIds(func.name, shortArgs))}>{func.name}({shortArgs})</h4>
+                            <div data-accordion="collapse">{args}<p>{func.summary}</p></div>
+                        </div>
                         })
-			return (<div key={class_.name}><h3 id={class_.name}>{class_.name}</h3>{functions}</div>)
+			return (<div key={class_.name}>
+                <h3 id={formatAnchorIds(class_.name)}>{class_.name}</h3>{functions}
+            </div>)
 		})
-		return (<div key={mod.name}><h2 id={mod.name}>{ mod.name }</h2>{ classes }</div>)
+		return (<div key={mod.name}>
+            <h2 id={formatAnchorIds(mod.name)}>{ mod.name }</h2>
+            { classes }
+        </div>)
 	})
 	const html = renderToStaticMarkup(layout);
 	const cleanedHtml = DOMPurify.sanitize(html);
 
-	return <>
-		<CollapseSidebar {...props}/>
-		{/*<div className="flex p-4 sm:ml-96 p-4 sm:ml-96 h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 fixed">*/}
-    <div className="flex p-4 sm:ml-96 p-4 sm:ml-96 h-screen px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-   	
-			<div className="pl-20 rounded-lg font-normal max-w-4xl">
-				<h1>{ props.application.name }</h1>
-				{ layout }
-				<OnThisPageContent html={cleanedHtml}/>
-			</div>
-		</div>
-	</>
+    return <Layout menu={props.menu} 
+		displayElement={layout} 
+        html={cleanedHtml}
+        entry={props.entry}
+		heading={props.application.name}/>
 }
 
 
@@ -74,5 +74,7 @@ export async function getStaticProps(context) {
             }
        }`
     }, config)
-    return { props: { application: application.data.data.Application.slice(-1)[0], menu } }
+    // provide entry slug
+    const entry = {document: { slug: `python` }}
+    return { props: { application: application.data.data.Application.slice(-1)[0], menu, entry } }
 }

@@ -38,23 +38,26 @@ export async function getMenu() {
 }
 
 export function renderCodeTable(parameters) {
-    const rows = parameters.map(param => {
-        return <tr key={"tr" + param.name}>
-            <td class="border">{param.name}</td>
-            <td class="border">{param.type}</td>
-            <td class="border">{param.summary}</td>
-            </tr>
-    })
-    return <><h5>Parameters</h5><table>
-        <thead><tr>
-        <th class="border">Name</th>
-        <th class="border">Type</th>
-        <th class="border">Description</th></tr>
-        </thead>
-        <tbody>
-        {rows}
-        </tbody>
-    </table></>
+  const rows = parameters.map(param => {
+    return <tr key={"tr" + param.name}>
+      <td >{param.name}</td>
+      <td >{param.type}</td>
+      <td >{param.summary}</td>
+    </tr>
+  })
+  return <>
+    <h5>Parameters</h5>
+    <table>
+      <thead><tr>
+      <th >Name</th>
+      <th >Type</th>
+      <th >Description</th></tr>
+      </thead>
+      <tbody>
+      {rows}
+      </tbody>
+  </table>
+  </>
 }
 
 /**
@@ -139,10 +142,28 @@ export function getLogo() {
  * @returns anchor ids 
  */
 export function formatAnchorIds(link: string) {
-  let id = link.replace(/[^A-Z0-9]/ig, ""); //replace(/\s/g, '')
-  //let id = link.replace(/\s/g, '') 
-  //let id = link
-  //let id = link.replace(/[\[\]']+/g,'')
+  let id = link.replace(/[^A-Z0-9]/ig, ""); 
   return id.toLowerCase()
+}
+
+/**
+ * 
+ * @param funcName function name
+ * @param shortArgs function args
+ * @returns formated string with repective function name & arguments
+ */
+export function formatShortHandAnchorIds (funcName, shortArgs) {
+	if(!shortArgs) return funcName
+	return `${funcName}(${shortArgs})`
+}
+
+
+export function getHtml(entry: { [x: string]: any }) {
+  return entry['html']
+}
+
+export function getSubTitle(document: { subtitle: { value: any } }) {
+  if(!document.subtitle) return <div/>
+  return document.subtitle.value
 }
 

@@ -7,8 +7,8 @@ const { JSDOM } = require('jsdom');
 const window = new JSDOM('').window;
 const DOMPurify = createDOMPurify(window);  
 import axios from 'axios';
-import { BodyContent } from "../components/_body"
-import { CollapseSidebar } from "../components/_collapseSidebar"
+import { Layout } from "../components/_layout"
+import { getHtml, getSubTitle } from "../utils"
 
 // Connect and configure the TerminusClient
 const client = new TerminusClient.WOQLClient('https://cloud.terminusdb.com/TerminatorsX',
@@ -20,15 +20,19 @@ const client = new TerminusClient.WOQLClient('https://cloud.terminusdb.com/Termi
 	}
 )
 
-export default function Doc( props: JSX.IntrinsicAttributes & { menu: any[]; entry: any[]; } ) {
 
-  
-	return <div className='w-full px-4 mx-auto max-w-12xl top-22 fixed bg-gray-50 dark:bg-gray-800'>
-    <div className='h-full px-3 py-4 overflow-y-auto '>
-      <CollapseSidebar {...props}/>
-      <BodyContent entry={props.entry}/>
-    </div>
-  </div>
+
+export default function Doc( props: JSX.IntrinsicAttributes & { menu: any[]; entry: any[]; } ) {
+ 
+  let html = getHtml(props.entry)
+  let displayElement = <div dangerouslySetInnerHTML={{__html: html}}/> 
+  return <Layout menu={props.menu} 
+    entry={props.entry}
+    displayElement={displayElement} 
+    html={html}
+    heading={props.entry.document.title.value}
+    subtitle={getSubTitle(props.entry.document)}/>
+	
 }
 
 
@@ -88,5 +92,5 @@ export async function getStaticProps({ params }) {
 	const html = converter.makeHtml(docResult['body']['value'])
 	const cleanedHtml = DOMPurify.sanitize(html)
 	const entry = {html: cleanedHtml, document: docResult }
-	return { props: { entry, menu } }
+	return { props: { entry, menu } } 
 }

@@ -35,6 +35,36 @@ function getNodeList(nodeList) {
 //return <div className="flex-none hidden w-64 pl-8 mr-8 xl:text-sm xl:block">
 export const OnThisPageContent = ({ html }) => {
 
+  const dom = new JSDOM(`<!DOCTYPE html>${html}`);
+  const document = dom.window.document;
+
+  let nodeList = document.querySelectorAll("h2, h3, h4")
+
+  let listArray = getNodeList(nodeList) 
+  
+
+  if(!listArray.length) return <div className="flex-none hidden sticky w-64 pl-8 mr-8 xl:text-sm xl:block"/>
+
+
+  return <div className="flex-none hidden w-64 pl-8 mr-8 xl:text-sm xl:block">
+    <div className="flex overflow-y-auto sticky top-28 flex-col justify-between pt-10 pb-6 h-[calc(100vh-5rem)]">
+      <div className="mb-8">
+        <h4 className="pl-2.5 mb-2 text-sm font-semibold tracking-wide text-gray-900 uppercase dark:text-white lg:text-xs">
+          On this page
+        </h4>
+        <nav id="TableOfContents">
+          <ul className="tdb__on__this__page">
+            {getLinks(listArray)}
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+}
+
+//return <div className="flex-none hidden w-64 pl-8 mr-8 xl:text-sm xl:block">
+/*export const OnThisPageContent_OLD = ({ html }) => {
+
 
   const dom = new JSDOM(`<!DOCTYPE html>${html}`);
   const document = dom.window.document;
@@ -45,6 +75,19 @@ export const OnThisPageContent = ({ html }) => {
   
 
   if(!listArray.length) return <div className="flex-none hidden sticky w-64 pl-8 mr-8 xl:text-sm xl:block"/>
+
+  return <div className="flex-none hidden w-64 pl-8 mr-8 xl:text-sm xl:block">
+    <div className="flex overflow-y-auto sticky top-28 flex-col justify-between pt-10 pb-6 h-[calc(100vh-5rem)]">
+      <div className="mb-8">
+        <h4 className="pl-2.5 mb-2 text-sm font-semibold tracking-wide text-gray-900 uppercase dark:text-white lg:text-xs">
+          On this page
+        </h4>
+        <nav id="TableOfContents">
+          ON THIS PAGE 
+        </nav>
+      </div>
+    </div>
+  </div>
   
   return <div className="flex-none hidden w-64 pl-8 mr-8 xl:text-sm xl:block">
     <aside id="onThisPageSideBar" 
@@ -60,22 +103,8 @@ export const OnThisPageContent = ({ html }) => {
         </div>
     </aside>
   </div> 
-}
+}*/
 
-/**
- * return <div className="flex-none hidden sticky w-64 pl-8 mr-8 xl:text-sm xl:block">
-    <div className="flex overflow-y-auto sticky top-14 flex-col justify-between pt-10 pb-6 h-auto">
-      <div className="mb-8">
-        <h4 className="pl-2.5 mb-2 text-sm font-semibold tracking-wide text-gray-900 uppercase dark:text-white lg:text-xs">On this page</h4>
-        <nav id="TableOfContents">
-          <ul className="tdb__on__this__page">
-            {getLinks(listArray)}
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </div>
- */
 
 /**
  * <li><a href="#multi-level-menu" className="">Multi-level menu</a></li>

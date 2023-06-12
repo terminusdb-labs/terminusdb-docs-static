@@ -6,7 +6,7 @@ import 'flowbite';
 import { checkIfMenuOpen, getActiveSlugClassName, checkIfSubMenuOpen } from "../utils"
 
 
-const menuClassName = "text-lg flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+const menuClassName = "text-base flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
 
 /** level 3 */
 function renderLevel3Menu(menuLevel3: any[], entry: any[]) {
@@ -15,7 +15,7 @@ function renderLevel3Menu(menuLevel3: any[], entry: any[]) {
     let activeClassName = getActiveSlugClassName(level3, entry, 3)
     return <li key={`level3_${index}`}>
       <a href={level3.Menu3Page.slug} 
-        className={`${menuClassName} pl-32 ${activeClassName} font-barlow font-normal`}>
+        className={`${menuClassName} pl-16 ${activeClassName} font-barlow font-normal`}>
         {level3.Menu3Label}
       </a>
     </li>
@@ -37,7 +37,7 @@ function renderLevel2Menu(menuLevel2: any[], entry: any[]) {
       /** menu with no level 3 */
       return <li key={`level2_${index}`}>
         <a href={level2.Menu2Page.slug} 
-          className={`${menuClassName} pl-20 ${activeClassName} font-barlow font-normal`}>
+          className={`${menuClassName} pl-12 ${activeClassName} font-barlow font-normal`}>
             {level2.Menu2Label}
         </a>
       </li>
@@ -50,22 +50,22 @@ function renderLevel2Menu(menuLevel2: any[], entry: any[]) {
 
     /** menu with level 3 */
     return <li key={`level2_${index}`}>
-      <a href={level2.Menu2Page.slug}>
-        <button type="button" 
-          className={`${menuClassName} pl-20 font-barlow font-normal ${activeClassName}`}
-          aria-controls={level2.Menu2Label}
-          data-collapse-toggle={level2.Menu2Label}>
-          <span className="flex-1 text-left whitespace-nowrap" sidebar-toggle-item>
-            {level2.Menu2Label}
-          </span>
-          <svg sidebar-toggle-item className="w-6 h-6" 
-            fill="currentColor" 
-            viewBox="0 0 20 20" 
-            xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-            </svg>
-        </button>
-      </a>
+      <button type="button" 
+        className={`${menuClassName} pl-12 font-barlow font-normal ${activeClassName}`}
+        aria-controls={level2.Menu2Label}
+        data-collapse-toggle={level2.Menu2Label}>
+          <a href={level2.Menu2Page.slug} className="tdb__menu__links">
+            <span className="flex-1 text-left whitespace-nowrap" sidebar-toggle-item>
+              {level2.Menu2Label}
+            </span>
+          </a>
+        <svg sidebar-toggle-item className="w-6 h-6" 
+          fill="currentColor" 
+          viewBox="0 0 20 20" 
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+        </svg>
+      </button>
       <ul id={level2.Menu2Label} className={`${className} py-2 space-y-2 tdb__li`}>{ renderLevel3Menu(level2.Level3, entry) }</ul>
     </li>
   })
@@ -84,35 +84,35 @@ function renderLevel1Menu(menuLevel1: any[], entry: any[]) {
       /** menu with no level 2 */
       return <li key={level1.Menu1Page.slug}>
         <a href={level1.Menu1Page.slug} 
-          className={`${menuClassName} pl-11 ${activeClassName} font-barlow font-normal`}>
+          className={`${menuClassName} pl-8 ${activeClassName} font-barlow font-normal`}>
           <span>{level1.Menu1Label}</span>
         </a>
       </li>
     }
     
     //let className  =  checkIfMenuOpen(level1, entry, 2)
-
+ 
     let className  = checkIfSubMenuOpen(level1, entry, 1)
     
 
     /** menu with level 2 */
     return <li key={`level1_${index}`}>
-      <a href={level1.Menu1Page.slug} >
-        <button type="button" 
-          className={`${menuClassName} pl-11 font-barlow font-normal ${activeClassName}`}
-          aria-controls={level1.Menu1Label}
-          data-collapse-toggle={level1.Menu1Label}>
-          <span className="flex-1  text-left whitespace-nowrap" sidebar-toggle-item>
-            {level1.Menu1Label}
-          </span>
+      <button type="button" 
+        className={`${menuClassName} pl-8 font-barlow font-normal ${activeClassName}`}
+        aria-controls={level1.Menu1Label}
+        data-collapse-toggle={level1.Menu1Label}>
+          <a href={level1.Menu1Page.slug} className="tdb__menu__links">
+            <span className="flex-1  text-left whitespace-nowrap" sidebar-toggle-item>
+              {level1.Menu1Label}
+            </span>
+          </a>
           <svg sidebar-toggle-item className="w-6 h-6" 
             fill="currentColor" 
             viewBox="0 0 20 20" 
             xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-            </svg>
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          </svg>
         </button>
-      </a>
       <ul id={level1.Menu1Label} className={`${className} py-2 space-y-2 tdb__li`}>{ renderLevel2Menu(level1.Level2, entry) }</ul>
     </li>
   })

@@ -83,19 +83,19 @@ li.tdb__on__this__page__links:active {
 
 @layer base {
   h1 {
-    @apply  text-4xl font-extrabold leading-none tracking-tight text-gray-900  dark:text-white;
+    @apply  text-4xl font-extrabold leading-none tracking-tight text-gray-900  dark:text-white relative;
   }
   aside { 
     @apply top-28 !important;
   }
   h2 {
-    @apply mb-12  text-3xl font-extrabold dark:text-white font-semibold ;
+    @apply mb-12  text-3xl font-extrabold dark:text-white font-semibold relative ;
   }
   h3 {
-    @apply mb-12 text-2xl font-bold dark:text-white font-semibold;
+    @apply mb-12 text-2xl font-bold dark:text-white font-semibold relative;
   }
   h4 { 
-    @apply mb-12 text-xl font-bold dark:text-white font-semibold;
+    @apply mb-12 text-xl font-bold dark:text-white font-semibold relative;
   }
   h5 { 
     @apply mb-12  font-bold dark:text-white font-semibold;

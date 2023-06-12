@@ -18,10 +18,14 @@ export default function Python( props ) {
                             args = renderCodeTable(func.parameters)
                             shortArgs = func.parameters.map(x => x.name).join(", ")
                         }
+<<<<<<< HEAD
                         return <div key={func.name}>
                             <h4 id={formatAnchorIds(formatShortHandAnchorIds(func.name, shortArgs))}>{func.name}({shortArgs})</h4>
                             <div data-accordion="collapse">{args}<p>{func.summary}</p></div>
                         </div>
+=======
+                        return <div key={func.name}><h4 id={func.name}>{func.name}({shortArgs})</h4><p>{func.summary}</p><div data-accordion="collapse">{args}</div></div>
+>>>>>>> e891aa9d724e646c18c45cecc58c5925ba44fe02
                         })
 			return (<div key={class_.name}>
                 <h3 id={formatAnchorIds(class_.name)}>{class_.name}</h3>{functions}

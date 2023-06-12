@@ -39,23 +39,23 @@ export async function getMenu() {
 
 export function renderExamples(examples: any, language: string) {
     const rows = examples.map(example => {
-        return <pre className={"language-" + language}>{example}</pre> })
+        return <pre className={"language-" + language}><code className={"language-" + language}>{example}</code></pre> })
     return <><h5>Examples</h5>{ rows }</>
 }
 
 export function renderCodeTable(parameters) {
     const rows = parameters.map(param => {
         return <tr key={"tr" + param.name}>
-            <td class="border">{param.name}</td>
-            <td class="border">{param.type}</td>
-            <td class="border">{param.summary}</td>
+            <td>{param.name}</td>
+            <td>{param.type}</td>
+            <td>{param.summary}</td>
             </tr>
     })
     return <><h5>Parameters</h5><table>
         <thead><tr>
-        <th class="border">Name</th>
-        <th class="border">Type</th>
-        <th class="border">Description</th></tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th></tr>
         </thead>
         <tbody>
         {rows}

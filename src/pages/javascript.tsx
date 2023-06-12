@@ -7,7 +7,7 @@ const showdown  = require('showdown')
 const converter = new showdown.Converter({metadata: true, tables: true})
 const createDOMPurify = require('dompurify');
 const { JSDOM } = require('jsdom');
-import { getMenu, renderCodeTable } from "../utils"
+import { getMenu, renderCodeTable, renderExamples } from "../utils"
 const window = new JSDOM('').window;
 const DOMPurify = createDOMPurify(window); 
 
@@ -23,7 +23,11 @@ export default function JavaScript( props ) {
                             args = renderCodeTable(func.parameters)
                             shortArgs = func.parameters.map(x => x.name).join(", ")
                         }
-                        return <div key={func.name}><h4 id={func.name}>{func.name}({shortArgs})</h4><p>{func.summary}</p><div data-accordion="collapse">{args}</div></div>
+                        let examples = null
+                        if (typeof func.examples !== 'undefined' && func.examples.length > 0) {
+                            examples = renderExamples(func.examples, "javascript")
+                        }
+                        return <div key={func.name}><h4 id={func.name}>{func.name}({shortArgs})</h4><p>{func.summary}</p>{examples}<div data-accordion="collapse">{args}</div></div>
                         })
 			return (<div key={class_.name}><h3 id={class_.name}>{class_.name}</h3>{functions}</div>)
 		})
@@ -63,6 +67,7 @@ export async function getStaticProps(context) {
                       name,
                       memberFunctions(orderBy: {name: ASC}) {
                           name,
+                          examples,
                           section,
                           summary,
                            parameters {

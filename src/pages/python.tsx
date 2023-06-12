@@ -2,7 +2,7 @@ import axios from 'axios';
 import { CollapseSidebar } from "../components/_collapseSidebar"
 import { OnThisPageContent } from "../components/_onThisPage"
 import { renderToStaticMarkup } from 'react-dom/server';
-import { getMenu, renderCodeTable } from "../utils"
+import { getMenu, renderCodeTable, renderExamples } from "../utils"
 const createDOMPurify = require('dompurify');
 const { JSDOM } = require('jsdom');
 const window = new JSDOM('').window;
@@ -19,7 +19,11 @@ export default function Python( props ) {
                             args = renderCodeTable(func.parameters)
                             shortArgs = func.parameters.map(x => x.name).join(", ")
                         }
-                        return <div key={func.name}><h4 id={func.name}>{func.name}({shortArgs})</h4><p>{func.summary}</p><div data-accordion="collapse">{args}</div></div>
+                        let examples = null
+                        if (typeof func.examples !== 'undefined' && func.examples.length > 0) {
+                            examples = renderExamples(func.examples, "javascript")
+                        }
+                        return <div key={func.name}><h4 id={func.name}>{func.name}({shortArgs})</h4><p>{func.summary}</p>{examples}<div data-accordion="collapse">{args}</div></div>
                         })
 			return (<div key={class_.name}><h3 id={class_.name}>{class_.name}</h3>{functions}</div>)
 		})
@@ -61,6 +65,7 @@ export async function getStaticProps(context) {
                       memberFunctions(orderBy: {name: ASC}) {
                           name,
                           section,
+                          examples,
                           summary,
                            parameters {
                            default

@@ -30,8 +30,8 @@ export default function JavaScript( props ) {
 				<h4 id={formatAnchorIds(formatShortHandAnchorIds(func.name, shortArgs))}>
 					{func.name}({shortArgs})
 				</h4>
-			    <div data-accordion="collapse">{args}<p>{func.summary}</p>{examples}</div></div>
-                        return <div key={func.name}><h4 id={func.name}>{func.name}({shortArgs})</h4><p>{func.summary}</p>{examples}<div data-accordion="collapse">{args}</div></div>
+			    <div data-accordion="collapse"><p>{func.summary}</p>{args}{examples}</div></div>
+                        })
                         })
 			return (<div key={class_.name}>
 				<h3 id={formatAnchorIds(class_.name)}>{class_.name}</h3>

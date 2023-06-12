@@ -1,12 +1,13 @@
 
 const TerminusClient = require("@terminusdb/terminusdb-client");
 import axios from 'axios';
-import { SideBar } from "../components/_sidebar"
 import { OnThisPageContent } from "../components/_onThisPage"
 import { renderToStaticMarkup } from 'react-dom/server';
+import { getMenu } from "../utils"
 const fs = require('fs');
 import SwaggerUI from "swagger-ui-react"
 import "swagger-ui-react/swagger-ui.css"
+import { Layout } from "../components/_layout"
 
 // Connect and configure the TerminusClient
 const client = new TerminusClient.WOQLClient('https://cloud-dev.terminusdb.com/TerminatorsX',
@@ -18,51 +19,21 @@ const client = new TerminusClient.WOQLClient('https://cloud-dev.terminusdb.com/T
 
 //        <div dangerouslySetInnerHTML={{__html: props.html }}/>
 export default function Home( props ) {
-		return  <>
-	<SideBar {...props}/>
-        <div className="flex sm:ml-96 p-8 sm:ml-96 h-full px-3 bg-gray-50 dark:bg-gray-800 container border-x-2">
-	<div className="pl-20 rounded-lg font-normal">
+		const layout =  <>
         <SwaggerUI url="https://raw.githubusercontent.com/terminusdb/terminusdb/main/docs/openapi.yaml" />
-	</div>
-			</div>
-		</>
-  
+	</>
+	const html = renderToStaticMarkup(layout);
+    return <Layout menu={props.menu}
+		displayElement={layout}
+		html={html}
+		entry={props.entry}
+		heading="OpenAPI spec"/>
 }
 
 
 export async function getStaticProps(context) {
-    const config = {
-        headers: { Authorization: `Token ${process.env.TERMINUSDB_API_TOKEN}` }
-    };
-
-    const req = await axios.post('https://cloud.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/terminusCMS_docs', {
-				query: `query {
-					Menu {
-						MenuTitle
-						Level1 {
-							Menu1Label,
-							Order,
-							Menu1Page {
-								slug
-							},
-							Level2 {
-								Menu2Label,
-								Order,
-								Menu2Page{
-									slug
-								},
-								Level3 {
-									Menu3Label,
-									Order,
-									Menu3Page {
-										slug
-									}
-								}
-							}
-						}
-					}
-				}`
-		}, config)
-    const menu = req.data.data.Menu
-    return { props: { html: {}, menu } }
+    const menu = await getMenu()
+	// provide entry slug
+    const entry = {document: { slug: `openapi` }}
+    return { props: { html: {}, menu, entry } }
 }

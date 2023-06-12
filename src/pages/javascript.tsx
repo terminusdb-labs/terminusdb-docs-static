@@ -24,7 +24,7 @@ export default function JavaScript( props ) {
                         }
                         let examples = null
                         if (typeof func.examples !== 'undefined' && func.examples.length > 0) {
-                            examples = renderExamples(func.examples, "javascript")
+                            examples = renderExamples(func.examples, "javascript", func.name)
                         }
 			return <div key={func.name}>
 				<h4 id={formatAnchorIds(formatShortHandAnchorIds(func.name, shortArgs))}>

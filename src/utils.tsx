@@ -37,9 +37,11 @@ export async function getMenu() {
   return req.data.data.Menu
 }
 
-export function renderExamples(examples: any, language: string) {
+export function renderExamples(examples: any, language: string, func: string) {
+    let count = 0
     const rows = examples.map(example => {
-        return <pre className={"language-" + language}><code className={"language-" + language}>{example}</code></pre> })
+        count = count + 1
+        return <pre key={`${func}-${count}-code}`} className={"language-" + language}><code className={"language-" + language}>{example}</code></pre> })
     return <><h5>Examples</h5>{ rows }</>
 }
 

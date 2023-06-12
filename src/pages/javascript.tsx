@@ -71,7 +71,7 @@ export async function getStaticProps(context) {
                 name,
                 modules {
                    name,
-                   classes {
+                   classes(orderBy: {name: ASC}) {
                       name,
                       memberFunctions(orderBy: {name: ASC}) {
                           name,

@@ -31,6 +31,9 @@ export default function Document() {
       <Head>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css" rel="stylesheet"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com"/>
+        <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600&family=Lexend+Deca&display=swap" rel="stylesheet"/>
         <Script onLoad={loadTheme}/>
       </Head>
       <body className='dark:bg-gray-900 antialiased'>
@@ -42,7 +45,7 @@ export default function Document() {
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/es/highlight.min.js"></Script>
         <Script id="highlight">hljs.highlightAll();</Script>
         <Script id="theme-switcher">handleThemeSwitch();</Script>
-        <Script id="scroll">handleScroll();</Script>
+        <Script src="https://flowbite.com/docs/docs.js?v=1.6.5a"></Script>
       </body>
     </Html>
   )

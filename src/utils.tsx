@@ -37,6 +37,14 @@ export async function getMenu() {
   return req.data.data.Menu
 }
 
+export function renderExamples(examples: any, language: string, func: string) {
+    let count = 0
+    const rows = examples.map(example => {
+        count = count + 1
+        return <pre key={`${func}-${count}-code}`} className={"language-" + language}><code className={"language-" + language}>{example}</code></pre> })
+    return <><h5>Examples</h5>{ rows }</>
+}
+
 export function renderCodeTable(parameters) {
   const rows = parameters.map(param => {
     return <tr key={"tr" + param.name}>
@@ -49,9 +57,9 @@ export function renderCodeTable(parameters) {
     <h5>Parameters</h5>
     <table>
       <thead><tr>
-      <th >Name</th>
-      <th >Type</th>
-      <th >Description</th></tr>
+      <th > <strong>Name </strong></th>
+      <th > <strong>Type </strong></th>
+      <th > <strong>Description</strong></th></tr>
       </thead>
       <tbody>
       {rows}

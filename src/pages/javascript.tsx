@@ -39,7 +39,6 @@ export default function JavaScript( props ) {
                       </div>)
 		})
 		return (<div key={mod.name}>
-			<h2 id={formatAnchorIds(mod.name)}>{ mod.name }</h2>
 			{ classes }
 		</div>)
 	})

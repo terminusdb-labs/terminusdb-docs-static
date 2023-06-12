@@ -15,7 +15,7 @@ const DOMPurify = createDOMPurify(window);
 export default function JavaScript( props ) {
 	const modules = props.application.modules
 	const layout = modules.map(mod => {
-		const classes = mod.classes.map(class_ => {
+	            const classes = mod.classes.filter(x => x.memberFunctions.length > 0).map(class_ => {
 		    const functions = class_.memberFunctions.map(func => {
                         let args = null
                         let shortArgs = null

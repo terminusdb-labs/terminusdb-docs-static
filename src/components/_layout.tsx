@@ -1,6 +1,7 @@
 import renderMainMenu  from "./_menu"
 import { Nav } from "../components/_nav"
 import { OnThisPageContent } from "../components/_onThisPage"
+import Seo from "../components/seo"
 
 /** Header component */
 const Header = () => {
@@ -41,6 +42,7 @@ const SideBarComponent = (props) => {
 const MainContent = (props) => {
   return <main id="content-wrapper"
     className="flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible">
+
     <div className="flex w-full">
       <div className="flex-auto max-w-4xl min-w-0 pt-6 lg:px-8 lg:pt-8 pb:12 xl:pb-24 lg:pb-16">
         <div id="mainContent">
@@ -62,6 +64,7 @@ export const Layout = (props) => {
   
   return <>
     <Header/>
+    <Seo seo_metadata={props.seo_metadata}/>
     <div className="w-full px-4 mx-auto max-w-8xl">
       <div className="lg:flex">
         <SideBarComponent {...props}/>

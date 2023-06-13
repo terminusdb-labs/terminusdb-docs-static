@@ -7,6 +7,7 @@ const { JSDOM } = require('jsdom');
 const window = new JSDOM('').window;
 const DOMPurify = createDOMPurify(window);  
 import axios from 'axios';
+import Seo from "../components/seo"
 import { Layout } from "../components/_layout"
 import { getHtml, getMenu, getSubTitle } from "../utils"
 
@@ -21,30 +22,6 @@ const client = new TerminusClient.WOQLClient('https://cloud.terminusdb.com/Termi
 )
 
 
-const BlankPage = () => {
-  return <>
-      <nav>
-        <a href="#home">Home</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#plans">Plans</a>
-        <a href="#contact">Contact</a>
-    </nav>
-    <section id="home">
-      <h1>Home</h1>
-    </section>
-    <section id="pricing">
-      <h1>Pricing</h1>
-    </section>
-    <section id="plans">
-      <h1>Plans</h1>
-    </section>
-    <section id="contact">
-      <h1>Contact</h1>
-    </section>
-  </>
-}
- 
-
 export default function Doc( props: JSX.IntrinsicAttributes & { menu: any[]; entry: any[]; } ) {
 
   //return <BlankPage/>
@@ -56,8 +33,8 @@ export default function Doc( props: JSX.IntrinsicAttributes & { menu: any[]; ent
     displayElement={displayElement} 
     html={html}
     heading={props.entry.document.title.value}
-    subtitle={getSubTitle(props.entry.document)}/>
-	
+    subtitle={getSubTitle(props.entry.document)}
+    seo_metadata={props.entry.document.seo_metadata}/>
 }
 
 

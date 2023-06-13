@@ -104,14 +104,15 @@ function renderLevel1Menu(menuLevel1: any[], entry: any[]) {
 
     /** menu with level 2 */
     return <li key={`level1_${index}`}>
-        <a href={getSlug(level1.Menu1Page.slug)} />
         <button type="button"
           className={`${menuClassName} pl-6 font-barlow font-normal ${activeClassName}`}
           aria-controls={level1.Menu1Label}
           data-collapse-toggle={level1.Menu1Label}>
-          <span className="flex-1  text-left whitespace-nowrap" sidebar-toggle-item>
-            {level1.Menu1Label}
-          </span>
+          <a href={getSlug(level1.Menu1Page.slug)} className="tdb__menu__links">
+            <span className="flex-1 text-left whitespace-nowrap" sidebar-toggle-item>
+              {level1.Menu1Label}
+            </span>
+          </a>
           <svg sidebar-toggle-item className="w-6 h-6"
             fill="currentColor"
             viewBox="0 0 20 20"

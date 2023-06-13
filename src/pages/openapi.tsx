@@ -1,6 +1,4 @@
 
-const TerminusClient = require("@terminusdb/terminusdb-client");
-import axios from 'axios';
 import { OnThisPageContent } from "../components/_onThisPage"
 import { renderToStaticMarkup } from 'react-dom/server';
 import { getMenu } from "../utils"
@@ -8,14 +6,6 @@ const fs = require('fs');
 import SwaggerUI from "swagger-ui-react"
 import "swagger-ui-react/swagger-ui.css"
 import { Layout } from "../components/_layout"
-
-// Connect and configure the TerminusClient
-const client = new TerminusClient.WOQLClient('https://cloud-dev.terminusdb.com/TerminatorsX',
-                                             {user:"robin@terminusdb.com",
-                                              organization:'TerminatorsX',
-                                              db: "CodeDocumentation",
-                                              token: process.env.TERMINUSDB_API_TOKEN})
-
 
 //        <div dangerouslySetInnerHTML={{__html: props.html }}/>
 export default function Home( props ) {

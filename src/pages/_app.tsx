@@ -61,6 +61,17 @@ function handleThemeSwitch () {
   });
 }
 
+// from: https://www.javascripttutorial.net/dom/css/check-if-an-element-is-visible-in-the-viewport/
+function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
 /** function to handle scroll  */
 function handleScroll () {
     const observer = new IntersectionObserver(entries => {
@@ -73,6 +84,9 @@ function handleScroll () {
                 }
                 document.querySelectorAll(`a[class="tdb__on__this__page__links"]`).forEach(x => x.parentElement.classList.remove('active'));
                 element.parentElement.classList.add('active');
+                if (!isInViewport(element)) {
+                    element.scrollIntoView()
+                }
             }
         });
     });

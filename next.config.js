@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: "/docs2",
+  basePath: process.env.BASE_PATH || "/",
   output: 'export',
   reactStrictMode: false,
   typescript: {

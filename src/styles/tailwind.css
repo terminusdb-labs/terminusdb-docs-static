@@ -1597,6 +1597,10 @@ input:checked + .toggle-bg {
   padding-left: 0.625rem;
 }
 
+.pl-16 {
+  padding-left: 4rem;
+}
+
 .pl-20 {
   padding-left: 5rem;
 }

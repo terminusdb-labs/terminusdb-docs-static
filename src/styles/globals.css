@@ -57,7 +57,14 @@ ul.tdb__on__this__page {
 h2.tdb__subtitle {
   color : #595959;
   font-style: italic;
-  font-weight: 500;
+  font-weight: 400;
+  font-family: Lexend Deca;
+  font-size:1.5rem;
+  margin-bottom: 2rem;
+}
+
+.dark h2.tdb__subtitle {
+color: #ffffff;
 }
 
 a {
@@ -70,6 +77,8 @@ a:hover {
 
 a.tdb__on__this__page__links {
   color: #8899a8;
+  font-size:0.8em !important;
+  margin-bottom:0.8em;
 }
 
 a.tdb__on__this__page__links:hover {
@@ -97,13 +106,13 @@ h4.divider {
     @apply top-28 !important;
   }
   h2 {
-    @apply mb-3 text-3xl font-extrabold dark:text-white font-semibold relative ;
+    @apply mb-5 font-barlow text-3xl font-extrabold dark:text-white font-semibold relative ;
   }
   h3 {
-    @apply mb-3 text-2xl font-bold dark:text-white font-semibold relative;
+    @apply mb-5 font-barlow text-2xl font-bold dark:text-white font-semibold relative;
   }
   h4 { 
-    @apply mb-3 text-xl font-bold dark:text-white font-semibold relative;
+    @apply mb-5 text-xl font-bold dark:text-white font-semibold relative;
   }
   h5 { 
     @apply font-bold dark:text-white font-semibold;
@@ -112,19 +121,22 @@ h4.divider {
     @apply mb-8 text-lg md:text-lg dark:text-gray-50 font-normal lg:leading-9 md:leading-9;
   }
   ol li { 
-    @apply text-lg md:text-lg dark:text-gray-50 font-normal;
+    @apply text-lg md:text-lg dark:text-gray-50 font-normal list-outside ml-8;
   }
   ol { 
     @apply space-y-1 list-decimal list-inside dark:text-gray-50 font-normal mb-8;
   }
   li + ul {
-    @apply ml-8 
+    @apply ml-8 list-outside; 
   }
   ul {
     @apply space-y-1 list-disc list-inside dark:text-gray-50 font-normal mt-8 mb-8 text-lg md:text-lg;
   }
+  #mainContent li {
+    @apply ml-8 list-outside;
+  }
   img { 
-    @apply max-w-full h-auto rounded-lg  mb-8 mt-12;
+    @apply max-w-full h-auto rounded-lg  mb-8;
   }
   pre { 
     @apply max-w-full h-auto rounded-lg  mb-8 !important;
@@ -148,7 +160,10 @@ h4.divider {
     @apply md:text-lg p-3 break-all;
   }
   blockquote {
-    @apply p-10 italic border-l-4 border-blue-300 bg-blue-50 dark:border-gray-500 dark:bg-gray-800 rounded-sm 
+    @apply p-5 mb-3 italic rounded-md border-l-4 border-blue-300 bg-blue-50 dark:border-gray-500 dark:bg-gray-800 rounded-sm 
+  }
+  blockquote p {
+    @apply mb-0  
   }
   #TableOfContents > ul {
     @apply overflow-x-hidden text-base text-gray-500 dark:text-gray-400;
@@ -160,8 +175,8 @@ h4.divider {
   }
 
   a.tdb__on__this__page__links:active {
-    background-color: yellow !important; 
-    border-radius:30px;
+    background-color: #fed893 !important; 
+    border-radius:5px;
     transition: 0.3s;
   }
   

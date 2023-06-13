@@ -22,7 +22,7 @@ function renderLevel3Menu(menuLevel3: any[], entry: any[]) {
     let activeClassName = getActiveSlugClassName(level3, entry, 3)
     return <li key={`level3_${index}`}>
         <a href={getSlug(level3.Menu3Page.slug)}
-        className={`${menuClassName} pl-32 ${activeClassName} font-barlow font-normal`}>
+        className={`${menuClassName} pl-16 ${activeClassName} font-barlow font-normal`}>
         {level3.Menu3Label}
       </a>
     </li>
@@ -44,7 +44,7 @@ function renderLevel2Menu(menuLevel2: any[], entry: any[]) {
       /** menu with no level 3 */
       return <li key={`level2_${index}`}>
             <a href={getSlug(level2.Menu2Page.slug)}
-          className={`${menuClassName} pl-20 ${activeClassName} font-barlow font-normal`}>
+          className={`${menuClassName} pl-11 ${activeClassName} font-barlow font-normal`}>
             {level2.Menu2Label}
         </a>
       </li>
@@ -58,7 +58,7 @@ function renderLevel2Menu(menuLevel2: any[], entry: any[]) {
     /** menu with level 3 */
     return <li key={`level2_${index}`}>
       <button type="button" 
-        className={`${menuClassName} pl-12 font-barlow font-normal ${activeClassName}`}
+        className={`${menuClassName} pl-11 font-barlow font-normal ${activeClassName}`}
         aria-controls={level2.Menu2Label}
         data-collapse-toggle={level2.Menu2Label}>
           <a href={level2.Menu2Page.slug} className="tdb__menu__links">
@@ -91,7 +91,7 @@ function renderLevel1Menu(menuLevel1: any[], entry: any[]) {
       /** menu with no level 2 */
       return <li key={level1.Menu1Page.slug}>
           <a href={getSlug(level1.Menu1Page.slug)}
-          className={`${menuClassName} pl-11 ${activeClassName} font-barlow font-normal`}>
+          className={`${menuClassName} pl-6 ${activeClassName} font-barlow font-normal`}>
           <span>{level1.Menu1Label}</span>
         </a>
       </li>
@@ -106,7 +106,7 @@ function renderLevel1Menu(menuLevel1: any[], entry: any[]) {
     return <li key={`level1_${index}`}>
         <a href={getSlug(level1.Menu1Page.slug)} />
         <button type="button"
-          className={`${menuClassName} pl-11 font-barlow font-normal ${activeClassName}`}
+          className={`${menuClassName} pl-6 font-barlow font-normal ${activeClassName}`}
           aria-controls={level1.Menu1Label}
           data-collapse-toggle={level1.Menu1Label}>
           <span className="flex-1  text-left whitespace-nowrap" sidebar-toggle-item>

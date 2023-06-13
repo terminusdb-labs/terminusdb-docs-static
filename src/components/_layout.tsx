@@ -1,6 +1,7 @@
 import renderMainMenu  from "./_menu"
 import { Nav } from "../components/_nav"
 import { OnThisPageContent } from "../components/_onThisPage"
+import { handleScroll } from "../utils"
 import Seo from "../components/seo"
 
 import React, { useEffect, useCallback } from "react";
@@ -50,8 +51,11 @@ const SideBarComponent = (props) => {
 const MainContent = (props) => {
 
   useEffect(() => {
-    Prism.highlightAll();
-  }, []);
+      if (typeof window !== 'undefined') {
+          Prism.highlightAll();
+          handleScroll();
+      }
+  }, [props.displayElement]);
 
   return <main id="content-wrapper"
     className="flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible">

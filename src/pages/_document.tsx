@@ -19,7 +19,6 @@ export default function Document() {
       <Head>
         <Script src="/darkmode.js" strategy="beforeInteractive" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css" rel="stylesheet"/>
         <link rel="preconnect" href="https://fonts.googleapis.com"/>
         <link rel="preconnect" href="https://fonts.gstatic.com"/>
         <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600&family=Lexend+Deca&display=swap" rel="stylesheet"/>
@@ -30,8 +29,6 @@ export default function Document() {
         </header>*/}
         <NextScript/>
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></Script>
-        <Script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/es/highlight.min.js"></Script>
-        <Script id="highlight">hljs.highlightAll();</Script>
         <Script id="theme-switcher">handleThemeSwitch();</Script>
         <Script src="https://flowbite.com/docs/docs.js?v=1.6.5a"></Script>
       </body>

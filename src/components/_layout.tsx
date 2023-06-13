@@ -3,6 +3,14 @@ import { Nav } from "../components/_nav"
 import { OnThisPageContent } from "../components/_onThisPage"
 import Seo from "../components/seo"
 
+import React, { useEffect, useCallback } from "react";
+import Prism from "prismjs";
+import "prismjs/themes/prism-tomorrow.css";
+import 'prismjs/components/prism-json';
+import 'prismjs/components/prism-powershell';
+import 'prismjs/components/prism-graphql';
+import 'prismjs/components/prism-python';
+
 /** Header component */
 const Header = () => {
   return <header className="sticky top-0 z-40 flex-none w-full mx-auto bg-white border-b border-gray-200 dark:border-gray-600 dark:bg-gray-800">
@@ -40,6 +48,11 @@ const SideBarComponent = (props) => {
 
 /** Main body of page */
 const MainContent = (props) => {
+
+  useEffect(() => {
+    Prism.highlightAll();
+  }, []);
+
   return <main id="content-wrapper"
     className="flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible">
 
@@ -52,7 +65,6 @@ const MainContent = (props) => {
           <h2 className="font-barlow font-semibold tdb__subtitle">{props.subtitle}</h2>
           {props.displayElement}
         </div>
-      
       </div> 
       <OnThisPageContent html={props.html}/>
     </div>
@@ -61,7 +73,6 @@ const MainContent = (props) => {
 
 /** layout for all pages to be displayed */
 export const Layout = (props) => {
-  
   return <>
     <Header/>
     <Seo seo_metadata={props.seo_metadata}/>

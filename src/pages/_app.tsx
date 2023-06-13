@@ -6,12 +6,6 @@ import "../styles/globals.css"
 //import "../styles/prism-one-dark.css"
 import type { Metadata } from 'next';
 import type { AppProps } from 'next/app'
-import Prism from "prismjs";
-import "prismjs/themes/prism-tomorrow.css";
-import 'prismjs/components/prism-json';
-import 'prismjs/components/prism-powershell';
-import 'prismjs/components/prism-graphql';
-import 'prismjs/components/prism-python';
 
 
 /** function to handle theme switcher  */
@@ -104,7 +98,6 @@ function handleScroll () {
 export default function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
-    Prism.highlightAll();
     handleThemeSwitch();
     handleScroll();
   }, []);

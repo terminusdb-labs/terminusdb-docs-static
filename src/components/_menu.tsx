@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 import 'flowbite';
+import Link from 'next/link'
 import { checkIfMenuOpen, getActiveSlugClassName, checkIfSubMenuOpen } from "../utils"
 
 
@@ -21,10 +22,10 @@ function renderLevel3Menu(menuLevel3: any[], entry: any[]) {
   const level3Items = menuLevel3.map((level3, index) => {
     let activeClassName = getActiveSlugClassName(level3, entry, 3)
     return <li key={`level3_${index}`}>
-        <a href={getSlug(level3.Menu3Page.slug)}
+        <Link href={getSlug(level3.Menu3Page.slug)}
         className={`${menuClassName} pl-16 ${activeClassName} font-barlow font-normal`}>
         {level3.Menu3Label}
-      </a>
+      </Link>
     </li>
   })
   return level3Items
@@ -43,10 +44,10 @@ function renderLevel2Menu(menuLevel2: any[], entry: any[]) {
     if(Array.isArray(level2.Level3) && !level2.Level3.length) {
       /** menu with no level 3 */
       return <li key={`level2_${index}`}>
-            <a href={getSlug(level2.Menu2Page.slug)}
+            <Link href={getSlug(level2.Menu2Page.slug)}
           className={`${menuClassName} pl-11 ${activeClassName} font-barlow font-normal`}>
             {level2.Menu2Label}
-        </a>
+        </Link>
       </li>
     }
 
@@ -61,11 +62,11 @@ function renderLevel2Menu(menuLevel2: any[], entry: any[]) {
         className={`${menuClassName} pl-11 font-barlow font-normal ${activeClassName}`}
         aria-controls={level2.Menu2Label}
         data-collapse-toggle={level2.Menu2Label}>
-          <a href={getSlug(level2.Menu2Page.slug)} className="tdb__menu__links">
+          <Link href={getSlug(level2.Menu2Page.slug)} className="tdb__menu__links">
             <span className="flex-1 text-left whitespace-nowrap" sidebar-toggle-item>
               {level2.Menu2Label}
             </span>
-          </a>
+          </Link>
         <svg sidebar-toggle-item className="w-6 h-6" 
           fill="currentColor" 
           viewBox="0 0 20 20" 
@@ -90,10 +91,10 @@ function renderLevel1Menu(menuLevel1: any[], entry: any[]) {
     if(Array.isArray(level1.Level2) && !level1.Level2.length) {
       /** menu with no level 2 */
       return <li key={level1.Menu1Page.slug}>
-          <a href={getSlug(level1.Menu1Page.slug)}
+          <Link href={getSlug(level1.Menu1Page.slug)}
           className={`${menuClassName} pl-6 ${activeClassName} font-barlow font-normal`}>
           <span>{level1.Menu1Label}</span>
-        </a>
+        </Link>
       </li>
     }
 
@@ -108,11 +109,11 @@ function renderLevel1Menu(menuLevel1: any[], entry: any[]) {
           className={`${menuClassName} pl-6 font-barlow font-normal ${activeClassName}`}
           aria-controls={level1.Menu1Label}
           data-collapse-toggle={level1.Menu1Label}>
-          <a href={getSlug(level1.Menu1Page.slug)} className="tdb__menu__links">
+          <Link href={getSlug(level1.Menu1Page.slug)} className="tdb__menu__links">
             <span className="flex-1 text-left whitespace-nowrap" sidebar-toggle-item>
               {level1.Menu1Label}
             </span>
-          </a>
+          </Link>
           <svg sidebar-toggle-item className="w-6 h-6"
             fill="currentColor"
             viewBox="0 0 20 20"

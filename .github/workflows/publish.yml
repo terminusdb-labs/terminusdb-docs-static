@@ -4,6 +4,8 @@ on:
   schedule:
     # Every 30 minutes
     - cron: '*/30 * * * *'
+  workflow_call:
+
 
 jobs:
   build:

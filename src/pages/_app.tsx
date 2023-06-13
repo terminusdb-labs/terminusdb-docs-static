@@ -12,7 +12,6 @@ import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-powershell';
 import 'prismjs/components/prism-graphql';
 import 'prismjs/components/prism-python';
-import $ from "jquery";
 
 
 /** function to handle theme switcher  */
@@ -62,14 +61,35 @@ function handleThemeSwitch () {
   });
 }
 
+/** function to handle scroll  */
+function handleScroll () {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            const id = entry.target.getAttribute('id');
+            if (entry.intersectionRatio > 0) {
+                const element = document.querySelector(`a[class="tdb__on__this__page__links"][href="#${id}"]`)
+                document.querySelectorAll(`a[class="tdb__on__this__page__links"]`).forEach(x => x.parentElement.classList.remove('active'));
+                element.parentElement.classList.add('active');
+            }
+        });
+    });
 
+    const options =  {
+        threshold: 1
+    }
+
+    // Track all sections that have an `id` applied
+    document.querySelectorAll('h4[id]').forEach((section) => {
+        observer.observe(section);
+    });
+}
 
 export default function App({ Component, pageProps }: AppProps) {
- 
 
   useEffect(() => {
     Prism.highlightAll();
     handleThemeSwitch();
+    handleScroll();
   }, []);
 
   return <Component {...pageProps} />

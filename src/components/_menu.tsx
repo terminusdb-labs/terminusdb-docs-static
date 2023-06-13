@@ -61,7 +61,7 @@ function renderLevel2Menu(menuLevel2: any[], entry: any[]) {
         className={`${menuClassName} pl-11 font-barlow font-normal ${activeClassName}`}
         aria-controls={level2.Menu2Label}
         data-collapse-toggle={level2.Menu2Label}>
-          <a href={level2.Menu2Page.slug} className="tdb__menu__links">
+          <a href={getSlug(level2.Menu2Page.slug)} className="tdb__menu__links">
             <span className="flex-1 text-left whitespace-nowrap" sidebar-toggle-item>
               {level2.Menu2Label}
             </span>

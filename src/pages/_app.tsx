@@ -68,6 +68,9 @@ function handleScroll () {
             const id = entry.target.getAttribute('id');
             if (entry.intersectionRatio > 0) {
                 const element = document.querySelector(`a[class="tdb__on__this__page__links"][href="#${id}"]`)
+                if (element === null) {
+                    return;
+                }
                 document.querySelectorAll(`a[class="tdb__on__this__page__links"]`).forEach(x => x.parentElement.classList.remove('active'));
                 element.parentElement.classList.add('active');
             }

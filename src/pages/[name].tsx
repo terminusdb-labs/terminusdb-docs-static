@@ -28,7 +28,7 @@ export default function Doc( props: JSX.IntrinsicAttributes & { menu: any[]; ent
  
   let html = getHtml(props.entry)
   if (process.env.BASE_PATH) {
-      html = html.replaceAll(`<a href="/`, `<a href="/docs2/`)
+      html = html.replaceAll(`<a href="/`, `<a href="${process.env.BASE_PATH}/`)
   }
   let displayElement = <div dangerouslySetInnerHTML={{__html: html}}/> 
   return <Layout menu={props.menu} 

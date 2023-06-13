@@ -7,8 +7,9 @@ export async function getMenu() {
   };
   const req = await axios.post('https://cloud.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/terminusCMS_docs', {
       query: `query {
-        Menu(orderBy: {menu_order:ASC}) { 
+        Menu(orderBy: {Order:ASC}) {
           MenuTitle,
+          Order,
           menu_order,
           Level1(orderBy: {Order:ASC})  {
             Menu1Label,
@@ -34,7 +35,8 @@ export async function getMenu() {
         }
       }`
   }, config)
-  return req.data.data.Menu
+  const sortedMenu = req.data.data.Menu.sort((a, b) => (a.menu_order > b.menu_order) ? 1 : -1)
+  return sortedMenu
 }
 
 export function renderExamples(examples: any, language: string, func: string) {

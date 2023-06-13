@@ -27,6 +27,9 @@ export default function Doc( props: JSX.IntrinsicAttributes & { menu: any[]; ent
   //return <BlankPage/>
  
   let html = getHtml(props.entry)
+  if (process.env.BASE_PATH) {
+      html = html.replaceAll(`<a href="/`, `<a href="/docs2/`)
+  }
   let displayElement = <div dangerouslySetInnerHTML={{__html: html}}/> 
   return <Layout menu={props.menu} 
     entry={props.entry}
@@ -45,7 +48,6 @@ export async function getStaticPaths() {
 	return { paths: paths, fallback: false }
 }
 
-    
 
 export async function getStaticProps({ params }) {
 

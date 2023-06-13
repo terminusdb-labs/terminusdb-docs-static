@@ -14,10 +14,11 @@ li.classList.add('active');
 
  
 export default function Document() {
+  const basePath = process.env.BASE_PATH || ""
   return (
     <Html lang="en">
       <Head>
-        <Script src="/darkmode.js" strategy="beforeInteractive" />
+        <Script src={basePath + "/darkmode.js"} strategy="beforeInteractive" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
         <link rel="preconnect" href="https://fonts.googleapis.com"/>
         <link rel="preconnect" href="https://fonts.gstatic.com"/>

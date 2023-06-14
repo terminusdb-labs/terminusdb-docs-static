@@ -99,7 +99,7 @@ h4.divider {
     @apply  text-4xl font-extrabold leading-none tracking-tight text-gray-900  dark:text-white relative  scroll-mt-20;
   }
   aside { 
-    @apply top-28 !important;
+    @apply top-16 !important;
   }
   h2 {
     @apply mb-5 font-barlow text-3xl font-extrabold dark:text-white font-semibold relative scroll-mt-20 ;

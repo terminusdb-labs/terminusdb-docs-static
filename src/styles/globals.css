@@ -43,13 +43,7 @@ ul.tdb__li{
   margin: 0;
 }
 
-/** on this page list */
-ul.tdb__on__this__page {
-  list-style: none;
-  margin-left: 0.8rem;
-  font-size: 1.1rem;
-}
-
+/** h2 subtitle */
 h2.tdb__subtitle {
   color : #595959;
   font-style: italic;
@@ -61,6 +55,20 @@ h2.tdb__subtitle {
 
 .dark h2.tdb__subtitle {
 color: #ffffff;
+}
+
+@media screen and (max-device-width: 480px)
+    and (orientation: portrait) {
+	h2.tdb__subtitle {
+	  font-size:1.2rem;
+	}
+}	    
+
+/** on this page list */
+ul.tdb__on__this__page {
+  list-style: none;
+  margin-left: 0.8rem;
+  font-size: 1.1rem;
 }
 
 a {
@@ -96,7 +104,7 @@ h4.divider {
 
 @layer base {
   h1 {
-    @apply  text-4xl font-extrabold leading-none tracking-tight text-gray-900  dark:text-white relative  scroll-mt-20;
+    @apply  text-4xl font-extrabold leading-none tracking-tight text-gray-900  dark:text-white relative  scroll-mt-20 sm:text-3xl;
   }
   aside { 
     @apply top-16 !important;

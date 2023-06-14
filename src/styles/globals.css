@@ -100,19 +100,19 @@ h4.divider {
 
 @layer base {
   h1 {
-    @apply  text-4xl font-extrabold leading-none tracking-tight text-gray-900  dark:text-white relative;
+    @apply  text-4xl font-extrabold leading-none tracking-tight text-gray-900  dark:text-white relative -scroll-mt-96;
   }
   aside { 
     @apply top-28 !important;
   }
   h2 {
-    @apply mb-5 font-barlow text-3xl font-extrabold dark:text-white font-semibold relative ;
+    @apply mb-5 font-barlow text-3xl font-extrabold dark:text-white font-semibold relative -scroll-mt-96;
   }
   h3 {
-    @apply mb-5 font-barlow text-2xl font-bold dark:text-white font-semibold relative;
+    @apply mb-5 font-barlow text-2xl font-bold dark:text-white font-semibold relative -scroll-mt-96;
   }
   h4 { 
-    @apply mb-5 text-xl font-bold dark:text-white font-semibold relative;
+    @apply mb-5 text-xl font-bold dark:text-white font-semibold relative -scroll-mt-96;
   }
   h5 { 
     @apply font-bold dark:text-white font-semibold;

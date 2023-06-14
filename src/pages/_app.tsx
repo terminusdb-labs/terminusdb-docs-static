@@ -57,7 +57,7 @@ function handleThemeSwitch () {
 export default function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
-    handleThemeSwitch();
+//    handleThemeSwitch();
   }, []);
 
   return <Component {...pageProps} />

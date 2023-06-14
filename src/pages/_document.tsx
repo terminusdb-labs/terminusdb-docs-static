@@ -31,7 +31,7 @@ export default function Document() {
         <Main />
         <NextScript/>
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></Script>
-        <Script id="theme-switcher">handleThemeSwitch();</Script>
+//        <Script id="theme-switcher">handleThemeSwitch();</Script>
         <Script src="https://flowbite.com/docs/docs.js?v=1.6.5a"></Script>
       </body>
     </Html>

@@ -44,7 +44,7 @@ function defaultDoc(document, menus) {
         })
     })
     const links = children.map(child => {
-        return <Link key={child.slug} href={'/' + child.slug} className="block p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        return <Link key={child.slug} href={'/' + child.slug} className="block p-6 mb-4 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
             { child.label }
         </Link>
     })

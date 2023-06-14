@@ -56,6 +56,7 @@ const MainContent = (props) => {
           Prism.highlightAll();
           handleScroll();
           initFlowbite();
+          document.getElementById("sidebar-multi-level-sidebar").classList.add("hidden")
       }
   }, [props.displayElement]);
 

@@ -11,6 +11,7 @@ import Seo from "../components/seo"
 import { Layout } from "../components/_layout"
 import { getHtml, getMenu, getSubTitle } from "../utils"
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 // Connect and configure the TerminusClient
 const client = new TerminusClient.WOQLClient('https://cloud.terminusdb.com/TerminatorsX', {
@@ -55,10 +56,11 @@ function defaultDoc(document, menus) {
 
 export default function Doc( props: JSX.IntrinsicAttributes & { menu: any[]; entry: any[]; } ) {
 
-  let html = getHtml(props.entry)
-  if (process.env.BASE_PATH) {
-      html = html.replaceAll(`<a href="/`, `<a href="${process.env.BASE_PATH}/`)
-  }
+    let html = getHtml(props.entry)
+    const router = useRouter()
+    if (router.basePath != '') {
+      html = html.replaceAll(`<a href="/`, `<a href="${router.basePath}/`)
+    }
     let displayElement = <div dangerouslySetInnerHTML={{__html: html}}/>
     //return <BlankPage/>
         if (typeof props.entry.document.body === 'undefined') {

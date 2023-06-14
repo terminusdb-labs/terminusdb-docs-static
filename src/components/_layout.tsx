@@ -23,13 +23,6 @@ const Header = () => {
 /** Side Bar nav component  */
 const SideBarComponent = (props) => {
   return <>
-    <button data-collapse-toggle="sidebar-multi-level-sidebar" 
-      type="button" 
-      className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="sidebar-multi-level-sidebar" 
-      aria-expanded="false">
-      <span className="sr-only">Open menu</span>
-      <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
-    </button>
     <aside id="sidebar-multi-level-sidebar"
       className="fixed inset-0 z-20 flex-none h-full w-72 lg:static lg:h-auto lg:overflow-y-visible lg:pt-0 lg:w-96 lg:block hidden"
       aria-labelledby="sidebar-label">

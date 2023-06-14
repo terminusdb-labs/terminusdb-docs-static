@@ -4,11 +4,16 @@ import { getLogo } from "../utils"
 import { ThemeSwitcher } from "../components/_themeSwitcher"
 
 export const Nav = () => {
-	
 
   return  <nav className="bg-white border-gray-200 dark:bg-gray-800">
     <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-			
+    <button data-collapse-toggle="sidebar-multi-level-sidebar"
+      type="button"
+      className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="sidebar-multi-level-sidebar" 
+      aria-expanded="false">
+      <span className="sr-only">Open menu</span>
+      <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+    </button>
 			{getLogo()}
 			<div className="flex md:order-2">
 				<button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search" aria-expanded="false" class="hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 mr-1" >

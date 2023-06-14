@@ -1,44 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import axios from 'axios';
 
-export async function getMenu() {
-  const config = {
-      headers: { Authorization: `Token ${process.env.TERMINUSDB_API_TOKEN}` }
-  };
-  const req = await axios.post('https://cloud.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/terminusCMS_docs', {
-      query: `query {
-        Menu(orderBy: {Order:ASC}) {
-          MenuTitle,
-          Order,
-          menu_order,
-          Level1(orderBy: {Order:ASC})  {
-            Menu1Label,
-            Order,
-            Menu1Page {
-              slug
-            },
-            Level2(orderBy: {Order:ASC})  {
-              Menu2Label,
-              Order,
-              Menu2Page{
-                slug
-              },
-              Level3(orderBy: {Order:ASC})  {
-                Menu3Label,
-                Order,
-                Menu3Page {
-                  slug
-                }
-              }
-            }
-          }
-        }
-      }`
-  }, config)
-  const sortedMenu = req.data.data.Menu.sort((a, b) => (a.menu_order > b.menu_order) ? 1 : -1)
-  return sortedMenu
-}
-
 
 // from: https://www.javascripttutorial.net/dom/css/check-if-an-element-is-visible-in-the-viewport/
 function isInViewport(element) {
@@ -54,10 +16,16 @@ function isInViewport(element) {
 /** function to handle scroll  */
 export function handleScroll () {
     const observer = new IntersectionObserver(entries => {
-//        document.querySelectorAll(`a[class="tdb__on__this__page__links"]`).forEach(x => x.parentElement.classList.remove('active'));
+        //        document.querySelectorAll(`a[class="tdb__on__this__page__links"]`).forEach(x => x.parentElement.classList.remove('active'));
+        let highest = null
+        let prevTop = 1000
         entries.forEach(entry => {
             const id = entry.target.getAttribute('id');
             const element = document.querySelector(`a[class="tdb__on__this__page__links"][href="#${id}"]`)
+            if (entry.target.clientTop < prevTop) {
+                prevTop = entry.target.clientTop
+                highest = element
+            }
             if (element === null) {
                 return;
             }

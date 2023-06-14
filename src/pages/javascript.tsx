@@ -5,7 +5,8 @@ const showdown  = require('showdown')
 const converter = new showdown.Converter({metadata: true, tables: true})
 const createDOMPurify = require('dompurify');
 const { JSDOM } = require('jsdom');
-import { getMenu, renderCodeTable, renderExamples, formatShortHandAnchorIds, formatAnchorIds } from "../utils"
+import { renderCodeTable, renderExamples, formatShortHandAnchorIds, formatAnchorIds } from "../utils"
+import menu from "../menu.json"
 const window = new JSDOM('').window;
 const DOMPurify = createDOMPurify(window);
 import { Layout } from "../components/_layout"
@@ -59,8 +60,6 @@ export async function getStaticProps(context) {
     const config = {
         headers: { Authorization: `Token ${process.env.TERMINUSDB_API_TOKEN}` }
     };
-    const menu = await getMenu()
-
 	// provide entry slug
     const entry = {document: { slug: `javascript` }}
 
@@ -75,10 +74,8 @@ export async function getStaticProps(context) {
                       memberFunctions(orderBy: {name: ASC}) {
                           name,
                           examples,
-                          section,
                           summary,
                            parameters {
-                           default
                            summary
                            name
                            type

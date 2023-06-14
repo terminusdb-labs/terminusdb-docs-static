@@ -1,8 +1,7 @@
 
 import { OnThisPageContent } from "../components/_onThisPage"
 import { renderToStaticMarkup } from 'react-dom/server';
-import { getMenu } from "../utils"
-const fs = require('fs');
+import menu from "../menu.json"
 import dynamic from "next/dynamic";
 const SwaggerUI = dynamic(import('swagger-ui-react'), {ssr: false})
 import "swagger-ui-react/swagger-ui.css"
@@ -23,7 +22,6 @@ export default function Home( props ) {
 
 
 export async function getStaticProps(context) {
-    const menu = await getMenu()
 	// provide entry slug
     const entry = {document: { slug: `openapi` }}
     return { props: { html: {}, menu, entry } }

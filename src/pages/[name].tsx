@@ -9,7 +9,8 @@ const DOMPurify = createDOMPurify(window);
 import axios from 'axios';
 import Seo from "../components/seo"
 import { Layout } from "../components/_layout"
-import { getHtml, getMenu, getSubTitle } from "../utils"
+import { getHtml, getSubTitle } from "../utils"
+import menu from "../menu.json"
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -98,8 +99,6 @@ export async function getStaticProps({ params }) {
 	const config = {
 		headers: { Authorization: `Token ${process.env.TERMINUSDB_API_TOKEN}` }
 	};
-        const menu = await getMenu()
-
 	const query = {
 			"@type": "Page",
 			"slug": params['name']

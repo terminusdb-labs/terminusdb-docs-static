@@ -11,7 +11,8 @@ const window = new JSDOM('').window;
 const DOMPurify = createDOMPurify(window); 
 import axios from 'axios';
 import 'flowbite';
-import { getHtml, getSubTitle, getMenu } from "../utils"
+import { getHtml, getSubTitle } from "../utils"
+import menu from "../menu.json"
 import { Layout } from "../components/_layout"
 import { useRouter } from 'next/router'
 
@@ -35,7 +36,6 @@ export default function Home(props: { menu: any[], entry: any[] }) {
 }
 
 export async function getStaticProps({ params }) {
-   const menu = await getMenu()
 // Connect and configure the TerminusClient
     const client = new TerminusClient.WOQLClient('https://cloud.terminusdb.com/TerminatorsX',
                                                  {

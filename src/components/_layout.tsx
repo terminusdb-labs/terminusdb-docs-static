@@ -6,6 +6,7 @@ import Seo from "../components/seo"
 
 import React, { useEffect, useCallback } from "react";
 import Prism from "prismjs";
+import { initFlowbite } from 'flowbite'
 import "prismjs/themes/prism-tomorrow.css";
 import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-powershell';
@@ -54,6 +55,7 @@ const MainContent = (props) => {
       if (typeof window !== 'undefined') {
           Prism.highlightAll();
           handleScroll();
+          initFlowbite();
       }
   }, [props.displayElement]);
 

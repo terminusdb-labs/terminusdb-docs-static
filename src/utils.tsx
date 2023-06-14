@@ -54,24 +54,27 @@ function isInViewport(element) {
 /** function to handle scroll  */
 export function handleScroll () {
     const observer = new IntersectionObserver(entries => {
+//        document.querySelectorAll(`a[class="tdb__on__this__page__links"]`).forEach(x => x.parentElement.classList.remove('active'));
         entries.forEach(entry => {
             const id = entry.target.getAttribute('id');
+            const element = document.querySelector(`a[class="tdb__on__this__page__links"][href="#${id}"]`)
+            if (element === null) {
+                return;
+            }
             if (entry.intersectionRatio > 0) {
-                const element = document.querySelector(`a[class="tdb__on__this__page__links"][href="#${id}"]`)
-                if (element === null) {
-                    return;
-                }
-                document.querySelectorAll(`a[class="tdb__on__this__page__links"]`).forEach(x => x.parentElement.classList.remove('active'));
                 element.parentElement.classList.add('active');
                 if (!isInViewport(element)) {
                     element.scrollIntoView()
                 }
             }
+            else {
+                element.parentElement.classList.remove('active')
+            }
         });
     });
 
     const options =  {
-        threshold: 1
+        threshold: 0
     }
 
     // Track all sections that have an `id` applied

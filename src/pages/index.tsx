@@ -15,15 +15,6 @@ import { getHtml, getSubTitle, getMenu } from "../utils"
 import { Layout } from "../components/_layout"
 import { useRouter } from 'next/router'
 
-// Connect and configure the TerminusClient
-const client = new TerminusClient.WOQLClient('https://cloud.terminusdb.com/TerminatorsX',
-	{
-		user:"robin@terminusdb.com",
-		organization:'TerminatorsX',
-		db: "terminusCMS_docs",
-		token: process.env.TERMINUSDB_API_TOKEN
-	}
-)
  
 
 export default function Home(props: { menu: any[], entry: any[] }) {
@@ -45,10 +36,19 @@ export default function Home(props: { menu: any[], entry: any[] }) {
 
 export async function getStaticProps({ params }) {
    const menu = await getMenu()
-   const query = {
-      "@type": "Page",
-      "slug": "get-started"
-  }
+// Connect and configure the TerminusClient
+    const client = new TerminusClient.WOQLClient('https://cloud.terminusdb.com/TerminatorsX',
+                                                 {
+        user:"robin@terminusdb.com",
+        organization:'TerminatorsX',
+        db: "terminusCMS_docs",
+        token: process.env.TERMINUSDB_API_TOKEN
+    }
+                                                )
+    const query = {
+        "@type": "Page",
+        "slug": "get-started"
+    }
   const docs = await client.getDocument({ "@type": "Page", as_list: true, query: query })
   const docResult = docs[0]
   const html = converter.makeHtml(docResult['body']['value'])

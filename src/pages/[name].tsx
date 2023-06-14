@@ -13,14 +13,6 @@ import { getHtml, getMenu, getSubTitle } from "../utils"
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-// Connect and configure the TerminusClient
-const client = new TerminusClient.WOQLClient('https://cloud.terminusdb.com/TerminatorsX', {
-		user:"robin@terminusdb.com",
-		organization:'TerminatorsX',
-		db: "terminusCMS_docs",
-		token: process.env.TERMINUSDB_API_TOKEN
-})
-
 function getChildren(document, menu, level) {
     const menuPageSlug = menu[`Menu${level}Page`]['slug']
     if (document.slug === menuPageSlug) {
@@ -78,6 +70,13 @@ export default function Doc( props: JSX.IntrinsicAttributes & { menu: any[]; ent
 
 
 export async function getStaticPaths() {
+    // Connect and configure the TerminusClient
+    const client = new TerminusClient.WOQLClient('https://cloud.terminusdb.com/TerminatorsX', {
+        user:"robin@terminusdb.com",
+        organization:'TerminatorsX',
+        db: "terminusCMS_docs",
+        token: process.env.TERMINUSDB_API_TOKEN
+    })
     const docs = await client.getDocument({"@type": "Page", as_list: true})
     const exceptions = ['python', 'openapi', 'javascript']
     const paths = docs.filter(x => {
@@ -89,6 +88,13 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
 
+        // Connect and configure the TerminusClient
+        const client = new TerminusClient.WOQLClient('https://cloud.terminusdb.com/TerminatorsX', {
+            user:"robin@terminusdb.com",
+            organization:'TerminatorsX',
+            db: "terminusCMS_docs",
+            token: process.env.TERMINUSDB_API_TOKEN
+        })
 	const config = {
 		headers: { Authorization: `Token ${process.env.TERMINUSDB_API_TOKEN}` }
 	};

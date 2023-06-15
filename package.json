@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prebuild": "next-sitemap && node src/prebuild/menu.mjs",
+    "sitemap": "next-sitemap && cp public/robots.txt out/ && cp public/*.xml out/",
+    "prebuild": "node src/prebuild/menu.mjs",
     "dev": "npm run prebuild && next dev",
     "build": "npm run prebuild && next build",
+    "postbuild": "npm run sitemap",
     "start": "next start",
     "lint": "next lint"
   },

@@ -1,14 +1,9 @@
 
-import axios from 'axios';
 import { renderToStaticMarkup } from 'react-dom/server';
 const showdown  = require('showdown')
 const converter = new showdown.Converter({metadata: true, tables: true})
-const createDOMPurify = require('dompurify');
-const { JSDOM } = require('jsdom');
 import { renderCodeTable, renderExamples, formatShortHandAnchorIds, formatAnchorIds } from "../utils"
 import menu from "../menu.json"
-const window = new JSDOM('').window;
-const DOMPurify = createDOMPurify(window);
 import { Layout } from "../components/_layout"
 
 
@@ -44,11 +39,10 @@ export default function JavaScript( props ) {
 		</div>)
 	})
 	const html = renderToStaticMarkup(layout);
-	const cleanedHtml = DOMPurify.sanitize(html);
 	
   return <Layout menu={props.menu}  
 		displayElement={layout} 
-		html={cleanedHtml}
+		html={html}
 		entry={props.entry}
 		heading={props.application.name}/>
 

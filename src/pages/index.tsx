@@ -5,10 +5,6 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 const showdown  = require('showdown')
 const converter = new showdown.Converter({metadata: true, tables: true})
-const createDOMPurify = require('dompurify');
-const { JSDOM } = require('jsdom');
-const window = new JSDOM('').window;
-const DOMPurify = createDOMPurify(window); 
 import axios from 'axios';
 import 'flowbite';
 import { getHtml, getSubTitle } from "../utils"
@@ -52,7 +48,6 @@ export async function getStaticProps({ params }) {
   const docs = await client.getDocument({ "@type": "Page", as_list: true, query: query })
   const docResult = docs[0]
   const html = converter.makeHtml(docResult['body']['value'])
-  const cleanedHtml = DOMPurify.sanitize(html)
-  const entry = {html: cleanedHtml, document: docResult }
+  const entry = {html: html, document: docResult }
   return { props: { menu: menu, entry: entry } }
 }

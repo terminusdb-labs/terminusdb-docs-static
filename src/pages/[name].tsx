@@ -2,10 +2,6 @@
 const TerminusClient = require("@terminusdb/terminusdb-client");
 const showdown  = require('showdown')
 const converter = new showdown.Converter({metadata: true, tables: true})
-const createDOMPurify = require('dompurify');
-const { JSDOM } = require('jsdom');
-const window = new JSDOM('').window;
-const DOMPurify = createDOMPurify(window);  
 import axios from 'axios';
 import Seo from "../components/seo"
 import { Layout } from "../components/_layout"
@@ -109,7 +105,6 @@ export async function getStaticProps({ params }) {
         if (typeof docResult['body'] !== 'undefined') {
             html = converter.makeHtml(docResult['body']['value'])
         }
-	const cleanedHtml = DOMPurify.sanitize(html)
-	const entry = {html: cleanedHtml, document: docResult }
+	const entry = {html: html, document: docResult }
 	return { props: { entry, menu } } 
 }

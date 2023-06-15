@@ -2,6 +2,7 @@
 const nextConfig = {
   basePath: process.env.BASE_PATH || "",
   output: 'export',
+  trailingSlash: true,
   reactStrictMode: false,
   typescript: {
     ignoreBuildErrors: true, // For the time being

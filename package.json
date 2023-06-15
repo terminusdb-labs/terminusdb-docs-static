@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "sitemap": "next-sitemap && cp public/robots.txt out/ && cp public/*.xml out/",
+    "sitemap": "next-sitemap",
     "prebuild": "node src/prebuild/menu.mjs",
     "dev": "npm run prebuild && next dev",
     "build": "npm run prebuild && next build",

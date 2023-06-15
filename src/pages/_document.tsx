@@ -33,6 +33,7 @@ export default function Document() {
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></Script>
           {/*       <Script id="theme-switcher">handleThemeSwitch();</Script>*/}
         <Script src="https://flowbite.com/docs/docs.js?v=1.6.5a"></Script>
+        <Script strategy="lazyOnload" data-domain="terminusdb.com" src="https://plausible.io/js/script.js"></Script>
       </body>
     </Html>
   )

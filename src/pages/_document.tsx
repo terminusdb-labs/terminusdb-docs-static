@@ -19,7 +19,6 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <Script src={basePath + "/darkmode.js"} strategy="beforeInteractive" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
         <link rel="preconnect" href="https://fonts.googleapis.com"/>
         <link rel="preconnect" href="https://fonts.gstatic.com"/>
         <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600&family=Lexend+Deca&display=swap" rel="stylesheet"/>
@@ -30,9 +29,7 @@ export default function Document() {
           </header>*/}
         <Main />
         <NextScript/>
-        <Script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></Script>
           {/*       <Script id="theme-switcher">handleThemeSwitch();</Script>*/}
-        <Script src="https://flowbite.com/docs/docs.js?v=1.6.5a"></Script>
         <Script strategy="lazyOnload" data-domain="terminusdb.com" src="https://plausible.io/js/script.js"></Script>
       </body>
     </Html>

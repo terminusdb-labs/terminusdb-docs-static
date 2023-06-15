@@ -76,7 +76,7 @@ export const Layout = (props) => {
   return <>
     <Header/>
     <Seo seo_metadata={props.seo_metadata}/>
-    <div className="w-full px-4 mx-auto max-w-8xl">
+    <div className="w-full px-4 mx-auto container max-w-8xl">
       <div className="lg:flex">
         <SideBarComponent {...props}/>
        { <div className="fixed inset-0 z-10 hidden bg-gray-900/50 dark:bg-gray-900/60" id="sidebarBackdrop"/>}

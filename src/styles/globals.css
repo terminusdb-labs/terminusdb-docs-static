@@ -140,6 +140,9 @@ h4.divider {
     @apply ml-8 list-outside;
   }
   img { 
+    @apply max-w-full h-auto rounded-lg;
+  }
+  #mainContent img { 
     @apply max-w-full h-auto rounded-lg  mb-8;
   }
   pre { 

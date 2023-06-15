@@ -1,6 +1,7 @@
 //import '@/styles/globals.css'
 import React, { useEffect, useCallback } from "react";
 //import "../styles/tailwind.css"
+import "flowbite"
 import "../styles/globals.css"
 //import "../styles/test.css"
 //import "../styles/prism-one-dark.css"

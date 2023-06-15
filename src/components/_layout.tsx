@@ -28,7 +28,7 @@ const SideBarComponent = (props) => {
       aria-labelledby="sidebar-label">
    
       <div id="navWrapper"
-        className="overflow-y-auto z-20 h-full bg-gray-50 scrolling-touch max-w-2xs lg:h-[calc(100vh-3rem)] lg:block lg:sticky top:24 lg:top-28 dark:bg-gray-900 lg:mr-0">
+        className="overflow-y-auto z-20 h-full bg-white scrolling-touch max-w-2xs lg:h-[calc(100vh-3rem)] lg:block lg:sticky top:24 lg:top-28 dark:bg-gray-900 lg:mr-0">
         <nav id="nav"
           className="pt-16 px-1 pl-3 lg:pl-0 lg:pt-2 font-normal text-base lg:text-sm pb-10 lg:pb-20 sticky?lg:h-(screen-18)"
           aria-label="Docs navigation">

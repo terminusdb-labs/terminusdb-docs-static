@@ -31,7 +31,6 @@
     "eslint-config-next": "13.3.0",
     "flowbite": "^1.6.5",
     "jsdom": "^21.1.1",
-    "net": "^1.0.2",
     "next": "13.3.0",
     "postcss": "8.4.22",
     "prismjs": "^1.29.0",

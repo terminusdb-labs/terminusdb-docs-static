@@ -1,6 +1,4 @@
-
 import { OnThisPageContent } from "../components/_onThisPage"
-import { renderToStaticMarkup } from 'react-dom/server';
 import menu from "../menu.json"
 import dynamic from "next/dynamic";
 const SwaggerUI = dynamic(import('swagger-ui-react'), {ssr: false})
@@ -12,10 +10,8 @@ export default function Home( props ) {
 		const layout =  <>
         <SwaggerUI url="https://raw.githubusercontent.com/terminusdb/terminusdb/main/docs/openapi.yaml" />
 	</>
-	const html = renderToStaticMarkup(layout);
     return <Layout menu={props.menu}
 		displayElement={layout}
-		html={html}
 		entry={props.entry}
 		heading="OpenAPI spec"/>
 }
@@ -24,5 +20,5 @@ export default function Home( props ) {
 export async function getStaticProps(context) {
 	// provide entry slug
     const entry = {document: { slug: `openapi` }}
-    return { props: { html: {}, menu, entry } }
+    return { props: { menu, entry } }
 }

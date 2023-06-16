@@ -9,7 +9,6 @@ import Prism from "prismjs";
 import { initFlowbite } from 'flowbite'
 import "prismjs/themes/prism-tomorrow.css";
 import 'prismjs/components/prism-json';
-import 'prismjs/components/prism-powershell';
 import 'prismjs/components/prism-graphql';
 import 'prismjs/components/prism-python';
 

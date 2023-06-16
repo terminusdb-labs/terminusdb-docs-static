@@ -4,7 +4,7 @@ import { OnThisPageContent } from "../components/_onThisPage"
 import { handleScroll } from "../utils"
 import Seo from "../components/seo"
 
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import Prism from "prismjs";
 import { initFlowbite } from 'flowbite'
 import "prismjs/themes/prism-tomorrow.css";
@@ -43,13 +43,14 @@ const SideBarComponent = (props) => {
 
 /** Main body of page */
 const MainContent = (props) => {
-
-  useEffect(() => {
+    const [onThisPage, setOnThisPage] = useState('');
+    useEffect(() => {
       if (typeof window !== 'undefined') {
           Prism.highlightAll();
           handleScroll();
           initFlowbite();
           document.getElementById("sidebar-multi-level-sidebar").classList.add("hidden")
+          setOnThisPage(<OnThisPageContent />)
       }
   }, [props.displayElement]);
 
@@ -65,8 +66,8 @@ const MainContent = (props) => {
           <h2 className="font-barlow font-semibold tdb__subtitle">{props.subtitle}</h2>
           {props.displayElement}
         </div>
-      </div> 
-      <OnThisPageContent html={props.html}/>
+        </div>
+        { onThisPage }
     </div>
   </main>
 }

@@ -1,4 +1,3 @@
-const { JSDOM } = require('jsdom');
 import { formatAnchorIds } from "../utils"
 
 function intendList (tagName: any) {
@@ -44,12 +43,9 @@ function getNodeList(nodeList) {
 }
 
 //return <div className="flex-none hidden w-64 pl-8 mr-8 xl:text-sm xl:block">
-export const OnThisPageContent = ({ html }) => {
+export const OnThisPageContent = (props) => {
 
-  const dom = new JSDOM(`<!DOCTYPE html>${html}`);
-  const document = dom.window.document;
-
-  let nodeList = document.querySelectorAll("h2, h3, h4")
+  let nodeList = document.querySelectorAll("#mainContent h2:not(.tdb__subtitle), #mainContent h3, #mainContent h4")
 
   let listArray = getNodeList(nodeList) 
   

@@ -1,5 +1,4 @@
-
-import { renderToStaticMarkup } from 'react-dom/server';
+import axios from 'axios';
 const showdown  = require('showdown')
 const converter = new showdown.Converter({metadata: true, tables: true})
 import { renderCodeTable, renderExamples, formatShortHandAnchorIds, formatAnchorIds } from "../utils"
@@ -38,11 +37,9 @@ export default function JavaScript( props ) {
 			{ classes }
 		</div>)
 	})
-	const html = renderToStaticMarkup(layout);
 	
   return <Layout menu={props.menu}  
 		displayElement={layout} 
-		html={html}
 		entry={props.entry}
 		heading={props.application.name}/>
 

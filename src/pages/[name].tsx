@@ -58,7 +58,6 @@ export default function Doc( props: JSX.IntrinsicAttributes & { menu: any[]; ent
   return <Layout menu={props.menu} 
     entry={props.entry}
     displayElement={displayElement} 
-    html={html}
     heading={props.entry.document.title.value}
     subtitle={getSubTitle(props.entry.document)}
     seo_metadata={props.entry.document.seo_metadata}/>

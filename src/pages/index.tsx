@@ -24,7 +24,6 @@ export default function Home(props: { menu: any[], entry: any[] }) {
     return <Layout menu={props.menu} 
         entry={props.entry}
         displayElement={displayElement} 
-        html={html}
         heading={props.entry.document.title.value}
         subtitle={getSubTitle(props.entry.document)}
         seo_metadata={props.entry.document.seo_metadata}

@@ -16,6 +16,10 @@ function getSlug(slug: string) {
     return '/' + slug
 }
 
+function getMenuId(menuLabel: string) {
+    return menuLabel.replaceAll(" ", "_")
+}
+
 /** level 3 */
 function renderLevel3Menu(menuLevel3: any[], entry: any[]) {
 
@@ -60,8 +64,8 @@ function renderLevel2Menu(menuLevel2: any[], entry: any[]) {
     return <li key={`level2_${index}`}>
       <button type="button" 
         className={`${menuClassName} pl-11 font-barlow font-normal ${activeClassName}`}
-        aria-controls={level2.Menu2Label}
-        data-collapse-toggle={level2.Menu2Label}>
+        aria-controls={getMenuId(level2.Menu2Label)}
+        data-collapse-toggle={getMenuId(level2.Menu2Label)}>
           <Link href={getSlug(level2.Menu2Page.slug)} className="tdb__menu__links">
             <span className="flex-1 text-left whitespace-nowrap" sidebar-toggle-item>
               {level2.Menu2Label}
@@ -74,7 +78,7 @@ function renderLevel2Menu(menuLevel2: any[], entry: any[]) {
           <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
         </svg>
       </button>
-      <ul id={level2.Menu2Label} className={`${className} py-2 space-y-2 tdb__li`}>{ renderLevel3Menu(level2.Level3, entry) }</ul>
+          <ul id={getMenuId(level2.Menu2Label)} className={`${className} py-2 space-y-2 tdb__li`}>{ renderLevel3Menu(level2.Level3, entry) }</ul>
     </li>
   })
   return level2Items
@@ -107,8 +111,8 @@ function renderLevel1Menu(menuLevel1: any[], entry: any[]) {
     return <li key={`level1_${index}`}>
         <button type="button"
           className={`${menuClassName} pl-6 font-barlow font-normal ${activeClassName}`}
-          aria-controls={level1.Menu1Label}
-          data-collapse-toggle={level1.Menu1Label}>
+          aria-controls={getMenuId(level1.Menu1Label)}
+          data-collapse-toggle={getMenuId(level1.Menu1Label)}>
           <Link href={getSlug(level1.Menu1Page.slug)} className="tdb__menu__links">
             <span className="flex-1 text-left whitespace-nowrap" sidebar-toggle-item>
               {level1.Menu1Label}
@@ -121,7 +125,7 @@ function renderLevel1Menu(menuLevel1: any[], entry: any[]) {
             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
           </svg>
         </button>
-      <ul id={level1.Menu1Label} className={`${className} py-2 space-y-2 tdb__li`}>{ renderLevel2Menu(level1.Level2, entry) }</ul>
+        <ul id={getMenuId(level1.Menu1Label)} className={`${className} py-2 space-y-2 tdb__li`}>{ renderLevel2Menu(level1.Level2, entry) }</ul>
     </li>
   })
   return menuItems
@@ -141,8 +145,8 @@ export default function renderMainMenu(menu: any[], entry: any[]) {
     return <li key={index}>
       <button type="button"
         className={`${menuClassName} font-barlow font-normal`}
-        aria-controls={menuItem.MenuTitle}
-        data-collapse-toggle={menuItem.MenuTitle}>
+        aria-controls={getMenuId(menuItem.MenuTitle)}
+        data-collapse-toggle={getMenuId(menuItem.MenuTitle)}>
           <span className="flex-1 text-left whitespace-nowrap" sidebar-toggle-item>
             {menuItem.MenuTitle}
           </span>
@@ -153,7 +157,7 @@ export default function renderMainMenu(menu: any[], entry: any[]) {
               <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
             </svg>
       </button>
-      <ul id={menuItem.MenuTitle} className={`${className} py-2 space-y-2 tdb__li`}>
+        <ul id={getMenuId(menuItem.MenuTitle)} className={`${className} py-2 space-y-2 tdb__li`}>
         { renderLevel1Menu(menuItem.Level1, entry) }
       </ul>
     </li>

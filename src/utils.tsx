@@ -1,6 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import axios from 'axios';
-
 
 // from: https://www.javascripttutorial.net/dom/css/check-if-an-element-is-visible-in-the-viewport/
 function isInViewport(element) {

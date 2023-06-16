@@ -11,12 +11,15 @@ function getLinkTitle(linkName) {
   return str[0]
 }
 
+function getAnchorId(link) {
+  return (link.id !== '' ? link.id : formatAnchorIds(link.text) )
+}
+
 function getLinks(anchorLabel: any[]) {
   let links: JSX.Element[] = []
   anchorLabel.map(link => {
     links.push(<li className={intendList(link.tagName)}>
-      <a href={`#${formatAnchorIds(link.text)}`} className="tdb__on__this__page__links">
-        {/*link.text*/}
+      <a href={`#${getAnchorId(link)}`} className="tdb__on__this__page__links">
         {getLinkTitle(link.text)}
       </a>
     </li>)
@@ -24,18 +27,14 @@ function getLinks(anchorLabel: any[]) {
   return links
 }
 
-
-
-
-
-
 function getNodeList(nodeList) {
   let list = []
   for (let i = 0; i < nodeList.length; i++) {
     let nodeObject = {
       text: nodeList[i].textContent,
       //text: nodeList[i].textContent.replace(/[\[\]']+/g,''),
-      tagName: nodeList[i].tagName
+      tagName: nodeList[i].tagName,
+      id: nodeList[i].id,
     }
     list.push(nodeObject)
   }

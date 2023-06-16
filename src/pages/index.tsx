@@ -11,7 +11,7 @@ import { getHtml, getSubTitle } from "../utils"
 import menu from "../menu.json"
 import { Layout } from "../components/_layout"
 import { useRouter } from 'next/router'
-
+const probe = require('probe-image-size');
  
 
 export default function Home(props: { menu: any[], entry: any[] }) {
@@ -46,7 +46,20 @@ export async function getStaticProps({ params }) {
     }
   const docs = await client.getDocument({ "@type": "Page", as_list: true, query: query })
   const docResult = docs[0]
-  const html = converter.makeHtml(docResult['body']['value'])
+    let html = converter.makeHtml(docResult['body']['value'])
+        const imgTags = html.match(/<img [^>]*src="[^"]*"[^>]*>/gm);
+        if (imgTags !== null) {
+            for (let img of imgTags) {
+                if (img.includes('width="')) {
+                    // Skip images that already have their width/height set
+                    continue
+                }
+                const src = img.replace(/.*src="([^"]*)".*/, '$1')
+                let result = await probe(src);
+                const newImage = img.replace('<img', `<img width="${result.width}" height="${result.height}"`)
+                html = html.replace(img, newImage)
+            }
+        }
   const entry = {html: html, document: docResult }
   return { props: { menu: menu, entry: entry } }
 }

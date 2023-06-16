@@ -9,6 +9,8 @@ import { getHtml, getSubTitle } from "../utils"
 import menu from "../menu.json"
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+const probe = require('probe-image-size');
+
 
 function getChildren(document, menu, level) {
     const menuPageSlug = menu[`Menu${level}Page`]['slug']
@@ -104,6 +106,19 @@ export async function getStaticProps({ params }) {
         if (typeof docResult['body'] !== 'undefined') {
             html = converter.makeHtml(docResult['body']['value'])
         }
+        const imgTags = html.match(/<img [^>]*src="[^"]*"[^>]*>/gm);
+        if (imgTags !== null) {
+            for (let img of imgTags) {
+                if (img.includes('width="')) {
+                    // Skip images that already have their width/height set
+                    continue
+                }
+                const src = img.replace(/.*src="([^"]*)".*/, '$1')
+                let result = await probe(src);
+                const newImage = img.replace('<img', `<img width="${result.width}" height="${result.height}"`)
+                html = html.replace(img, newImage)
+            }
+        }
 	const entry = {html: html, document: docResult }
-	return { props: { entry, menu } } 
+	return { props: { entry, menu } }
 }

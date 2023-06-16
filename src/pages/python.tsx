@@ -1,7 +1,4 @@
 import axios from 'axios';
-const showdown  = require('showdown')
-const converter = new showdown.Converter({metadata: true, tables: true})
-const createDOMPurify = require('dompurify');
 import { renderCodeTable, renderExamples, formatShortHandAnchorIds, formatAnchorIds } from "../utils"
 import menu from "../menu.json"
 import { Layout } from "../components/_layout"

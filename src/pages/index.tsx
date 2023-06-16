@@ -3,23 +3,15 @@ const TerminusClient = require("@terminusdb/terminusdb-client");
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
-const showdown  = require('showdown')
-const converter = new showdown.Converter({metadata: true, tables: true})
 import axios from 'axios';
 import 'flowbite';
 import { getHtml, getSubTitle } from "../utils"
 import menu from "../menu.json"
 import { Layout } from "../components/_layout"
-import { useRouter } from 'next/router'
-const probe = require('probe-image-size');
- 
+import { renderMarkdown } from '../lib/markdown'
 
 export default function Home(props: { menu: any[], entry: any[] }) {
     let html = getHtml(props.entry)
-    const router = useRouter()
-    if (router.basePath != '') {
-      html = html.replaceAll(/<a href="\/([a-z-]*)">/g, `<a href="${router.basePath}/$1/">`)
-    }
     let displayElement = <div dangerouslySetInnerHTML={{__html: html}}/>
     return <Layout menu={props.menu} 
         entry={props.entry}
@@ -46,20 +38,7 @@ export async function getStaticProps({ params }) {
     }
   const docs = await client.getDocument({ "@type": "Page", as_list: true, query: query })
   const docResult = docs[0]
-    let html = converter.makeHtml(docResult['body']['value'])
-        const imgTags = html.match(/<img [^>]*src="[^"]*"[^>]*>/gm);
-        if (imgTags !== null) {
-            for (let img of imgTags) {
-                if (img.includes('width="')) {
-                    // Skip images that already have their width/height set
-                    continue
-                }
-                const src = img.replace(/.*src="([^"]*)".*/, '$1')
-                let result = await probe(src);
-                const newImage = img.replace('<img', `<img width="${result.width}" height="${result.height}"`)
-                html = html.replace(img, newImage)
-            }
-        }
+  let html = await renderMarkdown(docResult['body']['value'])
   const entry = {html: html, document: docResult }
   return { props: { menu: menu, entry: entry } }
 }

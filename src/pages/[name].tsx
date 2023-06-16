@@ -1,15 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 const TerminusClient = require("@terminusdb/terminusdb-client");
-const showdown  = require('showdown')
-const converter = new showdown.Converter({metadata: true, tables: true})
 import axios from 'axios';
 import Seo from "../components/seo"
 import { Layout } from "../components/_layout"
 import { getHtml, getSubTitle } from "../utils"
 import menu from "../menu.json"
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-const probe = require('probe-image-size');
+import { renderMarkdown } from "../lib/markdown"
 
 
 function getChildren(document, menu, level) {
@@ -46,14 +43,8 @@ function defaultDoc(document, menus) {
 }
 
 export default function Doc( props: JSX.IntrinsicAttributes & { menu: any[]; entry: any[]; } ) {
-
     let html = getHtml(props.entry)
-    const router = useRouter()
-    if (router.basePath != '') {
-      html = html.replaceAll(/<a href="\/([a-z-]*)">/g, `<a href="${router.basePath}/$1/">`)
-    }
     let displayElement = <div dangerouslySetInnerHTML={{__html: html}}/>
-    //return <BlankPage/>
         if (typeof props.entry.document.body === 'undefined') {
             displayElement = defaultDoc(props.entry.document, props.menu)
     }
@@ -104,20 +95,7 @@ export async function getStaticProps({ params }) {
         const docResult = docs[0]
         let html = ''
         if (typeof docResult['body'] !== 'undefined') {
-            html = converter.makeHtml(docResult['body']['value'])
-        }
-        const imgTags = html.match(/<img [^>]*src="[^"]*"[^>]*>/gm);
-        if (imgTags !== null) {
-            for (let img of imgTags) {
-                if (img.includes('width="')) {
-                    // Skip images that already have their width/height set
-                    continue
-                }
-                const src = img.replace(/.*src="([^"]*)".*/, '$1')
-                let result = await probe(src);
-                const newImage = img.replace('<img', `<img width="${result.width}" height="${result.height}"`)
-                html = html.replace(img, newImage)
-            }
+            html = await renderMarkdown(docResult['body']['value'])
         }
 	const entry = {html: html, document: docResult }
 	return { props: { entry, menu } }

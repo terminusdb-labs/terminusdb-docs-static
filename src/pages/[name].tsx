@@ -50,7 +50,7 @@ export default function Doc( props: JSX.IntrinsicAttributes & { menu: any[]; ent
     let html = getHtml(props.entry)
     const router = useRouter()
     if (router.basePath != '') {
-      html = html.replaceAll(`<a href="/`, `<a href="${router.basePath}/`)
+      html = html.replaceAll(/<a href="\/([a-z-]*)">/g, `<a href="${router.basePath}/$1/">`)
     }
     let displayElement = <div dangerouslySetInnerHTML={{__html: html}}/>
     //return <BlankPage/>

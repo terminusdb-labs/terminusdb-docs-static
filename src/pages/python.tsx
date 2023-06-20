@@ -1,4 +1,5 @@
 import axios from 'axios';
+const TerminusClient = require("@terminusdb/terminusdb-client");
 import { renderCodeTable, renderExamples, formatShortHandAnchorIds, formatAnchorIds } from "../utils"
 import menu from "../menu.json"
 import { Layout } from "../components/_layout"
@@ -36,9 +37,10 @@ export default function Python( props ) {
 		</div>)
 	})
 	
-  return <Layout menu={props.menu} 
-		displayElement={layout} 
-		entry={props.entry}
+  return <Layout menu={props.menu}
+                displayElement={layout}
+                entry={props.entry}
+                seo_metadata={props.entry.document.seo_metadata}
 		heading={props.application.name}/>
 
 
@@ -46,11 +48,24 @@ export default function Python( props ) {
 
 
 export async function getStaticProps(context) {
+    const client = new TerminusClient.WOQLClient('https://cloud.terminusdb.com/TerminatorsX', {
+        user:"robin@terminusdb.com",
+        organization:'TerminatorsX',
+        db: "terminusCMS_docs",
+        token: process.env.TERMINUSDB_API_TOKEN
+    })
+    const query = {
+        "@type": "Page",
+        "slug": "python"
+    }
+    const docs = await client.getDocument({ "@type": "Page", as_list: true, query: query })
+    const docResult = docs[0]
+
+	// provide entry slug
+    const entry = {document: docResult}
     const config = {
         headers: { Authorization: `Token ${process.env.TERMINUSDB_API_TOKEN}` }
     };
-	// provide entry slug
-    const entry = {document: { slug: `python` }}
 
     const application = await axios.post('https://cloud.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/CodeDocumentation', {
         query: `query {

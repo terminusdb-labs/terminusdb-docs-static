@@ -3,7 +3,7 @@ name: Publish
 on:
   schedule:
     # Every 30 minutes
-    - cron: '0 */2 * * *'
+    - cron: '0 6-18/2 * * *'
   workflow_call:
   workflow_dispatch:
 

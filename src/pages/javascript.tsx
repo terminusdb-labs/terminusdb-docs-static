@@ -97,7 +97,7 @@ export async function getStaticProps(context) {
   // provide entry slug
 
   const application = await axios.post(
-    "https://cloud.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/CodeDocumentation",
+    "https://cloud.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/terminusCMS_docs",
     {
       query: `query {
             Application(filter: {language: {eq: Javascript} } ) {

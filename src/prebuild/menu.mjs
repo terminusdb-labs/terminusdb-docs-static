@@ -1,12 +1,14 @@
-import { readFile, writeFile } from 'node:fs/promises'
-import axios from 'axios';
-import 'dotenv/config'
+import { readFile, writeFile } from "node:fs/promises"
+import axios from "axios"
+import "dotenv/config"
 
 async function fetchMenu() {
   const config = {
-      headers: { Authorization: `Token ${process.env.TERMINUSDB_API_TOKEN}` }
-  };
-  const req = await axios.post('https://cloud.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/terminusCMS_docs', {
+    headers: { Authorization: `Token ${process.env.TERMINUSDB_API_TOKEN}` },
+  }
+  const req = await axios.post(
+    "https://cloud.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/terminusCMS_docs",
+    {
       query: `query {
         Menu(orderBy: {Order:ASC}) {
           MenuTitle,
@@ -34,12 +36,15 @@ async function fetchMenu() {
             }
           }
         }
-      }`
-  }, config)
-  const sortedMenu = req.data.data.Menu.sort((a, b) => (a.menu_order > b.menu_order) ? 1 : -1)
-  await writeFile('src/menu.json', JSON.stringify(sortedMenu))
+      }`,
+    },
+    config
+  )
+  const sortedMenu = req.data.data.Menu.sort((a, b) =>
+    a.menu_order > b.menu_order ? 1 : -1
+  )
+  await writeFile("src/menu.json", JSON.stringify(sortedMenu))
   return sortedMenu
 }
 
-
-await fetchMenu();
+await fetchMenu()

@@ -6,13 +6,11 @@
 //@import url('https://fonts.cdnfonts.com/css/lexend-deca');
 //@import url("https://fonts.cdnfonts.com/css/barlow-semi-condensed");*/
 
-
 :root {
   /*--foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;*/
 }
-
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -23,46 +21,44 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue",
-		Helvetica, Arial, sans-serif;
-  font-family: 'Lexend Deca';
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  font-family: "Lexend Deca";
   font-weight: 400;
 }
 
 /** class name to highlight clicked menu*/
 .activeMenu {
-  color: rgba(134,89,250,1.00) !important;
+  color: rgba(134, 89, 250, 1) !important;
   background-color: rgba(159, 133, 224, 0.1);
 }
 
-
-
 /** list for menus should appear without bullet points */
-ul.tdb__li{
+ul.tdb__li {
   list-style: none;
   margin: 0;
 }
 
 /** h2 subtitle */
 h2.tdb__subtitle {
-  color : #595959;
+  color: #595959;
   font-style: italic;
   font-weight: 400;
   font-family: Lexend Deca;
-  font-size:1.5rem;
+  font-size: 1.5rem;
   margin-bottom: 2rem;
 }
 
 .dark h2.tdb__subtitle {
-color: #ffffff;
+  color: #ffffff;
 }
 
-@media screen and (max-device-width: 480px)
-    and (orientation: portrait) {
-	h2.tdb__subtitle {
-	  font-size:1.2rem;
-	}
-}	    
+@media screen and (max-device-width: 480px) and (orientation: portrait) {
+  h2.tdb__subtitle {
+    font-size: 1.2rem;
+  }
+}
 
 /** on this page list */
 ul.tdb__on__this__page {
@@ -72,17 +68,17 @@ ul.tdb__on__this__page {
 }
 
 a {
-  color : #8659fa; 
+  color: #8659fa;
 }
 
 a:hover {
-  color :#e87cd6; 
+  color: #e87cd6;
 }
 
 a.tdb__on__this__page__links {
   color: #8899a8;
-  font-size:0.8em !important;
-  margin-bottom:0.8em;
+  font-size: 0.8em !important;
+  margin-bottom: 0.8em;
 }
 
 a.tdb__on__this__page__links:hover {
@@ -94,125 +90,114 @@ a.tdb__menu__links {
 }
 
 li.tdb__on__this__page__links:active {
-  color: red; 
+  color: red;
 }
 
-h4.divider { 
+h4.divider {
   padding-top: 1rem;
   border-top: 1px solid rgb(228, 224, 224);
 }
 
 @layer base {
   h1 {
-    @apply  text-4xl font-extrabold leading-none tracking-tight text-gray-900  dark:text-white relative  scroll-mt-20 sm:text-3xl;
+    @apply relative scroll-mt-20 text-4xl font-extrabold leading-none  tracking-tight text-gray-900  dark:text-white sm:text-3xl;
   }
-  aside { 
+  aside {
     @apply top-16 !important;
   }
   h2 {
-    @apply mb-5 font-barlow text-3xl font-extrabold dark:text-white font-semibold relative scroll-mt-20 ;
+    @apply relative mb-5 scroll-mt-20 font-barlow text-3xl font-extrabold font-semibold dark:text-white;
   }
   h3 {
-    @apply mb-5 font-barlow text-2xl font-bold dark:text-white font-semibold relative scroll-mt-20;
+    @apply relative mb-5 scroll-mt-20 font-barlow text-2xl font-bold font-semibold dark:text-white;
   }
-  h4 { 
-    @apply mb-5 text-xl font-bold dark:text-white font-semibold relative scroll-mt-20;
+  h4 {
+    @apply relative mb-5 scroll-mt-20 text-xl font-bold font-semibold dark:text-white;
   }
-  h5 { 
-    @apply font-bold dark:text-white font-semibold scroll-mt-20;
+  h5 {
+    @apply scroll-mt-20 font-bold font-semibold dark:text-white;
   }
   p {
-    @apply mb-8 text-lg md:text-lg dark:text-gray-50 font-normal lg:leading-9 md:leading-9;
+    @apply mb-8 text-lg font-normal dark:text-gray-50 md:text-lg md:leading-9 lg:leading-9;
   }
-  ol li { 
-    @apply text-lg md:text-lg dark:text-gray-50 font-normal list-outside ml-8;
+  ol li {
+    @apply ml-8 list-outside text-lg font-normal dark:text-gray-50 md:text-lg;
   }
-  ol { 
-    @apply space-y-1 list-decimal list-inside dark:text-gray-50 font-normal mb-8;
+  ol {
+    @apply mb-8 list-inside list-decimal space-y-1 font-normal dark:text-gray-50;
   }
   li + ul {
-    @apply ml-8 list-outside; 
+    @apply ml-8 list-outside;
   }
   ul {
-    @apply space-y-1 list-disc list-inside dark:text-gray-50 font-normal mt-8 mb-8 text-lg md:text-lg;
+    @apply mb-8 mt-8 list-inside list-disc space-y-1 text-lg font-normal dark:text-gray-50 md:text-lg;
   }
   #mainContent li {
     @apply ml-8 list-outside;
   }
-  img { 
-    @apply max-w-full h-auto rounded-lg;
+  img {
+    @apply h-auto max-w-full rounded-lg;
   }
-  #mainContent img { 
-    @apply max-w-full h-auto rounded-lg  mb-8;
+  #mainContent img {
+    @apply mb-8 h-auto max-w-full  rounded-lg;
   }
-  pre { 
-    @apply max-w-full h-auto rounded-lg  mb-8 !important;
+  pre {
+    @apply mb-8 h-auto max-w-full  rounded-lg !important;
   }
-  code { 
-    @apply bg-zinc-300 rounded-md text-black p-1 font-mono text-base;
+  code {
+    @apply rounded-md bg-zinc-300 p-1 font-mono text-base text-black;
   }
   pre > code {
     @apply p-0;
   }
-  table { 
-    @apply mt-8 mb-8 w-full text-sm text-left dark:text-gray-50 font-normal break-words;
+  table {
+    @apply mb-8 mt-8 w-full break-words text-left text-sm font-normal dark:text-gray-50;
   }
-  thead { 
-    @apply text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-50 font-normal break-all;
+  thead {
+    @apply break-all bg-gray-100 font-normal uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-50;
   }
-  tr {  
-    @apply  border-b dark:bg-gray-900 dark:border-gray-700 break-all;
+  tr {
+    @apply break-all border-b dark:border-gray-700 dark:bg-gray-900;
   }
-  th { 
-    @apply rounded-lg px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white break-words;
+  th {
+    @apply whitespace-nowrap break-words rounded-lg px-6 py-4 font-medium text-gray-900 dark:text-white;
   }
   td {
-    @apply md:text-lg p-3 break-words;
+    @apply break-words p-3 md:text-lg;
   }
   blockquote {
-    @apply p-5 mb-3 italic rounded-md border-l-4 border-blue-300 bg-blue-50 dark:border-gray-500 dark:bg-gray-800 rounded-sm 
+    @apply mb-3 rounded-md rounded-sm border-l-4 border-blue-300 bg-blue-50 p-5 italic dark:border-gray-500 dark:bg-gray-800;
   }
   blockquote p {
-    @apply mb-0  
+    @apply mb-0;
   }
   #TableOfContents > ul {
     @apply overflow-x-hidden text-base text-gray-500 dark:text-gray-400;
   }
-  
-  
+
   #TableOfContents > ul > li > a {
-    @apply block pl-2.5 text-base border-l border-white duration-200 hover:text-gray-900 transition-none dark:hover:text-white hover:border-gray-300 after:content-['#'] after:text-purple-700 dark:after:text-purple-500 dark:border-gray-900 dark:hover:border-gray-700 after:ml-2 after:opacity-0 hover:after:opacity-100 after:transition-opacity after:duration-100;
+    @apply block border-l border-white pl-2.5 text-base transition-none duration-200 after:ml-2 after:text-purple-700 after:opacity-0 after:transition-opacity after:duration-100 after:content-['#'] hover:border-gray-300 hover:text-gray-900 hover:after:opacity-100 dark:border-gray-900 dark:after:text-purple-500 dark:hover:border-gray-700 dark:hover:text-white;
   }
 
   #TableOfContents > ul > li.active {
-    color: rgba(134,89,250,1.00) !important;
+    color: rgba(134, 89, 250, 1) !important;
     background-color: rgba(159, 133, 224, 0.1);
-    border-left: 1px solid rgba(134,89,250,1.00);
-  }
-  
-  #TableOfContents > ul > li > ul > li > a {
-    @apply pl-6 border-l border-white duration-200 hover:text-gray-900 transition-none dark:hover:text-white hover:border-gray-300 after:content-['#'] after:text-purple-700 dark:after:text-purple-500 dark:border-gray-900 dark:hover:border-gray-700 after:ml-2 after:opacity-0 hover:after:opacity-100 after:transition-opacity after:duration-100;
+    border-left: 1px solid rgba(134, 89, 250, 1);
   }
 
- 
-  
+  #TableOfContents > ul > li > ul > li > a {
+    @apply border-l border-white pl-6 transition-none duration-200 after:ml-2 after:text-purple-700 after:opacity-0 after:transition-opacity after:duration-100 after:content-['#'] hover:border-gray-300 hover:text-gray-900 hover:after:opacity-100 dark:border-gray-900 dark:after:text-purple-500 dark:hover:border-gray-700 dark:hover:text-white;
+  }
+
   #TableOfContents > ul > li > ul {
     @apply pt-2;
   }
-  
+
   #TableOfContents > ul > li > ul > li {
     @apply py-2;
   }
-  
+
   #TableOfContents > ul > li > ul > li:last-of-type {
     @apply pb-0;
   }
-  
- 
-  
 }
-
-
-
-
-

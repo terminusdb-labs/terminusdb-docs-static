@@ -1,87 +1,110 @@
-import renderMainMenu  from "./_menu"
+import renderMainMenu from "./_menu"
 import { Nav } from "../components/_nav"
 import { OnThisPageContent } from "../components/_onThisPage"
 import { handleScroll } from "../utils"
 import Seo from "../components/seo"
 
-import React, { useEffect, useCallback, useState } from "react";
-import Prism from "prismjs";
-import { initFlowbite } from 'flowbite'
-import "prismjs/themes/prism-tomorrow.css";
-import 'prismjs/components/prism-json';
-import 'prismjs/components/prism-graphql';
-import 'prismjs/components/prism-python';
+import React, { useEffect, useCallback, useState } from "react"
+import Prism from "prismjs"
+import { initFlowbite } from "flowbite"
+import "prismjs/themes/prism-tomorrow.css"
+import "prismjs/components/prism-json"
+import "prismjs/components/prism-graphql"
+import "prismjs/components/prism-python"
 
 /** Header component */
 const Header = () => {
-  return <header className="sticky top-0 z-40 flex-none w-full mx-auto bg-white border-b border-gray-200 dark:border-gray-600 dark:bg-gray-800">
-    <Nav/>
-  </header>
+  return (
+    <header className="sticky top-0 z-40 mx-auto w-full flex-none border-b border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-800">
+      <Nav />
+    </header>
+  )
 }
 
 /** Side Bar nav component  */
 const SideBarComponent = (props) => {
-  return <>
-    <aside id="sidebar-multi-level-sidebar"
-      className="fixed inset-0 z-20 flex-none h-full w-72 lg:static lg:h-auto lg:overflow-y-visible lg:pt-0 lg:w-96 lg:block hidden"
-      aria-labelledby="sidebar-label">
-   
-      <div id="navWrapper"
-        className="overflow-y-auto z-20 h-full bg-white scrolling-touch max-w-2xs lg:h-[calc(100vh-3rem)] lg:block lg:sticky top:24 lg:top-28 dark:bg-gray-900 lg:mr-0">
-        <nav id="nav"
-          className="pt-16 px-1 pl-3 lg:pl-0 lg:pt-2 font-normal text-base lg:text-sm pb-20 lg:pb-20 sticky?lg:h-(screen-18)"
-          aria-label="Docs navigation">
-            <ul className="space-y-2 font-medium tdb__li ">
-              { renderMainMenu(props.menu, props.entry) }
+  return (
+    <>
+      <aside
+        id="sidebar-multi-level-sidebar"
+        className="fixed inset-0 z-20 hidden h-full w-72 flex-none lg:static lg:block lg:h-auto lg:w-96 lg:overflow-y-visible lg:pt-0"
+        aria-labelledby="sidebar-label"
+      >
+        <div
+          id="navWrapper"
+          className="scrolling-touch max-w-2xs top:24 z-20 h-full overflow-y-auto bg-white dark:bg-gray-900 lg:sticky lg:top-28 lg:mr-0 lg:block lg:h-[calc(100vh-3rem)]"
+        >
+          <nav
+            id="nav"
+            className="sticky?lg:h-(screen-18) px-1 pb-20 pl-3 pt-16 text-base font-normal lg:pb-20 lg:pl-0 lg:pt-2 lg:text-sm"
+            aria-label="Docs navigation"
+          >
+            <ul className="tdb__li space-y-2 font-medium ">
+              {renderMainMenu(props.menu, props.entry)}
             </ul>
-        </nav>
-      </div>  
-    </aside>
-  </>
+          </nav>
+        </div>
+      </aside>
+    </>
+  )
 }
 
 /** Main body of page */
 const MainContent = (props) => {
-    const [onThisPage, setOnThisPage] = useState('');
-    useEffect(() => {
-      if (typeof window !== 'undefined') {
-          Prism.highlightAll();
-          handleScroll();
-          initFlowbite();
-          document.getElementById("sidebar-multi-level-sidebar").classList.add("hidden")
-          setOnThisPage(<OnThisPageContent />)
-      }
-  }, [props.displayElement]);
+  const [onThisPage, setOnThisPage] = useState("")
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      Prism.highlightAll()
+      handleScroll()
+      initFlowbite()
+      document
+        .getElementById("sidebar-multi-level-sidebar")
+        .classList.add("hidden")
+      setOnThisPage(<OnThisPageContent />)
+    }
+  }, [props.displayElement])
 
-  return <main id="content-wrapper"
-    className="flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible">
-
-    <div className="flex w-full">
-      <div className="flex-auto max-w-4xl min-w-0 pt-6 lg:px-8 lg:pt-8 pb:12 xl:pb-24 lg:pb-16">
-        <div id="mainContent">
-          <div className="pb-2 mb-4 border-b border-gray-200 dark:border-gray-800">
-            <h1 className="font-barlow font-semibold">{props.heading}</h1>
+  return (
+    <main
+      id="content-wrapper"
+      className="w-full min-w-0 flex-auto lg:static lg:max-h-full lg:overflow-visible"
+    >
+      <div className="flex w-full">
+        <div className="pb:12 min-w-0 max-w-4xl flex-auto pt-6 lg:px-8 lg:pb-16 lg:pt-8 xl:pb-24">
+          <div id="mainContent">
+            <div className="mb-4 border-b border-gray-200 pb-2 dark:border-gray-800">
+              <h1 className="font-barlow font-semibold">{props.heading}</h1>
+            </div>
+            <h2 className="tdb__subtitle font-barlow font-semibold">
+              {props.subtitle}
+            </h2>
+            {props.displayElement}
           </div>
-          <h2 className="font-barlow font-semibold tdb__subtitle">{props.subtitle}</h2>
-          {props.displayElement}
         </div>
-        </div>
-        { onThisPage }
-    </div>
-  </main>
+        {onThisPage}
+      </div>
+    </main>
+  )
 }
 
 /** layout for all pages to be displayed */
 export const Layout = (props) => {
-  return <>
-    <Header/>
-    <Seo seo_metadata={props.seo_metadata}/>
-    <div className="w-full px-4 mx-auto container max-w-8xl">
-      <div className="lg:flex">
-        <SideBarComponent {...props}/>
-       { <div className="fixed inset-0 z-10 hidden bg-gray-900/50 dark:bg-gray-900/60" id="sidebarBackdrop"/>}
-        <MainContent {...props}/>
+  return (
+    <>
+      <Header />
+      <Seo seo_metadata={props.seo_metadata} />
+      <div className="max-w-8xl container mx-auto w-full px-4">
+        <div className="lg:flex">
+          <SideBarComponent {...props} />
+          {
+            <div
+              className="fixed inset-0 z-10 hidden bg-gray-900/50 dark:bg-gray-900/60"
+              id="sidebarBackdrop"
+            />
+          }
+          <MainContent {...props} />
+        </div>
       </div>
-    </div>
-  </>
+    </>
+  )
 }

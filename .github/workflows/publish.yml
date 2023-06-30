@@ -18,3 +18,6 @@ jobs:
         env:
           TERMINUSDB_API_TOKEN: ${{ secrets.TERMINUSDB_API_TOKEN }}
       - run: curl -X POST ${{ secrets.CLOUDFLARE_DEPLOY_HOOK }} -o /dev/null
+      - run: cd .utils/ && npm i && node parse_to_sections.js
+        env:
+          TERMINUSDB_API_TOKEN: ${{ secrets.TERMINUSDB_API_TOKEN }}

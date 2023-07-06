@@ -1,3 +1,4 @@
+import process from 'node:process';
 const { marked } = require('marked')
 const TerminusClient = require("@terminusdb/terminusdb-client");
 const client = new TerminusClient.WOQLClient('https://cloud.terminusdb.com/TerminatorsX',
@@ -36,6 +37,31 @@ async function mergeChangeRequest (currentCR) {
   return await client.sendCustomRequest('PUT', `${getChangesUrl()}/${currentCR}`, { message: 'MERGED CR', status: 'Merged' })
 }
 
+const timeout = (time) => new Promise((resolve) => setTimeout(resolve, time))
+
+async function pollingCall (commitid, callBack) {
+  try {
+    const pollingUrl = `${getChangesUrl('indexes')}/${commitid}/check`
+    const document = await client.sendCustomRequest('GET', pollingUrl)
+    if (document.indexing_status !== 'Assigned' && document.indexing_status !== 'Error') {
+      await timeout(10000)
+      await pollingCall(commitid, callBack)
+    } else {
+      return callBack(document)
+    }
+  } catch (err) {
+    console.log(err.message)
+    clearTimeout(timeout)
+  }
+}
+
+function callBack (document) {
+  if (document.indexing_status === 'Error') {
+    console.log('Error', document.error_message)
+  } else {
+    console.log('Finished')
+  }
+}
 
 function parseDocument(document) {
   const mdBody = document['body'].value
@@ -69,6 +95,18 @@ async function main() {
     }
   }
   await client.updateDocument(docs, {create: true}, "", "Update sections from script")
+  try {
+    const response = await mergeChangeRequest(changeRequestId)
+    if (response.tracking_branch_last_commit) {
+      // or maybe you can put an await
+      pollingCall(response.tracking_branch_last_commit, callBack)
+    }
+  }
+  catch (err) {
+    const message = err.data && typeof err.data === 'object' ? JSON.stringify(err.data, null, 4) : err.message
+    process.exit(1);
+    console.log('ERROR', message)
+  }
 }
 
 main()

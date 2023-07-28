@@ -1,4 +1,3 @@
-import process from 'node:process';
 const { marked } = require('marked')
 const TerminusClient = require("@terminusdb/terminusdb-client");
 const client = new TerminusClient.WOQLClient('https://cloud.terminusdb.com/TerminatorsX',

@@ -94,6 +94,9 @@ async function main() {
       newDocs.push(doc)
     }
   }
+  const sections = await client.getDocument({as_list: true, type: 'Sections'})
+  const sectionIds = sections.map(x => x['@id'])
+  await client.deleteDocument({id: sectionIds})
   await client.updateDocument(docs, {create: true}, "", "Update sections from script")
   try {
     const response = await mergeChangeRequest(changeRequestId)

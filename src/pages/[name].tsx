@@ -52,7 +52,7 @@ export default function Doc(
 ) {
   let html = getHtml(props.entry)
   let displayElement = <div dangerouslySetInnerHTML={{ __html: html }} />
-  if (typeof props.entry.document.body === "undefined") {
+  if (props.entry.document.body === null) {
     displayElement = defaultDoc(props.entry.document, props.menu)
   }
   return (
@@ -89,31 +89,34 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  // Connect and configure the TerminusClient
-  const client = new TerminusClient.WOQLClient(
-    "https://cloud.terminusdb.com/TerminatorsX",
-    {
-      user: "robin@terminusdb.com",
-      organization: "TerminatorsX",
-      db: "terminusCMS_docs",
-      token: process.env.TERMINUSDB_API_TOKEN,
-    }
-  )
   const config = {
     headers: { Authorization: `Token ${process.env.TERMINUSDB_API_TOKEN}` },
   }
-  const query = {
-    "@type": "Page",
-    slug: params["name"],
+  const doc = await axios.post(
+    "https://cloud.terminusdb.com/TerminatorsX/api/graphql/TerminatorsX/terminusCMS_docs",
+    {
+      query: `query {
+    Page(filter: {slug: {eq: "${params['name']}"}}) {
+    slug,
+    title {
+      value
+    },
+    body {
+      value
+    },
+    seo_metadata {
+      description,
+      og_image,
+      title
+    }
   }
-  const docs = await client.getDocument({
-    "@type": "Page",
-    as_list: true,
-    query: query,
-  })
-  const docResult = docs[0]
+}`,
+    },
+    config
+  )
+  const docResult = doc.data.data.Page[0]
   let html = ""
-  if (typeof docResult["body"] !== "undefined") {
+  if (docResult["body"] !== null) {
     html = await renderMarkdown(docResult["body"]["value"])
   }
   const entry = { html: html, document: docResult }
